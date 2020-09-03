@@ -57,6 +57,17 @@ public class AuthController implements Validation {
         }
     }
 
+    @DeleteMapping("/deletar/{id}")
+    public String deleteUser(@PathVariable int id) {
+        lista.remove(id - 1);
+
+        if (status) {
+            return "Excluído com Sucesso!";
+        } else {
+            return "Falha ao excluir.";
+        }
+    }
+
     @Override
     public void authUser(String login, String senha) {
             for (Usuario i : lista) {
