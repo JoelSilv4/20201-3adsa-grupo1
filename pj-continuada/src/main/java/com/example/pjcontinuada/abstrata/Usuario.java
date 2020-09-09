@@ -1,16 +1,16 @@
-package com.example.pjcontinuada;
+package com.example.pjcontinuada.abstrata;
 
-import com.example.pjcontinuada.dto.Roles;
+import com.example.pjcontinuada.models.Cargos;
 
 public class Usuario {
     private String usuario;
     private String senha;
-    private Roles roles;
+    private Cargos cargos;
 
-    public Usuario(String usuario, String senha, Roles roles) {
+    public Usuario(String usuario, String senha, Cargos cargos) {
         this.usuario = usuario;
         this.senha = senha;
-        this.roles = roles;
+        this.cargos = cargos;
     }
 
     public String getUsuario() {
@@ -29,11 +29,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Roles getRoles() {
-        return roles;
+    public Cargos getCargos() {
+        return cargos;
     }
 
-    public void setRoles(Roles roles) {
-        this.roles = roles;
+    public void setCargos(Cargos cargos) {
+        this.cargos = cargos;
     }
 }

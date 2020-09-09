@@ -1,74 +1,123 @@
 package com.example.pjcontinuada.controllers;
 
-import com.example.pjcontinuada.Admin;
-import com.example.pjcontinuada.Suporte;
-import com.example.pjcontinuada.Cliente;
-import com.example.pjcontinuada.Usuario;
-import com.example.pjcontinuada.dto.Cadastro;
-import com.example.pjcontinuada.dto.Roles;
-import com.example.pjcontinuada.validation.Validation;
+import com.example.pjcontinuada.models.*;
+import com.example.pjcontinuada.abstrata.Usuario;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/autenticacao")
-public class AuthController implements Validation {
+@RequestMapping("/auth")
+public class AuthController {
 
     private String userLogin;
     private String roleLogin;
     private boolean status;
-    private List<Usuario> lista = Arrays.asList(
-        new Admin("adm", "Adm&&1", Roles.ADM),
-        new Cliente("user", "User1&", Roles.USER),
-        new Suporte("sup", "Lux!2", Roles.SUPORT)
-    );
+    private List<Usuario> lista = new ArrayList();
+    private Admin adminLogado;
+    private Suporte suporteLogado;
+    private Cliente clienteLogado;
+    private int validacao = 0;
 
-    @PostMapping("/entrar/{login}/{senha}")
-    public String login(@PathVariable String login, @PathVariable String senha) {
-
-        if (userLogin == null) {
-            authUser(login, senha);
-        } else {
-            return "Ja existe um usuario logado";
-        }
-
-        if (status) {
-                return "Autenticado com Sucesso!";
-        } else {
-                return "Falha no login.";
-        }
+    public AuthController() {
+        lista.add(new Admin("adm", "Adm&&1", Cargos.ADM));
+        lista.add(new Cliente("user", "User1&", Cargos.USER));
+        lista.add(new Suporte("sup", "Lux!2", Cargos.SUPORT));
     }
 
-    @DeleteMapping
-    public void del() {
-        userLogin = null;
-        roleLogin = null;
+    @GetMapping("/listar")
+    public List<Usuario> listarUsuarios() {
+        return this.lista;
     }
 
-    @GetMapping
-    public String userAuth() {
-        if (userLogin != null) {
-            return  "{ usuario : " + userLogin + " , tipo : "+ roleLogin + "}";
-        } else {
-            return "[]";
-        }
+    @GetMapping("/listar/{id}")
+    public Usuario selecionarPorId(@PathVariable int id) {
+        return this.lista.get(id - 1);
     }
 
-    @Override
-    public void authUser(String login, String senha) {
-            for (Usuario i : lista) {
-                if (i instanceof Usuario) {
-                    if (i.getUsuario().equals(login)){
-                        if(i.getSenha().equals(senha)) {
-                            this.userLogin = i.getUsuario();
-                            this.roleLogin = String.valueOf(i.getRoles());
-                            this.status = true;
-                        }
-                    }
+    @GetMapping("/logado")
+    public ResponseEntity retornarUsuario() {
+        return ResponseEntity.ok(getUsuarioLogado());
+    }
+
+    @PostMapping("/logar")
+    public ResponseEntity logar(@RequestBody Login login) {
+        this.validacao = 0;
+
+        this.lista.forEach(usuario -> {
+            if (usuario.getUsuario().equals(login.getLogin())) {
+                if (usuario.getSenha().equals(login.getSenha())) {
+                    logarUsuario(usuario);
+                    this.validacao = 1; // logado
+                } else {
+                    this.validacao = 2; // senha incorreta
                 }
             }
+        });
+
+        switch (this.validacao) {
+            case 0:
+                return ResponseEntity.notFound().build();
+            case 1:
+                return ResponseEntity.ok().build();
+            case 2:
+                return ResponseEntity.status(400).build();
         }
+        return null;
+    }
+
+    @GetMapping("/recuperar/{login}")
+    public ResponseEntity recuperarSenha(@PathVariable String login) {
+        if (this.adminLogado != null) {
+            ResponseEntity.ok(adminLogado.recuperarSenhaUsuario(login, this.lista));
+        } else if (this.suporteLogado != null) {
+            ResponseEntity.ok(suporteLogado.recuperarSenhaUsuario(login, this.lista));
+        } else {
+            ResponseEntity.ok("Usuário não é admin!");
+
+        }
+        return null;
+    }
+
+    @DeleteMapping("/deslogar")
+    public ResponseEntity deletarPorId(@PathVariable int id) {
+        deslogarUsuario();
+        return ResponseEntity.ok("Usuário deslogado");
+    }
+
+    public void logarUsuario(Usuario usuario) {
+        if (usuario.getCargos() == Cargos.ADM) {
+            this.adminLogado = new Admin(usuario.getUsuario(), usuario.getSenha(), Cargos.ADM);
+        } else if (usuario.getCargos() == Cargos.SUPORT) {
+            this.suporteLogado = new Suporte(usuario.getUsuario(), usuario.getSenha(), Cargos.SUPORT);
+        } else if (usuario.getCargos() == Cargos.USER) {
+            this.clienteLogado = new Cliente(usuario.getUsuario(), usuario.getSenha(), Cargos.USER);
+        }
+    }
+
+    public Usuario getUsuarioLogado() {
+        if (adminLogado != null) {
+            return this.adminLogado;
+        } else if (suporteLogado != null) {
+            return this.suporteLogado;
+        } else if (clienteLogado != null) {
+            return this.clienteLogado;
+        } else {
+            return null;
+        }
+    }
+
+    public void deslogarUsuario() {
+        if (adminLogado != null) {
+            this.adminLogado = null;
+        } else if (suporteLogado != null) {
+            this.suporteLogado = null;
+        } else if (clienteLogado != null) {
+            this.clienteLogado = null;
+        }
+    }
+
 }
