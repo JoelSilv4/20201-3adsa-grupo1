@@ -110,6 +110,7 @@ public class AuthController {
         }
     }
 
+<<<<<<< HEAD
     public void deslogarUsuario() {
         if (adminLogado != null) {
             this.adminLogado = null;
@@ -117,6 +118,32 @@ public class AuthController {
             this.suporteLogado = null;
         } else if (clienteLogado != null) {
             this.clienteLogado = null;
+=======
+    @DeleteMapping("/deletar/{id}")
+    public String deleteUser(@PathVariable int id) {
+        lista.remove(id - 1);
+
+        if (status) {
+            return "Excluído com Sucesso!";
+        } else {
+            return "Falha ao excluir.";
+        }
+    }
+
+    @Override
+    public void authUser(String login, String senha) {
+            for (Usuario i : lista) {
+                if (i instanceof Usuario) {
+                    if (i.getUsuario().equals(login)){
+                        if(i.getSenha().equals(senha)) {
+                            this.userLogin = i.getUsuario();
+                            this.roleLogin = String.valueOf(i.getRoles());
+                            this.status = true;
+                        }
+                    }
+                }
+            }
+>>>>>>> 77629cc8d82c53634ea1b43bd4d704238c6b66d6
         }
     }
 
