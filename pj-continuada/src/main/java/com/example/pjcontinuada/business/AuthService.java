@@ -71,6 +71,7 @@ public class AuthService {
 
     public ResponseEntity deslogarUsuario() {
         if (this.usuarioLogado.get(0) != null) {
+            this.usuarioLogado.remove(0);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.ok().build();
