@@ -14,7 +14,7 @@ public class Admin extends Usuario implements UsersManager {
     @Override
     public String recuperarSenhaUsuario(String usuario, List<Usuario> listUsuario) {
         for (int x = 0; x < listUsuario.size(); x++) {
-            if (listUsuario.get(x).getSenha().equals(usuario)) {
+            if (listUsuario.get(x).getUsuario().equals(usuario)) {
                 return listUsuario.get(x).getSenha();
             }
         }

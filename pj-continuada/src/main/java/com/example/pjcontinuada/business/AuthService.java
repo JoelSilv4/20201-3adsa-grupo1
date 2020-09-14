@@ -59,7 +59,7 @@ public class AuthService {
 
     public ResponseEntity recuperarSenha(String login) {
         Usuario usuario = this.usuarioLogado.get(0);
-
+ 
         if (usuario instanceof Admin || usuario instanceof Suporte) {
             usuario = new Admin(usuario.getUsuario(), usuario.getSenha(), usuario.getCargos());
             return ResponseEntity.ok(((Admin) usuario).recuperarSenhaUsuario(login, pegarUsuarios()));
