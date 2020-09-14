@@ -21,6 +21,10 @@ public class AuthService {
         return this.usuariosList;
     }
 
+    public Usuario pegarUsuarioPorId(int id) {
+        return this.usuariosList.get(id);
+    }
+
     public void criarUsuario(Usuario usuario) {
         this.usuariosList.add(usuario);
     }
@@ -37,7 +41,7 @@ public class AuthService {
                     return ResponseEntity.ok().build();
                 } else {
                     return ResponseEntity.badRequest().build();
-                }   
+                }
             } else {
                 return ResponseEntity.badRequest().build();
             }

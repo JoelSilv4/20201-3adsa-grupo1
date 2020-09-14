@@ -32,12 +32,12 @@ public class AuthController {
 
     @GetMapping("/usuarios")
     public List<Usuario> listarUsuarios() {
-        return this.lista;
+        return this.auth.pegarUsuarios();
     }
 
     @GetMapping("/usuarios/{id}")
     public Usuario selecionarPorId(@PathVariable int id) {
-        return this.lista.get(id - 1);
+        return this.auth.pegarUsuarioPorId(id);
     }
 
     @PostMapping("/logar")
