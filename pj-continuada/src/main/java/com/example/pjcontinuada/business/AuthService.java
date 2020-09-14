@@ -14,6 +14,7 @@ public class AuthService {
 
     public AuthService() {
         this.usuariosList = new ArrayList();
+        this.usuarioLogado = new ArrayList<>();
     }
 
     public List<Usuario> pegarUsuarios() {
@@ -36,7 +37,7 @@ public class AuthService {
                     return ResponseEntity.ok().build();
                 } else {
                     return ResponseEntity.badRequest().build();
-                }
+                }   
             } else {
                 return ResponseEntity.badRequest().build();
             }
@@ -73,7 +74,7 @@ public class AuthService {
     }
 
     public void logarUsuario(Usuario usuario) {
-        if (this.usuarioLogado.get(0) != null) {
+        if (this.usuarioLogado.size() > 0) {
             this.usuarioLogado.remove(0);
         }
 
