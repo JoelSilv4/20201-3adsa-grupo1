@@ -1,10 +1,11 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import ExternNavbar from '../components/Organisms/ExternNavbar'
 
 const App = () => {
   return (
     <Layout>
-      <div>ola mundo</div>
+      <ExternNavbar />
     </Layout>
   )
 }
