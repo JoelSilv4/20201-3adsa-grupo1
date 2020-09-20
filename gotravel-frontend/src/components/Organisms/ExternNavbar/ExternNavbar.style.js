@@ -9,7 +9,7 @@ export const Navbar = styled.header`
     justify-content: space-between;
 `
 
-export const LogoWapper = styled.div`
+export const LogoWrapper = styled.div`
     display: flex;
     align-items: center;
     svg {
