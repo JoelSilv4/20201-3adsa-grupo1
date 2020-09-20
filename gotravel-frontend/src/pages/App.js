@@ -5,7 +5,11 @@ import ExternNavbar from '../components/Organisms/ExternNavbar'
 const App = () => {
   return (
     <Layout>
-      <ExternNavbar />
+      <ExternNavbar 
+        first="Home"
+        second="Sobre"
+        third="Entrar"
+      />
     </Layout>
   )
 }
