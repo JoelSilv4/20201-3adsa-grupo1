@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import ExternNavbar from '../components/Organisms/ExternNavbar'
 import ContainerImageBackground from '../components/Molecules/ContainerImageBackground'
+import ContainerRegister from '../components/Organisms/ContainerRegister'
 import img from '../components/assets/banner-image.png';
 import ContainerKnowMore from '../components/Organisms/ContainerKnowMore'
 import {ReactComponent as ProcessIcon} from '../components/assets/process.svg'
@@ -26,15 +27,19 @@ const App = () => {
         description='Com o nosso sistema, você poderá ter uma organização melhor da sua viagem ao criar uma agenda de pontos de paradas!'
         textButton='Saiba mais!'
         textColorButton='black'
-        />
-        <ContainerKnowMore
-          title='Filtre e conheça novos lugares!'
-          icon={<MapIcon />}
-          description='A GO Travel! oferece uma variedade de filtros para você pesquisar por estabelecimentos ou serviços para enriquecer sua viagem!'
-          backgroundColor="#FFF2E1"
-          textButton='Saiba mais!'
-          textColorButton='black'
-        />
+      />
+      <ContainerKnowMore
+        title='Filtre e conheça novos lugares!'
+        icon={<MapIcon />}
+        description='A GO Travel! oferece uma variedade de filtros para você pesquisar por estabelecimentos ou serviços para enriquecer sua viagem!'
+        backgroundColor="#FFF2E1"
+        textButton='Saiba mais!'
+        textColorButton='black'
+      />
+      <ContainerRegister 
+        textButton='Cadastre-se'
+        textColorButton='black'
+      />
     </Layout>
   )
 }
