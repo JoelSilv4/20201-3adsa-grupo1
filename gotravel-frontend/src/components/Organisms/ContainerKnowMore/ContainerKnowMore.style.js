@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const ContainerInfo = styled.section`
     background-color: ${props => props.color};
-    height: 460px;
+    height: 425px;
     text-align: center;
 `
 
 export const TitleInfo = styled.h2`
     font-size: 45px;
-    font-weight: 600px;
+    font-weight: 600;
     color: ${props => props.titleColor};
     padding-top: 32px;
 `
