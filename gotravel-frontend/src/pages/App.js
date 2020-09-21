@@ -5,6 +5,7 @@ import ContainerImageBackground from '../components/Molecules/ContainerImageBack
 import img from '../components/assets/banner-image.png';
 import ContainerKnowMore from '../components/Organisms/ContainerKnowMore'
 import {ReactComponent as ProcessIcon} from '../components/assets/process.svg'
+import {ReactComponent as MapIcon} from '../components/assets/map-icon.svg'
 
 const App = () => {
   return (
@@ -24,8 +25,16 @@ const App = () => {
         icon={<ProcessIcon />}
         description='Com o nosso sistema, você poderá ter uma organização melhor da sua viagem ao criar uma agenda de pontos de paradas!'
         textButton='Saiba mais!'
-        textColorButton='black'>
-        </ContainerKnowMore>
+        textColorButton='black'
+        />
+        <ContainerKnowMore
+          title='Filtre e conheça novos lugares!'
+          icon={<MapIcon />}
+          description='A GO Travel! oferece uma variedade de filtros para você pesquisar por estabelecimentos ou serviços para enriquecer sua viagem!'
+          backgroundColor="#FFF2E1"
+          textButton='Saiba mais!'
+          textColorButton='black'
+        />
     </Layout>
   )
 }
