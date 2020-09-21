@@ -1,10 +1,10 @@
-package com.example.pjcontinuada;
+package go.travels.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PjContinuadaApplicationTests {
+class BackEndApplicationTests {
 
 	@Test
 	void contextLoads() {
