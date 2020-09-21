@@ -6,6 +6,7 @@ export const TitleRegister = styled.h2`
     span {
         color: #2D73DD
     }
+    padding-bottom: 60px;
 `
 
 export const DiscriptionRegister = styled.p`
@@ -13,11 +14,16 @@ export const DiscriptionRegister = styled.p`
     span {
         color: #2D73DD;
     }
+    padding-bottom: 60px;
 `
 
 export const ContainerVideo = styled.section`
     height: 425px;
     display: flex;
+    justify-content: space-between;
+    padding: 0 90px;
+    align-items: center;
+    text-align: center;
 `
 
 export const ContainerDiscription = styled.div`
