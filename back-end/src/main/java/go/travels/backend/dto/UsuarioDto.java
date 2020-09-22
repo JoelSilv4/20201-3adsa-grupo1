@@ -1,26 +1,26 @@
 package go.travels.backend.dto;
 
-import go.travels.backend.document.Usuario;
+import java.util.Optional;
 
 public class UsuarioDto {
 
-    private String id;
+    private Optional<String> id;
     private String name;
     private String email;
     private String password;
 
-    public UsuarioDto(Usuario entity) {
-        this.id = entity.getId();
-        this.name = entity.getName();
-        this.email = entity.getEmail();
-        this.password = entity.getPassword();
+    public UsuarioDto(String name, String email, String password, Optional<String> id) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.id = id;
     }
 
-    public String getId() {
+    public Optional<String> getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Optional<String> id) {
         this.id = id;
     }
 
