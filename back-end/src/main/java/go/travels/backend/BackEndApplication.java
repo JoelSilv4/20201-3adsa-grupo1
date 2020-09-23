@@ -1,8 +1,7 @@
 package go.travels.backend;
 
-import go.travels.backend.document.Usuario;
-import go.travels.backend.repositories.UsuarioRepository;
-import go.travels.backend.utils.SenhaUtils;
+import go.travels.backend.document.User;
+import go.travels.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,23 +15,21 @@ public class  BackEndApplication implements CommandLineRunner {
 		SpringApplication.run(BackEndApplication.class, args);
 	}
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	UserRepository userRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		SenhaUtils su = new SenhaUtils();
-		usuarioRepository.deleteAll();
+		userRepository.deleteAll();
 
-		Usuario us = new Usuario(
+		User us = new User(
 			"Kaique",
 				"adm@empresa.com",
-				su.gerarBcrypt("123456")
+				"123456"
 		);
 
-		usuarioRepository.save(us);
-
-
-		System.out.println(us.getId());
+		userRepository.save(us);
+		User email = userRepository.findByEmail(us.getEmail());
+		System.out.println(email.getEmail());
 	}
 }

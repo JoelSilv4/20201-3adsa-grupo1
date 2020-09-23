@@ -2,21 +2,19 @@ package go.travels.backend.document;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import java.util.Objects;
 
 @Document
-public class Usuario {
+public class User {
     private String name;
     private String email;
     private String password;
     @Id private String id;
 
-    public Usuario(String name, String email, String password) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password =password;
     }
 
     public String getId() {
@@ -55,8 +53,8 @@ public class Usuario {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id);
+        User user = (User) o;
+        return Objects.equals(id, user.id);
     }
 
     @Override
@@ -64,3 +62,4 @@ public class Usuario {
         return Objects.hash(id);
     }
 }
+

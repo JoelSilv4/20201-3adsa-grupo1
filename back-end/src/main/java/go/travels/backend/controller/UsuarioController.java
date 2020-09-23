@@ -1,11 +1,10 @@
 package go.travels.backend.controller;
 
-import go.travels.backend.document.Usuario;
-import go.travels.backend.dto.UsuarioDto;
-import go.travels.backend.services.UsuarioService;
+import go.travels.backend.document.User;
+import go.travels.backend.dto.UserDTO;
+import go.travels.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,35 +12,39 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/go/usuario")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    UserService userService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Optional<UsuarioDto>> register(@RequestBody UsuarioDto usuarioDto, BindingResult result) {
+    public ResponseEntity register(@RequestBody UserDTO userDTO) {
 
-        validateExistingData(usuarioDto);
+        if (validateExistingData(userDTO)) {
+            User user = convertDtoforUser(userDTO);
+            userService.persist(user);
 
-        Usuario usuario = convertDtoforUser(usuarioDto);
-        usuarioService.persist(usuario);
-
-        return ResponseEntity.ok().body(Optional.of(convertUserForDto(usuario)));
-    }
-
-    private void validateExistingData(UsuarioDto usuarioDto){
-        Optional<Usuario> usuario = usuarioService.findByEmail(usuarioDto.getEmail());
-        if (usuario != null) {
-            ResponseEntity.badRequest().body("User already exist");
+            return ResponseEntity.ok().body(Optional.of(convertUserForDto(user)));
+        } else {
+            return ResponseEntity.unprocessableEntity().body("User already exist");
         }
     }
 
-    private Usuario convertDtoforUser(UsuarioDto usuarioDto) {
-        return new Usuario(usuarioDto.getName(), usuarioDto.getEmail(), usuarioDto.getPassword());
+    private Boolean validateExistingData(UserDTO userDTO){
+        User user = userService.findByEmail(userDTO.getEmail());
+        System.out.println(user);
+        if (user != null)
+            return false;
+        else
+            return true;
     }
 
-    private UsuarioDto convertUserForDto(Usuario usuario) {
-        return new UsuarioDto(usuario.getName(), usuario.getEmail(), "", Optional.of(usuario.getId()));
+    private User convertDtoforUser(UserDTO userDTO) {
+        return new User(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
+    }
+
+    private UserDTO convertUserForDto(User user) {
+        return new UserDTO(user.getName(), user.getEmail(), "", user.getId());
     }
 }
