@@ -33,7 +33,6 @@ public class UsuarioController {
 
     private Boolean validateExistingData(UserDTO userDTO){
         User user = userService.findByEmail(userDTO.getEmail());
-        System.out.println(user);
         if (user != null)
             return false;
         else

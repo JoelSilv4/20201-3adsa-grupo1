@@ -23,15 +23,31 @@ public class TripController {
 
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody TripDTO tripDTO){
-        Trip trip = new Trip(tripDTO);
+        Trip trip = convertDtoforTrip(tripDTO);
         tripService.persist(trip);
-        return ResponseEntity.ok().body(tripDTO);
+        return ResponseEntity.ok().body(convertTripForDto(trip));
+    }
+
+    private Trip convertDtoforTrip(TripDTO tripDTO) {
+        return new Trip(
+                tripDTO.getLatMatch(),
+                tripDTO.getLngMatch(),
+                tripDTO.getLatDestiny(),
+                tripDTO.getLngDestiny(),
+                tripDTO.getDestiny(),
+                tripDTO.getIdUser()
+        );
+    }
+
+    private TripDTO convertTripForDto(Trip trip) {
+        return new TripDTO(
+                trip.getLatMatch(),
+                trip.getLngMatch(),
+                trip.getLatDestiny(),
+                trip.getLngDestiny(),
+                trip.getDestiny(),
+                trip.getIdUser(),
+                trip.getId()
+        );
     }
 }
-
-//                tripDTO.getLatMatch(),
-//                tripDTO.getLatMatch(),
-//                tripDTO.getLatDestiny(),
-//                tripDTO.getLngDestiny(),
-//                tripDTO.getDestiny(),
-//                tripDTO.getIdUser()

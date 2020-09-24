@@ -16,6 +16,7 @@ public class TripDTO {
         this.lngDestiny = lngDestiny;
         this.destiny = destiny;
         this.idUser = idUser;
+        this.id = id;
     }
 
     public String getLatMatch() {

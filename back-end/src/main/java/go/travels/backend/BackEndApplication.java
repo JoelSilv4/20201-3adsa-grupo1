@@ -29,7 +29,5 @@ public class  BackEndApplication implements CommandLineRunner {
 		);
 
 		userRepository.save(us);
-		User email = userRepository.findByEmail(us.getEmail());
-		System.out.println(email.getEmail());
 	}
 }

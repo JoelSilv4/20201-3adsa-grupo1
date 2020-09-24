@@ -1,7 +1,5 @@
 package go.travels.backend.dto;
 
-import java.util.Optional;
-
 public class UserDTO {
 
     private String id;

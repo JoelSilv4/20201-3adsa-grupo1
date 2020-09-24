@@ -16,12 +16,13 @@ public class Trip {
     private String idUser;
     @Id private String id;
 
-    public Trip(TripDTO entity) {
-        this.latMatch = entity.getLatMatch();
-        this.lngMatch = entity.getLngMatch();
-        this.latDestiny = entity.getLatMatch();
-        this.lngDestiny = entity.getLngDestiny();
-        this.destiny = entity.getDestiny();
+    public Trip(String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser) {
+        this.latMatch = latMatch;
+        this.lngMatch = lngMatch;
+        this.latDestiny = latDestiny;
+        this.lngDestiny = lngDestiny;
+        this.destiny = destiny;
+        this.idUser = idUser;
     }
 
     public String getLatMatch() {
