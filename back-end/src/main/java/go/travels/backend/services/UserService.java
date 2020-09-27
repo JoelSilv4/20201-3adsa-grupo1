@@ -5,8 +5,6 @@ import go.travels.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class UserService {
 
@@ -19,9 +17,5 @@ public class UserService {
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
-    }
-
-    public Optional<User> findById(String usuarioId) {
-        return userRepository.findById(usuarioId);
     }
 }

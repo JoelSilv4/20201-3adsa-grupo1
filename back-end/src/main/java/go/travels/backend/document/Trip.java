@@ -1,6 +1,5 @@
 package go.travels.backend.document;
 
-import go.travels.backend.dto.TripDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

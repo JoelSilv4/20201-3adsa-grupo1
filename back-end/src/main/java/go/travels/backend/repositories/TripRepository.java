@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TripRepository extends MongoRepository<Trip, String> {
-    public Page<Trip> findByIdUser(String userId, Pageable pageable);
+    Page<Trip> findByIdUser(String userId, Pageable pageable);
 }
