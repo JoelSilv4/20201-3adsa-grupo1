@@ -5,10 +5,9 @@ import go.travels.backend.dto.FilterDTO;
 import go.travels.backend.services.FilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/filter")
@@ -23,6 +22,12 @@ public class FilterController {
         filterService.persist(filter);
 
         return ResponseEntity.ok().body(convertFilterForDto(filter));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<FilterDTO>> findAll(@PathVariable String id){
+        List<FilterDTO> list = filterService.findAllByTripId(id);
+        return ResponseEntity.ok().body(list);
     }
 
     private Filter convertDtoForFilter(FilterDTO filterDTO){
