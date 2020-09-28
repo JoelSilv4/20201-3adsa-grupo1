@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 
 @RestController
-@RequestMapping("/viagem")
+@RequestMapping("/trip")
 public class TripController {
 
     private SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -25,7 +25,7 @@ public class TripController {
 
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody TripDTO tripDTO){
-        Trip trip = convertDtoforTrip(tripDTO);
+        Trip trip = convertDtoForTrip(tripDTO);
         tripService.persist(trip);
         return ResponseEntity.ok().body(convertTripForDto(trip));
     }
@@ -46,7 +46,7 @@ public class TripController {
 
     }
 
-    private Trip convertDtoforTrip(TripDTO tripDTO) {
+    private Trip convertDtoForTrip(TripDTO tripDTO) {
         return new Trip(
                 tripDTO.getLatMatch(),
                 tripDTO.getLngMatch(),
