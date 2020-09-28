@@ -3,6 +3,8 @@ package go.travels.backend.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document
 public class Filter {
 
@@ -57,5 +59,18 @@ public class Filter {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Filter filter = (Filter) o;
+        return Objects.equals(id, filter.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

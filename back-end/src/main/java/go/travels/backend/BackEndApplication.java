@@ -1,7 +1,12 @@
 package go.travels.backend;
 
+import go.travels.backend.document.Filter;
 import go.travels.backend.document.User;
+import go.travels.backend.repositories.FilterRepository;
+import go.travels.backend.repositories.TripRepository;
 import go.travels.backend.repositories.UserRepository;
+import go.travels.backend.services.FilterService;
+import go.travels.backend.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,10 +22,18 @@ public class  BackEndApplication implements CommandLineRunner {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	TripRepository tripService;
+
+	@Autowired
+	FilterRepository filterService;
+
 	@Override
 	public void run(String... args) throws Exception {
 
 		userRepository.deleteAll();
+		filterService.deleteAll();
+		tripService.deleteAll();
 
 		User us = new User(
 			"Kaique",
@@ -28,6 +41,16 @@ public class  BackEndApplication implements CommandLineRunner {
 				"123456"
 		);
 
+		Filter filter = new Filter(
+				"mcdonalds",
+				"-800",
+				"900",
+				"5f724b85b9b1ee18ffb4ac48"
+		);
+
+		filterService.save(filter);
 		userRepository.save(us);
+
+		System.out.println(filter.getId());
 	}
 }

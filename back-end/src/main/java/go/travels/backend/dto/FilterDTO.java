@@ -8,7 +8,7 @@ public class FilterDTO {
     private String tripId;
     private String id;
 
-    public FilterDTO(String localName, String latitude, String longitude, String tripId, String Id) {
+    public FilterDTO(String localName, String latitude, String longitude, String tripId, String id) {
         this.localName = localName;
         this.latitude = latitude;
         this.longitude = longitude;

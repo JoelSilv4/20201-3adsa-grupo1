@@ -21,6 +21,7 @@ public class FilterController {
     public ResponseEntity register(@RequestBody FilterDTO filterDTO){
         Filter filter = convertDtoForFilter(filterDTO);
         filterService.persist(filter);
+
         return ResponseEntity.ok().body(convertFilterForDto(filter));
     }
 
