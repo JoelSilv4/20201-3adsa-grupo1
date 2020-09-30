@@ -5,8 +5,6 @@ import go.travels.backend.document.User;
 import go.travels.backend.repositories.FilterRepository;
 import go.travels.backend.repositories.TripRepository;
 import go.travels.backend.repositories.UserRepository;
-import go.travels.backend.services.FilterService;
-import go.travels.backend.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

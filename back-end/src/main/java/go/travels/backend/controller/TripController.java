@@ -27,6 +27,7 @@ public class TripController {
 
     @Autowired
     UserService userService;
+
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody TripDTO tripDTO){
             if (userService.exist(tripDTO.getIdUser())){
@@ -46,12 +47,16 @@ public class TripController {
              @RequestParam(value = "ord", defaultValue = "id") String ord,
              @RequestParam(value = "dir", defaultValue = "DESC") String dir){
 
-        PageRequest pageRequest = PageRequest.of(pag, qtdPorPagina, Sort.Direction.valueOf(dir), ord);
-        Page<Trip> trip = tripService.findByUserId(userId, pageRequest);
+        if (userService.exist(userId)){
+            PageRequest pageRequest = PageRequest.of(pag, qtdPorPagina, Sort.Direction.valueOf(dir), ord);
+            Page<Trip> trip = tripService.findByUserId(userId, pageRequest);
 
-        Page<TripDTO> tripDTO = trip.map(x -> convertTripForDto(x));
+            Page<TripDTO> tripDTO = trip.map(x -> convertTripForDto(x));
 
-        return ResponseEntity.ok(tripDTO);
+            return ResponseEntity.ok(tripDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
 
     }
 

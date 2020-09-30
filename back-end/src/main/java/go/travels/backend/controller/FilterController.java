@@ -36,8 +36,12 @@ public class FilterController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<FilterDTO>> findAll(@PathVariable String id){
-        List<FilterDTO> list = filterService.findAllByTripId(id);
-        return ResponseEntity.ok().body(list);
+            if (tripService.exist(id)){
+                List<FilterDTO> list = filterService.findAllByTripId(id);
+                return ResponseEntity.ok().body(list);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
     }
 
     @DeleteMapping("/{id}")
