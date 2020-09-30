@@ -3,6 +3,7 @@ package go.travels.backend.controller;
 import go.travels.backend.document.Trip;
 import go.travels.backend.dto.TripDTO;
 import go.travels.backend.services.TripService;
+import go.travels.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.text.SimpleDateFormat;
 
 @RestController
@@ -23,11 +25,18 @@ public class TripController {
     @Autowired
     TripService tripService;
 
+    @Autowired
+    UserService userService;
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody TripDTO tripDTO){
-        Trip trip = convertDtoForTrip(tripDTO);
-        tripService.persist(trip);
-        return ResponseEntity.ok().body(convertTripForDto(trip));
+            if (userService.exist(tripDTO.getIdUser())){
+                Trip trip = convertDtoForTrip(tripDTO);
+                tripService.persist(trip);
+
+                return ResponseEntity.created(URI.create("/trip")).body(convertTripForDto(trip));
+            } else {
+                return ResponseEntity.notFound().build();
+            }
     }
 
     @GetMapping("/{userId}")
@@ -44,6 +53,16 @@ public class TripController {
 
         return ResponseEntity.ok(tripDTO);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable String id){
+        if (tripService.exist(id)){
+            tripService.delete(id);
+            return ResponseEntity.accepted().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     private Trip convertDtoForTrip(TripDTO tripDTO) {

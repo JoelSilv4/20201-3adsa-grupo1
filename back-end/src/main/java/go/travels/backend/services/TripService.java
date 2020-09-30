@@ -19,5 +19,5 @@ public class TripService {
 
     public Boolean exist(String id) { return tripRepository.existsById(id);}
 
-
+    public void delete(String id) { tripRepository.deleteById(id);}
 }
