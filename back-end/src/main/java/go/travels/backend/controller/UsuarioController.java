@@ -34,7 +34,8 @@ public class UsuarioController {
     public ResponseEntity<UserDTO> login(@RequestBody LoginDTO loginDTO) {
             if (validateLogin(loginDTO)){
                 User user = userService.findByEmail(loginDTO.getEmail());
-                return ResponseEntity.ok().body(convertUserForDto(user));
+                UserDTO userDTO = convertUserForDto(user);
+                return ResponseEntity.ok().body(userDTO);
             } else {
                 return ResponseEntity.notFound().build();
             }
@@ -44,11 +45,7 @@ public class UsuarioController {
     private Boolean validateLogin(LoginDTO loginDTO) {
         User user = userService.findByEmail(loginDTO.getEmail());
         if (user != null) {
-            if (user.getEmail().equals(loginDTO.getEmail()) && user.getPassword().equals(loginDTO.getPassword())) {
-                return true;
-            } else {
-                return false;
-            }
+            return user.getEmail().equals(loginDTO.getEmail()) && user.getPassword().equals(loginDTO.getPassword());
         } else {
             return false;
         }
