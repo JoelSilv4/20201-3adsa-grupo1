@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import ExternNavbar from '../../components/Organisms/ExternNavbar'
-import ContainerImageBackground from '../../components/Molecules/ContainerImageBackground'
-import ContainerRegister from '../../components/Organisms/ContainerRegister'
-import img from '../components/assets/banner-image.png';
-import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore'
-import {ReactComponent as ProcessIcon} from '../components/assets/process.svg'
-import {ReactComponent as MapIcon} from '../components/assets/map-icon.svg'
+import ExternNavbar from '../../components/Organisms/ExternNavbar';
+import ContainerImageBackground from '../../components/Molecules/ContainerImageBackground';
+import ContainerRegister from '../../components/Organisms/ContainerRegister';
+import img from '../../components/assets/banner-image.png';
+import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
+import {ReactComponent as ProcessIcon} from '../../components/assets/process.svg';
+import {ReactComponent as MapIcon} from '../../components/assets/map-icon.svg';
 
 const App = () => {
   return (
