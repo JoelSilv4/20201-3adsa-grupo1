@@ -1,8 +1,11 @@
 package go.travels.backend.controller;
 
 import go.travels.backend.document.Filter;
+import go.travels.backend.document.Trip;
 import go.travels.backend.dto.FilterDTO;
+import go.travels.backend.repositories.TripRepository;
 import go.travels.backend.services.FilterService;
+import go.travels.backend.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +19,35 @@ public class FilterController {
     @Autowired
     FilterService filterService;
 
+    @Autowired
+    TripService tripService;
+
     @PostMapping
     public ResponseEntity register(@RequestBody FilterDTO filterDTO){
-        Filter filter = convertDtoForFilter(filterDTO);
-        filterService.persist(filter);
+        if (tripService.exist(filterDTO.getTripId())) {
+            Filter filter = convertDtoForFilter(filterDTO);
+            filterService.persist(filter);
 
-        return ResponseEntity.ok().body(convertFilterForDto(filter));
+            return ResponseEntity.ok().body(convertFilterForDto(filter));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<List<FilterDTO>> findAll(@PathVariable String id){
         List<FilterDTO> list = filterService.findAllByTripId(id);
         return ResponseEntity.ok().body(list);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable String id){
+        if (filterService.exist(id)){
+            filterService.delete(id);
+            return ResponseEntity.accepted().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     private Filter convertDtoForFilter(FilterDTO filterDTO){

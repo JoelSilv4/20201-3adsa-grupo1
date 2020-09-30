@@ -17,5 +17,7 @@ public class TripService {
 
     public Page<Trip> findByUserId(String userId, PageRequest pageRequest) { return tripRepository.findByIdUser(userId, pageRequest); }
 
+    public Boolean exist(String id) { return tripRepository.existsById(id);}
+
 
 }

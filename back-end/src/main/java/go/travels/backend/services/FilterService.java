@@ -25,7 +25,11 @@ public class FilterService {
                 filter.getId())).collect(Collectors.toList());
     }
 
+    public Boolean exist(String id) { return filterRepository.existsById(id);}
+
     public Filter persist(Filter filter){
         return filterRepository.save(filter);
     }
+
+    public void delete(String id) { filterRepository.deleteById(id);}
 }

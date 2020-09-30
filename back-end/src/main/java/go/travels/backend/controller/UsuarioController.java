@@ -36,7 +36,6 @@ public class UsuarioController {
                 User user = userService.findByEmail(loginDTO.getEmail());
                 return ResponseEntity.ok().body(convertUserForDto(user));
             } else {
-                System.out.println("bruh");
                 return ResponseEntity.notFound().build();
             }
 
