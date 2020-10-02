@@ -1,9 +1,10 @@
 import React from 'react';
+import ContainerMaps from '../../components/Organisms/ContainerMaps/ContainerMaps';
 
 const Dashboard = () => {
 
     return (
-        <h1>Dashboard aqui!</h1>
+        <ContainerMaps/> 
     );
 }
 
