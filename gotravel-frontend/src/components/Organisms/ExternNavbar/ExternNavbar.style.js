@@ -24,7 +24,7 @@ export const MenuItems = styled.ul`
     li {
         margin-left: 50px;
         cursor: pointer; 
-        font-size: 20px;
+        font-size: 25px;
         color: #2D73DD;
     }
 `
