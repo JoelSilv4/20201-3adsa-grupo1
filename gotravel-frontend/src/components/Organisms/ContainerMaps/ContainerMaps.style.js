@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import logoimg from '../../assets/logo-blue.svg';
+import logoimg from '../../../assets/logo-blue.svg';
 
 export const Logo = styled.svg`
     position: absolute;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, LogoWrapper, MenuItems, BorderLi } from './ExternNavbar.style'
-import { ReactComponent as Logo } from '../../assets/logo-blue.svg'
+import { ReactComponent as Logo } from '../../../assets/logo-blue.svg'
 
 const ExternNavbar = ({first, second, third}) => {
     return (
