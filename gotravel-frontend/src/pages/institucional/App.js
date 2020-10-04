@@ -1,9 +1,8 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import ExternNavbar from '../../components/Organisms/ExternNavbar';
-import ContainerImageBackground from '../../components/Molecules/ContainerImageBackground';
+import ContainerTop from '../../components/Molecules/ContainerTop';
 import ContainerRegister from '../../components/Organisms/ContainerRegister';
-import img from '../../components/assets/banner-image.png';
 import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
 import {ReactComponent as ProcessIcon} from '../../components/assets/process.svg';
 import {ReactComponent as MapIcon} from '../../components/assets/map-icon.svg';
@@ -17,10 +16,9 @@ const App = () => {
         textButton='Entrar'
         textColorButton='#2D73DD'
       />
-      <ContainerImageBackground
-        title='Explore novos horizontes.'
-        image={img}
-        fontColor='#FFF'
+      <ContainerTop
+      textButton='Entrar'
+      textColorButton='#2D73DD'
       />
       <ContainerKnowMore 
         title='Planeje suas viagens!'
