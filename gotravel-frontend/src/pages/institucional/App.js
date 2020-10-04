@@ -14,7 +14,8 @@ const App = () => {
       <ExternNavbar 
         first="Home"
         second="Sobre"
-        third="Entrar"
+        textButton='Entrar'
+        textColorButton='#2D73DD'
       />
       <ContainerImageBackground
         title='Explore novos horizontes.'

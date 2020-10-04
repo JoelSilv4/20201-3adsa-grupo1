@@ -25,11 +25,11 @@ export const MenuItems = styled.ul`
         margin-left: 50px;
         cursor: pointer; 
         font-size: 20px;
+        color: #2D73DD;
     }
 `
 
-export const BorderLi = styled.li`
-    border: 1px solid black;
-    padding: 10px;
-    font-weight: 600;
+export const ButtonWrapper = styled.div`
+    display: flex;
+    align-items: center;
 `
