@@ -1,9 +1,9 @@
 import React from 'react';
-import { ContainerInfo, Title, TitleWrapper, InfoWrapper } from './ContainerKnowMore.style'
+import { ContainerInfo } from './ContainerWhiteKnowMore.style'
 import InfoKnowMore from '../../Molecules/InfoKnowMore'
-import { ReactComponent as Image } from '../../../assets/carro-viagem.svg'
+import { ReactComponent as Image } from '../../../assets/garoto-viajante.svg'
 
-const ContainerKnowMore = ({
+const ContainerWhiteKnowMore = ({
     titleColorInfo,
     textTitleInfo,
     textColorInfo,
@@ -12,13 +12,6 @@ const ContainerKnowMore = ({
     textInfo2
 }) => (
     <ContainerInfo>
-        <TitleWrapper>
-            <Title>
-                O melhor jeito de planejar e conhecer novos lugares
-            </Title>
-        </TitleWrapper>
-        <InfoWrapper>
-            <Image />
             <InfoKnowMore 
                 titleColor={titleColorInfo}
                 textTitle={textTitleInfo}
@@ -27,9 +20,9 @@ const ContainerKnowMore = ({
                 textTitle2={textTitleInfo2}
                 textInfo2={textInfo2}
             />
-        </InfoWrapper>
-        
+            <Image />
     </ContainerInfo>
+    
 )
 
-export default ContainerKnowMore;
+export default ContainerWhiteKnowMore;

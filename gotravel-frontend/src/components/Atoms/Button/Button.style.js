@@ -8,6 +8,8 @@ export const ButtonWrapper = styled.button`
     font-weight: 500;
     background-color: transparent;
     cursor: pointer;
+    border-radius: 5px;
+    border-color: #2D73DD;
     color: ${props => props.color};
     &:hover{
         background-color: #216CFF;

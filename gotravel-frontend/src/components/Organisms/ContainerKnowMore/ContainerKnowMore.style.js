@@ -1,33 +1,26 @@
 import styled from 'styled-components';
 
-export const ContainerInfo = styled.section`
-    background-color: ${props => props.color};
-    height: 425px;
+export const ContainerInfo = styled.div`
+    display: flex;
+    padding: 0 90px;
+    background-color: #93A9FF;
+    flex-direction: column;
+    align-items: center;
+`
+
+export const Title = styled.h2`
+    font-size: 40px;
     text-align: center;
-`
-
-export const TitleInfo = styled.h2`
-    font-size: 45px;
+    padding-top: 35px;
     font-weight: 600;
-    color: ${props => props.titleColor};
-    padding-top: 32px;
 `
 
-export const IconWrapper = styled.div`
-    padding-top: 32px;
-    svg {
-        height: 81px;
-        width: 81px;
-    }
+export const TitleWrapper = styled.div`
+    width: 770px;
 `
 
-export const DescriptionInfo = styled.p`
-    font-size: 30px;
-    padding: 32px 0 32px 0;
-    color: ${props => props.titleColor};
+export const InfoWrapper = styled.div`
+    display: flex;
 `
 
-export const DescriptionWrapper = styled.div`
-    width: 650px;
-    margin: auto;
-`
+
