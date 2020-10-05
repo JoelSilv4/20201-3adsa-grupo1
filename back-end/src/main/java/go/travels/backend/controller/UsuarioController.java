@@ -30,7 +30,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/logn")
+    @PostMapping("/logn")
     public ResponseEntity<UserDTO> login(@RequestBody LoginDTO loginDTO) {
             if (validateLogin(loginDTO)){
                 User user = userService.findByEmail(loginDTO.getEmail());
