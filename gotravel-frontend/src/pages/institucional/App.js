@@ -1,12 +1,11 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import ExternNavbar from '../../components/Organisms/ExternNavbar';
-import ContainerImageBackground from '../../components/Molecules/ContainerImageBackground';
-import ContainerRegister from '../../components/Organisms/ContainerRegister';
-import img from '../../components/assets/banner-image.png';
+import ContainerTop from '../../components/Organisms/ContainerTop';
 import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
-import {ReactComponent as ProcessIcon} from '../../components/assets/process.svg';
-import {ReactComponent as MapIcon} from '../../components/assets/map-icon.svg';
+import ContainerWhiteKnowMore from '../../components/Organisms/ContainerWhiteKnowMore';
+import Footer from '../../components/Organisms/Footer';
+
 
 const App = () => {
   return (
@@ -14,32 +13,30 @@ const App = () => {
       <ExternNavbar 
         first="Home"
         second="Sobre"
-        third="Entrar"
+        textButton='Entrar'
+        textColorButton='#2D73DD'
       />
-      <ContainerImageBackground
-        title='Explore novos horizontes.'
-        image={img}
-        fontColor='#FFF'
-      />
-      <ContainerKnowMore 
-        title='Planeje suas viagens!'
-        icon={<ProcessIcon />}
-        description='Com o nosso sistema, você poderá ter uma organização melhor da sua viagem ao criar uma agenda de pontos de paradas!'
-        textButton='Saiba mais!'
-        textColorButton='black'
+      <ContainerTop
+      textButton='Entrar'
+      textColorButton='#2D73DD'
       />
       <ContainerKnowMore
-        title='Filtre e conheça novos lugares!'
-        icon={<MapIcon />}
-        description='A GO Travel! oferece uma variedade de filtros para você pesquisar por estabelecimentos ou serviços para enriquecer sua viagem!'
-        backgroundColor="#FFF2E1"
-        textButton='Saiba mais!'
-        textColorButton='black'
+      titleColorInfo='#000000'
+      textTitleInfo='Diga onde você quer ir'
+      textColorInfo='#FFFFFF'
+      textInfo='Informe sua localização e o seu destino'
+      textTitleInfo2='Filtre com base nos seus serviços favoritos'
+      textInfo2='Selecione o que você quer encontrar pelo caminho'
       />
-      <ContainerRegister 
-        textButton='Cadastre-se'
-        textColorButton='black'
+      <ContainerWhiteKnowMore 
+      titleColorInfo='#2D73DD'
+      textTitleInfo='Adicione os estabelecimentos'
+      textColorInfo='#000000'
+      textInfo='Adicione-os ao seu itinerário pessoal'
+      textTitleInfo2='Dê um GO! e explore'
+      textInfo2='Consulte o seu planejamento quando quiser durante a viagem'
       />
+      <Footer />
     </Layout>
   )
 }

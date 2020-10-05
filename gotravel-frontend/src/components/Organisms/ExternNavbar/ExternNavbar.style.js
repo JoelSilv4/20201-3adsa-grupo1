@@ -7,6 +7,8 @@ export const Navbar = styled.header`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 0 90px;
     justify-content: space-between;
+    position: sticky;
+    background-color: #FFFFFF;
 `
 
 export const LogoWrapper = styled.div`
@@ -24,12 +26,12 @@ export const MenuItems = styled.ul`
     li {
         margin-left: 50px;
         cursor: pointer; 
-        font-size: 20px;
+        font-size: 25px;
+        color: #2D73DD;
     }
 `
 
-export const BorderLi = styled.li`
-    border: 1px solid black;
-    padding: 10px;
-    font-weight: 600;
+export const ButtonWrapper = styled.div`
+    display: flex;
+    align-items: center;
 `
