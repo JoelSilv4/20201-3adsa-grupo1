@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const InfoWrapper = styled.div`
-    width: 380px;
+    width: 360px;
     padding: 92px 90px 0 0;
 `
 
