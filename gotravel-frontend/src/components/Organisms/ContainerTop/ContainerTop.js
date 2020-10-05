@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContainerTitle, Title, TitleWrapper } from './ContainerTop.style'
 import Button from '../../Atoms/Button'
-import { ReactComponent as Image } from '../../assets/mala-viagem.svg'
+import { ReactComponent as Image } from '../../../assets/mala-viagem.svg'
 
 const ContainerTop = ({textButton, textColorButton}) => (
     <ContainerTitle>

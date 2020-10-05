@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navbar, LogoWrapper, MenuItems, ButtonWrapper } from './ExternNavbar.style'
-import { ReactComponent as Logo } from '../../assets/logo-blue.svg'
+import { ReactComponent as Logo } from '../../../assets/logo-blue.svg'
 import Button from '../../Atoms/Button'
+import { Link } from 'react-router-dom';
 
 const ExternNavbar = ({first, second, textButton, textColorButton}) => {
     return (
@@ -14,10 +15,12 @@ const ExternNavbar = ({first, second, textButton, textColorButton}) => {
                 </MenuItems>
             </LogoWrapper>
             <ButtonWrapper>
-                <Button 
-                    text={textButton}
-                    textColor={textColorButton}
-                />    
+                <Link to="/auth">
+                    <Button 
+                        text={textButton}
+                        textColor={textColorButton}
+                    />  
+                </Link>
             </ButtonWrapper>
         </Navbar> 
     )

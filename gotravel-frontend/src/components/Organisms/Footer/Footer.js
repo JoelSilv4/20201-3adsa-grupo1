@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContainerFooter, LogoWrapper, ContainerLogo, ContatoWrapper, Endereco, Telefone } from './Footer.style'
-import { ReactComponent as Logo } from '../../assets/logo-blue.svg'
+import { ReactComponent as Logo } from '../../../assets/logo-blue.svg'
 
 const Footer = () => (
     <ContainerFooter>

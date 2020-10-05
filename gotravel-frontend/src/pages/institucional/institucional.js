@@ -6,8 +6,7 @@ import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
 import ContainerWhiteKnowMore from '../../components/Organisms/ContainerWhiteKnowMore';
 import Footer from '../../components/Organisms/Footer';
 
-
-const App = () => {
+const Institucional = () => {
   return (
     <Layout>
       <ExternNavbar 
@@ -41,4 +40,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default Institucional;

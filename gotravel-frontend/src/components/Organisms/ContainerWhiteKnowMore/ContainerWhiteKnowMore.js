@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContainerInfo } from './ContainerWhiteKnowMore.style'
 import InfoKnowMore from '../../Molecules/InfoKnowMore'
-import { ReactComponent as Image } from '../../assets/garoto-viajante.svg'
+import { ReactComponent as Image } from '../../../assets/garoto-viajante.svg'
 
 const ContainerWhiteKnowMore = ({
     titleColorInfo,
