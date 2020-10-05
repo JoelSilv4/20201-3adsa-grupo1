@@ -2,7 +2,6 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import ExternNavbar from '../../components/Organisms/ExternNavbar';
 import ContainerTop from '../../components/Organisms/ContainerTop';
-import ContainerRegister from '../../components/Organisms/ContainerRegister';
 import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
 
 
@@ -27,10 +26,6 @@ const App = () => {
       textTitleInfo2='Filtre com base nos seus serviços favoritos'
       textInfo2='Selecione o que você quer encontrar pelo caminho '
 
-      />
-      <ContainerRegister 
-        textButton='Cadastre-se'
-        textColorButton='black'
       />
     </Layout>
   )
