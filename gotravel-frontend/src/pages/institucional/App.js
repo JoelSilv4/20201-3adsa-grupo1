@@ -4,6 +4,7 @@ import ExternNavbar from '../../components/Organisms/ExternNavbar';
 import ContainerTop from '../../components/Organisms/ContainerTop';
 import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
 import ContainerWhiteKnowMore from '../../components/Organisms/ContainerWhiteKnowMore';
+import Footer from '../../components/Organisms/Footer';
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
       textTitleInfo2='Dê um GO! e explore'
       textInfo2='Consulte o seu planejamento quando quiser durante a viagem'
       />
+      <Footer />
     </Layout>
   )
 }
