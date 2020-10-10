@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TripService {
 
@@ -20,4 +22,6 @@ public class TripService {
     public Boolean exist(String id) { return tripRepository.existsById(id);}
 
     public void delete(String id) { tripRepository.deleteById(id);}
+
+    public Optional<Trip> findById(String id) { return tripRepository.findById(id); }
 }
