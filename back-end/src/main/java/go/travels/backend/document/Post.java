@@ -3,6 +3,8 @@ package go.travels.backend.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,8 +16,9 @@ public class Post {
     private String title;
     private String descripton;
     private Integer likes;
+    private String date;
 
-    private List<String> listLikes;
+    private List<String> listLikes = new ArrayList<>();
 
     private Optional<Trip> trip;
 
@@ -74,6 +77,14 @@ public class Post {
         this.trip = trip;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,5 +96,18 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", descripton='" + descripton + '\'' +
+                ", likes=" + likes +
+                ", date='" + date + '\'' +
+                ", listLikes=" + listLikes +
+                ", trip=" + trip +
+                '}';
     }
 }
