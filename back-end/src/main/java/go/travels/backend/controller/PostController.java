@@ -74,9 +74,9 @@ public class PostController {
         Optional<Post> post = postService.findById(likeDTO.getPostId());
 
         LikeReturn response = new LikeReturn();
-
+        System.out.println("Inicio do like");
         if (like != null) {
-            try {
+            System.out.println("Deu erro");
                 likeService.delete(like.getId());
 
                 post.get().setLikes(post.get().getLikes() - 1);
@@ -85,12 +85,8 @@ public class PostController {
                 response.setCountLikes(post.get().getLikes());
                 response.setLiked(false);
 
-                return ResponseEntity.ok().body(response);
-            } catch (Exception e) {
-                System.out.println("deletou");
-                return ResponseEntity.badRequest().build();
-            }
         } else {
+            System.out.println("Deu bom");
             post.get().setLikes(post.get().getLikes() + 1);
             postService.persist(post.get());
 
@@ -100,8 +96,8 @@ public class PostController {
             response.setLiked(true);
 
 
-            return ResponseEntity.ok().body(response);
         }
+        return ResponseEntity.ok().body(response);
     }
 
     private Post convertDTOforDoc(PostDTO postDTO, Optional<Trip> trip) {
