@@ -70,15 +70,17 @@ public class PostController {
 
     @PostMapping("/like")
     public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
-        Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
-        Optional<Post> post = postService.findById(likeDTO.getPostId());
-
         try {
+            Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
+            Optional<Post> post = postService.findById(likeDTO.getPostId());
             System.out.println(like);
             System.out.println(post);
         } catch (Exception e) {
             System.out.println("Falhou 80");
         }
+
+        Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
+        Optional<Post> post = postService.findById(likeDTO.getPostId());
 
         LikeReturn response = new LikeReturn();
         System.out.println("Inicio do like");
