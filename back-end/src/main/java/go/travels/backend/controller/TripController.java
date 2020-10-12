@@ -12,13 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.text.SimpleDateFormat;
 
 @RestController
 @RequestMapping("/trip")
 public class TripController {
-
-    private SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private Integer qtdPorPagina = 15;
 
