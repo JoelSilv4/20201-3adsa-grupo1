@@ -53,7 +53,7 @@ public class PostController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/find")
     public ResponseEntity<Page<PostDTO>> findAll(
             @RequestParam(value = "pag", defaultValue = "0") Integer pag,
             @RequestParam(value = "ord", defaultValue = "id") String ord,
@@ -68,7 +68,7 @@ public class PostController {
     }
 
 
-    @PostMapping("/like")
+    @PostMapping("/lk")
     public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
         Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
         Optional<Post> post = postService.findById(likeDTO.getPostId());
