@@ -68,7 +68,7 @@ public class PostController {
     }
 
 
-    @PostMapping("/lk")
+    @PostMapping("/like")
     public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
         Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
         Optional<Post> post = postService.findById(likeDTO.getPostId());
@@ -77,24 +77,30 @@ public class PostController {
         System.out.println("Inicio do like");
         if (like != null) {
             System.out.println("Deu erro");
-                likeService.delete(like.getId());
+            likeService.delete(like.getId());
 
-                post.get().setLikes(post.get().getLikes() - 1);
-                postService.persist(post.get());
+            post.get().setLikes(post.get().getLikes() - 1);
+            postService.persist(post.get());
 
-                response.setCountLikes(post.get().getLikes());
-                response.setLiked(false);
+            System.out.println("cheguei aq (deu ruim)");
+            LikeReturn.setCountLikes(post.get().getLikes());
+            response.setLiked(false);
 
         } else {
             System.out.println("Deu bom");
-            post.get().setLikes(post.get().getLikes() + 1);
-            postService.persist(post.get());
+            try{
+                post.get().setLikes(post.get().getLikes() + 1);
+                postService.persist(post.get());
+            } catch (Exception e) {
+                System.out.println("Falhou o persist" +
+                        "" +e.toString());
+            }
 
             likeService.persist(convertLike(likeDTO));
 
-            response.setCountLikes(post.get().getLikes());
+            System.out.println("cheguei aq");
+            LikeReturn.setCountLikes(post.get().getLikes());
             response.setLiked(true);
-
 
         }
         return ResponseEntity.ok().body(response);
@@ -134,7 +140,7 @@ public class PostController {
             return countLikes;
         }
 
-        public void setCountLikes(Integer countLikes) {
+        public static void setCountLikes(Integer countLikes) {
             this.countLikes = countLikes;
         }
 

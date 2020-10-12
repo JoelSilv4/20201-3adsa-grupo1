@@ -18,7 +18,6 @@ public class Post {
     private Integer likes;
     private String date;
 
-
     private Optional<Trip> trip;
 
     public Post(String title, String descripton, Optional<Trip> trip) {
