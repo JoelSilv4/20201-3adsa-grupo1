@@ -13,16 +13,13 @@ public class PostDTO {
     private Integer likes;
     private String date;
 
-    private List<String> listLikes;
-
     private Optional<Trip> trip;
 
-    public PostDTO(String id, String title, String descripton, Integer likes, List<String> listLikes, Optional<Trip> trip, String date) {
+    public PostDTO(String id, String title, String descripton, Integer likes, Optional<Trip> trip, String date) {
         this.id = id;
         this.title = title;
         this.description = descripton;
         this.likes = likes;
-        this.listLikes = listLikes;
         this.trip = trip;
         this.date = date;
     }
@@ -57,14 +54,6 @@ public class PostDTO {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
-    }
-
-    public List<String> getListLikes() {
-        return listLikes;
-    }
-
-    public void setListLikes(List<String> listLikes) {
-        this.listLikes = listLikes;
     }
 
     public Optional<Trip>  getTrip() {

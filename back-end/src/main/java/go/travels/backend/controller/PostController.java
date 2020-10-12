@@ -1,22 +1,23 @@
 package go.travels.backend.controller;
 
+import go.travels.backend.document.Like;
+import go.travels.backend.dto.LikeDTO;
 import go.travels.backend.dto.PostDTO;
 import go.travels.backend.document.Post;
 import go.travels.backend.document.Trip;
+import go.travels.backend.services.LikeService;
 import go.travels.backend.services.PostService;
 import go.travels.backend.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
 @RequestMapping("/post")
@@ -29,6 +30,9 @@ public class PostController {
 
     @Autowired
     PostService postService;
+
+    @Autowired
+    LikeService likeService;
 
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     private LocalDateTime now = LocalDateTime.now();
@@ -64,51 +68,35 @@ public class PostController {
     }
 
     @PostMapping("/like")
-    public ResponseEntity<LikeReturn> like(@RequestBody ObjectId objectId ) {
-        Optional<Post> post = postService.findById(objectId.getPostId());
-        for (Object id: post.get().getListLikes().toArray()) {
-            System.out.println(id);
-        }
+    public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
+        Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
+        Optional<Post> post = postService.findById(likeDTO.getPostId());
 
-        if (!post.get().getListLikes().isEmpty()){
-            post.get().getListLikes().forEach(id -> {
-                if (id.equals(objectId.getUserId())) {
-                    post.get().getListLikes().remove(objectId.getUserId());
-                    post.get().setLikes(post.get().getListLikes().size());
+        LikeReturn response = new LikeReturn();
 
-                    postService.persist(post.get());
+        if (like != null) {
+            likeService.delete(like.getId());
 
-                    LikeReturn like = new LikeReturn();
-                    like.setCountLikes(post.get().getLikes());
-                    like.setLiked(false);
-                } else {
-
-                    post.get().getListLikes().add(objectId.getUserId());
-                    post.get().setLikes(post.get().getListLikes().size());
-                    postService.persist(post.get());
-
-                    LikeReturn like = new LikeReturn();
-                    like.setCountLikes(post.get().getLikes());
-                    like.setLiked(true);
-
-                }
-            });
-        } else {
-            List<String> list = new ArrayList<>();
-            list.add(objectId.getUserId());
-
-            post.get().setListLikes(list);
-            post.get().setLikes(post.get().getListLikes().size());
+            post.get().setLikes(post.get().getLikes() -1);
             postService.persist(post.get());
 
-            LikeReturn like = new LikeReturn();
-            like.setCountLikes(post.get().getLikes());
-            like.setLiked(true);
+            response.setCountLikes(post.get().getLikes());
+            response.setLiked(false);
 
-            return ResponseEntity.ok().body(like);
+
+            return ResponseEntity.ok().body(response);
+        } else {
+            post.get().setLikes(post.get().getLikes() + 1);
+            postService.persist(post.get());
+
+            likeService.persist(convertLike(likeDTO));
+
+            response.setCountLikes(post.get().getLikes());
+            response.setLiked(true);
+
+
+            return ResponseEntity.ok().body(response);
         }
-
-        return ResponseEntity.noContent().build();
     }
 
     private Post convertDTOforDoc(PostDTO postDTO, Optional<Trip> trip) {
@@ -125,9 +113,15 @@ public class PostController {
                 post.getTitle(),
                 post.getDescripton(),
                 post.getLikes(),
-                post.getListLikes(),
                 post.getTrip(),
                 post.getDate()
+        );
+    }
+
+    private Like convertLike(LikeDTO likeDTO) {
+        return new Like(
+                likeDTO.getPostId(),
+                likeDTO.getUserId()
         );
     }
 
@@ -149,32 +143,6 @@ public class PostController {
 
         public void setLiked(Boolean liked) {
             this.liked = liked;
-        }
-    }
-
-    public static class ObjectId {
-        private String userId;
-        private String postId;
-
-        public ObjectId(String userId, String postId) {
-            this.userId = userId;
-            this.postId = postId;
-        }
-
-        public String getUserId() {
-            return userId;
-        }
-
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
-
-        public String getPostId() {
-            return postId;
-        }
-
-        public void setPostId(String postId) {
-            this.postId = postId;
         }
     }
 }

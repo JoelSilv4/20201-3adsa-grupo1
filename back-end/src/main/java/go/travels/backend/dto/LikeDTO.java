@@ -1,20 +1,16 @@
-package go.travels.backend.document;
+package go.travels.backend.dto;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 import java.util.Objects;
+public class LikeDTO {
 
-@Document
-public class Like {
-
-    @Id
     private String id;
     private String postId;
     private String userId;
 
-    public Like(String postId, String userId) {
+    public LikeDTO(String postId, String userId) {
         this.postId = postId;
         this.userId = userId;
     }
@@ -43,16 +39,4 @@ public class Like {
         this.userId = userId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Like like = (Like) o;
-        return Objects.equals(id, like.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

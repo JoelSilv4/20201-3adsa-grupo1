@@ -18,7 +18,6 @@ public class Post {
     private Integer likes;
     private String date;
 
-    private List<String> listLikes = new ArrayList<>();
 
     private Optional<Trip> trip;
 
@@ -61,14 +60,6 @@ public class Post {
         this.likes = likes;
     }
 
-    public List<String> getListLikes() {
-        return listLikes;
-    }
-
-    public void setListLikes(List<String> listLikes) {
-        this.listLikes = listLikes;
-    }
-
     public Optional<Trip> getTrip() {
         return trip;
     }
@@ -96,18 +87,5 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", descripton='" + descripton + '\'' +
-                ", likes=" + likes +
-                ", date='" + date + '\'' +
-                ", listLikes=" + listLikes +
-                ", trip=" + trip +
-                '}';
     }
 }
