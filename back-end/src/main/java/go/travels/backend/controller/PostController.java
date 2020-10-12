@@ -124,7 +124,7 @@ public class PostController {
                 likeDTO.getUserId()
         );
     }
-git
+
     public static class LikeReturn {
         private Integer countLikes;
         private Boolean liked;
