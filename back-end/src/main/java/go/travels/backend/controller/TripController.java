@@ -31,7 +31,7 @@ public class TripController {
                 Trip trip = convertDtoForTrip(tripDTO);
                 tripService.persist(trip);
 
-                return ResponseEntity.created(URI.create("/trip")).body(convertTripForDto(trip));
+                return ResponseEntity.created(null).body(convertTripForDto(trip));
             } else {
                 return ResponseEntity.notFound().build();
             }
