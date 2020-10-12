@@ -73,7 +73,12 @@ public class PostController {
         Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
         Optional<Post> post = postService.findById(likeDTO.getPostId());
 
-        System.out.println(like);
+        try {
+            System.out.println(like);
+            System.out.println(post);
+        } catch (Exception e) {
+            System.out.println("Falhou 80");
+        }
 
         LikeReturn response = new LikeReturn();
         System.out.println("Inicio do like");
