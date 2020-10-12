@@ -34,8 +34,8 @@ public class PostController {
     @Autowired
     LikeService likeService;
 
-    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    private LocalDateTime now = LocalDateTime.now();
+    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    private final LocalDateTime now = LocalDateTime.now();
 
     @PostMapping("/create/{tripId}")
     public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO, @PathVariable String tripId) {
@@ -53,7 +53,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/findAll")
+    @GetMapping
     public ResponseEntity<Page<PostDTO>> findAll(
             @RequestParam(value = "pag", defaultValue = "0") Integer pag,
             @RequestParam(value = "ord", defaultValue = "id") String ord,
@@ -124,7 +124,7 @@ public class PostController {
                 likeDTO.getUserId()
         );
     }
-
+git
     public static class LikeReturn {
         private Integer countLikes;
         private Boolean liked;
