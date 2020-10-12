@@ -76,16 +76,20 @@ public class PostController {
         LikeReturn response = new LikeReturn();
 
         if (like != null) {
-            likeService.delete(like.getId());
+            try {
+                likeService.delete(like.getId());
 
-            post.get().setLikes(post.get().getLikes() -1);
-            postService.persist(post.get());
+                post.get().setLikes(post.get().getLikes() - 1);
+                postService.persist(post.get());
 
-            response.setCountLikes(post.get().getLikes());
-            response.setLiked(false);
+                response.setCountLikes(post.get().getLikes());
+                response.setLiked(false);
 
-
-            return ResponseEntity.ok().body(response);
+                return ResponseEntity.ok().body(response);
+            } catch (Exception e) {
+                System.out.println("deletou");
+                return ResponseEntity.badRequest().build();
+            }
         } else {
             post.get().setLikes(post.get().getLikes() + 1);
             postService.persist(post.get());
