@@ -73,6 +73,8 @@ public class PostController {
         Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
         Optional<Post> post = postService.findById(likeDTO.getPostId());
 
+        System.out.println(like);
+
         LikeReturn response = new LikeReturn();
         System.out.println("Inicio do like");
         if (like != null) {
@@ -89,7 +91,7 @@ public class PostController {
         } else {
             System.out.println("Deu bom");
             try{
-//                post.get().setLikes(post.get().getLikes() + 1);
+                post.get().setLikes(post.get().getLikes() + 1);
                 postService.persist(post.get());
             } catch (Exception e) {
                 System.out.println("Falhou o persist" +
