@@ -83,7 +83,7 @@ public class PostController {
             postService.persist(post.get());
 
             System.out.println("cheguei aq (deu ruim)");
-            LikeReturn.setCountLikes(post.get().getLikes());
+            response.setCountLikes(post.get().getLikes());
             response.setLiked(false);
 
         } else {
@@ -99,7 +99,7 @@ public class PostController {
             likeService.persist(convertLike(likeDTO));
 
             System.out.println("cheguei aq");
-            LikeReturn.setCountLikes(post.get().getLikes());
+            response.setCountLikes(post.get().getLikes());
             response.setLiked(true);
 
         }
@@ -140,7 +140,7 @@ public class PostController {
             return countLikes;
         }
 
-        public static void setCountLikes(Integer countLikes) {
+        public void setCountLikes(Integer countLikes) {
             this.countLikes = countLikes;
         }
 
