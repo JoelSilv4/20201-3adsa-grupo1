@@ -89,7 +89,7 @@ public class PostController {
         } else {
             System.out.println("Deu bom");
             try{
-                post.get().setLikes(post.get().getLikes() + 1);
+//                post.get().setLikes(post.get().getLikes() + 1);
                 postService.persist(post.get());
             } catch (Exception e) {
                 System.out.println("Falhou o persist" +
