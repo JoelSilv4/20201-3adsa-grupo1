@@ -37,21 +37,21 @@ public class PostController {
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     private final LocalDateTime now = LocalDateTime.now();
 
-//    @PostMapping("/create/{tripId}")
-//    public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO, @PathVariable String tripId) {
-//        if (tripService.exist(tripId)) {
-//            Optional<Trip> trip = tripService.findById(tripId);
-//
-//            Post post = convertDTOforDoc(postDTO, trip);
-//            post.setDate(dtf.format(now));
-//
-//            postService.persist(post);
-//
-//            return ResponseEntity.created(null).body(convertDocforDTO(post));
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PostMapping("/create/{tripId}")
+    public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO, @PathVariable String tripId) {
+        if (tripService.exist(tripId)) {
+            Optional<Trip> trip = tripService.findById(tripId);
+
+            Post post = convertDTOforDoc(postDTO, trip);
+            post.setDate(dtf.format(now));
+
+            postService.persist(post);
+
+            return ResponseEntity.created(null).body(convertDocforDTO(post));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @GetMapping
     public ResponseEntity<Page<PostDTO>> findAll(
