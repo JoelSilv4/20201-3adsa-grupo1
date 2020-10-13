@@ -1,9 +1,7 @@
 package go.travels.backend.controller;
 
 import go.travels.backend.document.Filter;
-import go.travels.backend.document.Trip;
 import go.travels.backend.dto.FilterDTO;
-import go.travels.backend.repositories.TripRepository;
 import go.travels.backend.services.FilterService;
 import go.travels.backend.services.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ public class FilterController {
     TripService tripService;
 
     @PostMapping
-    public ResponseEntity register(@RequestBody FilterDTO filterDTO){
+    public ResponseEntity<FilterDTO> register(@RequestBody FilterDTO filterDTO){
         if (tripService.exist(filterDTO.getTripId())) {
             Filter filter = convertDtoForFilter(filterDTO);
             filterService.persist(filter);
@@ -45,7 +43,7 @@ public class FilterController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable String id){
+    public ResponseEntity<?> delete(@PathVariable String id){
         if (filterService.exist(id)){
             filterService.delete(id);
             return ResponseEntity.accepted().build();
