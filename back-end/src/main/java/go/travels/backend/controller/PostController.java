@@ -70,40 +70,22 @@ public class PostController {
 
     @PostMapping("/like")
     public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
-        try {
-            Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
-            Optional<Post> post = postService.findById(likeDTO.getPostId());
-            System.out.println(like);
-            System.out.println(post);
-        } catch (Exception e) {
-            System.out.println("Falhou 80");
-        }
-
         Like like = likeService.findPost(likeDTO.getUserId(), likeDTO.getPostId());
         Optional<Post> post = postService.findById(likeDTO.getPostId());
 
         LikeReturn response = new LikeReturn();
-        System.out.println("Inicio do like");
         if (like != null) {
-            System.out.println("Deu erro");
             likeService.delete(like.getId());
 
             post.get().setLikes(post.get().getLikes() - 1);
             postService.persist(post.get());
 
-            System.out.println("cheguei aq (deu ruim)");
             response.setCountLikes(post.get().getLikes());
             response.setLiked(false);
 
         } else {
-            System.out.println("Deu bom");
-            try{
-                post.get().setLikes(post.get().getLikes() + 1);
-                postService.persist(post.get());
-            } catch (Exception e) {
-                System.out.println("Falhou o persist" +
-                        "" +e.toString());
-            }
+            post.get().setLikes(post.get().getLikes() + 1);
+            postService.persist(post.get());
 
             likeService.persist(convertLike(likeDTO));
 
