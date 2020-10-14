@@ -22,21 +22,7 @@ public class PostService {
 
     public Post persist(Post post) { return  postRepository.save(post); }
 
-    public List<PostDTO> findAll() {
-        List<Post> list = postRepository.findAll();
-        return list.stream().map(post -> new PostDTO(
-                post.getId(),
-                post.getTitle(),
-                post.getDescripton(),
-                post.getLikes(),
-                post.getTrip(),
-                post.getDate())).collect(Collectors.toList());
-
-    }
-
-
-
-//    public Page<Post> findAll(PageRequest pageRequest) { return postRepository.findAll(pageRequest); }
+    public Page<Post> findAll(PageRequest pageRequest) { return postRepository.findAll(pageRequest); }
 
     public Optional<Post> findById(String id) { return postRepository.findById(id);}
 
