@@ -54,17 +54,19 @@ public class PostController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<Page<PostDTO>> findAll(
-            @RequestParam(value = "pag", defaultValue = "0") Integer pag,
-            @RequestParam(value = "ord", defaultValue = "id") String ord,
-            @RequestParam(value = "dir", defaultValue = "DESC") String dir){
+    public ResponseEntity<List<PostDTO>> findAll(
+//            @RequestParam(value = "pag", defaultValue = "0") Integer pag,
+//            @RequestParam(value = "ord", defaultValue = "id") String ord,
+//            @RequestParam(value = "dir", defaultValue = "DESC") String dir){
+    ){
+//        PageRequest pageRequest = PageRequest.of(pag, qtdPorPagina, Sort.Direction.valueOf(dir), ord);
+        List<PostDTO> post = postService.findAll();
 
-        PageRequest pageRequest = PageRequest.of(pag, qtdPorPagina, Sort.Direction.valueOf(dir), ord);
-        Page<Post> post = postService.findAll(pageRequest);
+//        Page<PostDTO> postDTOS = post.map(this::convertDocforDTO);
 
-        Page<PostDTO> postDTOS = post.map(this::convertDocforDTO);
 
-        return ResponseEntity.ok(postDTOS);
+
+        return ResponseEntity.ok(post);
     }
 
 
