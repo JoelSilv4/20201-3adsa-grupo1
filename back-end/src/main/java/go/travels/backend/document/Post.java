@@ -15,7 +15,7 @@ public class Post {
     private String id;
     private String title;
     private String descripton;
-    private Integer likes;
+    private Integer likes = 0;
     private String date;
 
     private Optional<Trip> trip;

@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LikeRepository extends MongoRepository<Like, String> {
-    Like findByUserIdAndPostId(String userId, String postId);
+    Boolean existsByUserIdAndPostId(String userId, String postId);
+    void deleteByUserId(String userId);
 }

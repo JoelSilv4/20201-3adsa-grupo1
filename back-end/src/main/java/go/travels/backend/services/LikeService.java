@@ -11,9 +11,9 @@ public class LikeService {
     @Autowired
     LikeRepository likeRepository;
 
-    public Like findPost(String userId, String postId) { return likeRepository.findByUserIdAndPostId(userId, postId);}
+    public Boolean exist(String userId, String postId) { return likeRepository.existsByUserIdAndPostId(userId, postId);}
 
     public Like persist(Like like) {return likeRepository.save(like);}
 
-    public void delete(String likeId) { likeRepository.deleteById(likeId);}
+    public void deleteByUserId(String userId) { likeRepository.deleteByUserId(userId);}
 }
