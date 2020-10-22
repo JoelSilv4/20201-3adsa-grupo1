@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,4 +25,9 @@ public class TripService {
     public void delete(String id) { tripRepository.deleteById(id);}
 
     public Optional<Trip> findById(String id) { return tripRepository.findById(id); }
+
+    public List<Trip> findAllByIdUser(String idUser){
+        return tripRepository.findAllByIdUser(idUser);
+    }
+
 }
