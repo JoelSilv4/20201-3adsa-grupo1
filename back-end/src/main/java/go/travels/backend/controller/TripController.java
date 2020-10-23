@@ -127,7 +127,7 @@ public class TripController {
         for(Trip t : o){
             listaObj.adiciona(t);
         }
-        String header = "Exportação de dados via arquivo de texto: Descrição das viagens do usuário:\n" +
+        String header = "Exportação de dados via arquivo de texto: Descrição das viagens do usuário\n" +
                 "ID do usuário: " + idUser + "\n";
 
 
