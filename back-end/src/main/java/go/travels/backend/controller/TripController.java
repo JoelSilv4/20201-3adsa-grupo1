@@ -131,7 +131,7 @@ public class TripController {
                 "ID do usuário: " + idUser + "\n";
 
 
-        String cabecalho = String.format("\n%-25s %-25s %-25s %-25s %-25s \n", "ID", "LAT PARTIDA", "LNG PARTIDA" , "LAT DESTINO", "LNG DESTINO");
+        String cabecalho = String.format("\n%-25s %-25s %-25s %-25s %-25s \n", "ID VIAGEM", "LAT PARTIDA", "LNG PARTIDA" , "LAT DESTINO", "LNG DESTINO");
         String trailer = String.format("%-25s \n", "FIM DO DOCUMENTO");
 
         Archive.gravaRegistroTXT(header);
