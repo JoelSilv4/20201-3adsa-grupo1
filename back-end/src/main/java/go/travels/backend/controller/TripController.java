@@ -127,10 +127,14 @@ public class TripController {
         for(Trip t : o){
             listaObj.adiciona(t);
         }
+        String header = "Exportação de dados via arquivo de texto: Descrição das viagens do usuário:\n" +
+                "ID do usuário: " + idUser + "\n";
 
-        String cabecalho = String.format("%-25s %-25s %-25s %-25s %-25s \n", "ID", "LAT PARTIDA", "LNG PARTIDA" , "LAT DESTINO", "LNG DESTINO");
+
+        String cabecalho = String.format("\n%-25s %-25s %-25s %-25s %-25s \n", "ID", "LAT PARTIDA", "LNG PARTIDA" , "LAT DESTINO", "LNG DESTINO");
         String trailer = String.format("%-25s \n", "FIM DO DOCUMENTO");
 
+        Archive.gravaRegistroTXT(header);
         Archive.gravaRegistroTXT(cabecalho);
         Archive.gravaNaListaTXT(listaObj);
         Archive.gravaRegistroTXT(trailer);
