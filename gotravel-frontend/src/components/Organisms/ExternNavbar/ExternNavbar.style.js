@@ -15,7 +15,7 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   svg {
-    width: 120px;
+    width: 100px;
     height: 70px;
   }
 `;

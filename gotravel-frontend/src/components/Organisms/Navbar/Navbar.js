@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <ExternNavbar first="Home" second="Sobre">
-      {appState.logged ? <HeaderLogin /> : <HeaderLogout />}
+      {appState.logged && !appState.isInstitutionalPage ? <HeaderLogin /> : <HeaderLogout />}
     </ExternNavbar>
   );
 }

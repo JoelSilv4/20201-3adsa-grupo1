@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import ExternNavbar from '../../components/Organisms/ExternNavbar';
 import ContainerTop from '../../components/Organisms/ContainerTop';
 import ContainerKnowMore from '../../components/Organisms/ContainerKnowMore';
 import ContainerWhiteKnowMore from '../../components/Organisms/ContainerWhiteKnowMore';
 import Footer from '../../components/Organisms/Footer';
+import DispatchContext from '../../DispatchContext';
 
 const Institucional = () => {
+  const appDispatch = useContext(DispatchContext);
+  appDispatch({ type: 'is-institutional' });
+
   return (
     <Layout>
       <ContainerTop textButton="Entrar" textColorButton="#2D73DD" />

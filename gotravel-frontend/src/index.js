@@ -21,6 +21,7 @@ function Index() {
       id: localStorage.getItem('gotravelUserId'),
       name: localStorage.getItem('gotravelUserName'),
     },
+    isInstitutionalPage: false,
     formType: true,
   };
 
@@ -39,6 +40,12 @@ function Index() {
       case 'form-register':
         draft.formType = false;
         return;
+      case 'is-institutional':
+        draft.isInstitutionalPage = true;
+        return;
+      case 'is-not-institutional':
+        draft.isInstitutionalPage = false;
+        return;
     }
   }
 
@@ -55,8 +62,6 @@ function Index() {
       localStorage.removeItem('gotravelUserName');
     }
   }, [state.logged]);
-
-  useEffect(() => {}, [state.formType]);
 
   return (
     <StateContext.Provider value={state}>

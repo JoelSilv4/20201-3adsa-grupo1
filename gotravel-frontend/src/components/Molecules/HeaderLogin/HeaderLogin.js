@@ -15,7 +15,7 @@ function HeaderLogin() {
 
   return (
     <LogoffWrapper>
-      <h1>{`Bem vindo ${appState.user.name}`}</h1>
+      <p>{`Bem vindo ${appState.user.name}`}</p>
 
       <ButtonWrapper>
         <Button onclick={handleLogoff} text={'Deslogar'} textColor={'#2D73DD'} />
