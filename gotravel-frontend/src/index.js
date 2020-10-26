@@ -10,6 +10,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import Navbar from './components/Organisms/Navbar/Navbar';
+import Footer from './components/Organisms/Footer/Footer';
 // Axios.defaults.baseURL = 'http://localhost:8080';
 Axios.defaults.baseURL = 'https://go-travel-ads.herokuapp.com';
 
@@ -80,6 +81,8 @@ function Index() {
               <Dashboard />
             </Route>
           </Switch>
+
+          <Footer />
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

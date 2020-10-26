@@ -15,9 +15,8 @@ public class Post {
     private String id;
     private String title;
     private String descripton;
-    private Integer likes;
+    private Integer likes = 0;
     private String date;
-
 
     private Optional<Trip> trip;
 
@@ -87,5 +86,17 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", descripton='" + descripton + '\'' +
+                ", likes=" + likes +
+                ", date='" + date + '\'' +
+                ", trip=" + trip +
+                '}';
     }
 }
