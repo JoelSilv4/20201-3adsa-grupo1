@@ -25,11 +25,11 @@ ${reset}
     text-decoration: none;
   }
 
-`
+`;
 
 const Main = styled.main`
   min-height: 100vh;
-`
+`;
 
 const Layout = ({ children }) => {
   return (
@@ -37,8 +37,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       {children}
     </Main>
-  )
-}
+  );
+};
 
-export default Layout
-
+export default Layout;

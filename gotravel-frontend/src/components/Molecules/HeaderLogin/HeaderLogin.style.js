@@ -6,7 +6,7 @@ const LogoffWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  h1 {
+  p {
     margin-right: 25px;
   }
 `;

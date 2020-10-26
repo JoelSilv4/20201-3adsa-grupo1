@@ -1,18 +1,15 @@
-import React from 'react';
-import FormLogin from '../../components/Molecules/FormLogin/FormLogin';
+import React, { useContext } from 'react';
 import Login from '../../components/Organisms/Login/Login';
-import { Switch, Route } from 'react-router-dom';
 import Layout from '../../components/Layout';
+import DispatchContext from '../../DispatchContext';
 
 const Autenticacao = () => {
+  const appDispatch = useContext(DispatchContext);
+  appDispatch({ type: 'is-not-institutional' });
+
   return (
     <Layout>
-      <Switch>
-        <Route to="/login">
-          <Login />
-        </Route>
-        <Route to="/register"></Route>
-      </Switch>
+      <Login />
     </Layout>
   );
 };
