@@ -108,7 +108,7 @@ public class TripController {
 
         Archive.gravaNaListaCSV(listaObj);
 
-        byte[] arquivo = Files.readAllBytes( Paths.get("C:\\Users\\Acer\\Desktop\\20201-3adsa-grupo1\\back-end\\trip.csv") );
+        byte[] arquivo = Files.readAllBytes( Paths.get("trip.csv") );
 
         HttpHeaders httpHeaders = new HttpHeaders();
 
@@ -140,7 +140,7 @@ public class TripController {
         Archive.gravaRegistroTXT(trailer);
 
 
-        byte[] arquivo = Files.readAllBytes( Paths.get("C:\\Users\\Acer\\Desktop\\20201-3adsa-grupo1\\back-end\\trip.txt") );
+        byte[] arquivo = Files.readAllBytes( Paths.get("trip.txt") );
 
         HttpHeaders httpHeaders = new HttpHeaders();
 
