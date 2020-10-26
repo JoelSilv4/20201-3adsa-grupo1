@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import Label from '../../Atoms/Label/label';
-import { FirstContainer, ArtContainer, FormContainer, FormStyle } from './Form.style';
+import { FirstContainer, ArtContainer, FormContainer, FormStyle, ContainerButtons } from './Form.style';
+import {ReactComponent as Img} from '../../../assets/mulher-carro.svg';
 import DispatchContext from '../../../DispatchContext';
 
 const FormRegister = (props) => {
@@ -29,9 +30,14 @@ const FormRegister = (props) => {
 
   return (
     <FirstContainer>
+
+      <ArtContainer>
+        <Img />
+      </ArtContainer>
+
       <FormContainer>
         <h1>
-          Dê um <spam>GO!</spam> e faça o login!
+          Dê um <spam>GO!</spam> e faça o cadastro!
         </h1>
 
         <FormStyle onSubmit={handleSubmit}>
@@ -51,14 +57,17 @@ const FormRegister = (props) => {
               <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="****" />
             </div>
 
-            <button type="submit">Cadastrar</button>
+            <ContainerButtons>
+              <button type="submit">Cadastrar</button>
 
-            <button onClick={() => appDispatch({ type: 'form-login' })}>Já tenho uma conta</button>
+              <button onClick={() => appDispatch({ type: 'form-login' })}>Já tenho uma conta</button>
+            </ContainerButtons>
+            
           </div>
         </FormStyle>
       </FormContainer>
 
-      <ArtContainer>{/* <img src={require('../../../assets/foto_tela_login.png')} /> */}</ArtContainer>
+      
     </FirstContainer>
   );
 };

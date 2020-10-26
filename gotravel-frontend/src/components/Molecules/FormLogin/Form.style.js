@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const FirstContainer = styled.div`
   display: flex;
   width: 100%;
+  height: 100vh;
   flex-direction: row;
   justify-content: center;
   align-content: center;
@@ -32,7 +33,7 @@ svg{
 
 export const FormContainer = styled.div`
   display: flex;
-  width: 90%;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
