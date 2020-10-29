@@ -10,6 +10,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import Navbar from './components/Organisms/Navbar/Navbar';
+import Footer from './components/Organisms/Footer/Footer';
 // Axios.defaults.baseURL = 'http://localhost:8080';
 Axios.defaults.baseURL = 'https://go-travel-ads.herokuapp.com';
 
@@ -21,6 +22,7 @@ function Index() {
       id: localStorage.getItem('gotravelUserId'),
       name: localStorage.getItem('gotravelUserName'),
     },
+    isInstitutionalPage: false,
     formType: true,
   };
 
@@ -39,6 +41,12 @@ function Index() {
       case 'form-register':
         draft.formType = false;
         return;
+      case 'is-institutional':
+        draft.isInstitutionalPage = true;
+        return;
+      case 'is-not-institutional':
+        draft.isInstitutionalPage = false;
+        return;
     }
   }
 
@@ -55,8 +63,6 @@ function Index() {
       localStorage.removeItem('gotravelUserName');
     }
   }, [state.logged]);
-
-  useEffect(() => {}, [state.formType]);
 
   return (
     <StateContext.Provider value={state}>
@@ -75,6 +81,8 @@ function Index() {
               <Dashboard />
             </Route>
           </Switch>
+
+          <Footer />
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>
