@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import Label from '../../Atoms/Label/label';
 import { FirstContainer, ArtContainer, FormContainer, FormStyle, ContainerButtons } from './Form.style';
-import {ReactComponent as Img} from '../../../assets/mulher-carro.svg';
+import { ReactComponent as Img } from '../../../assets/mulher-carro.svg';
 import DispatchContext from '../../../DispatchContext';
 
 const FormLogin = (props) => {
@@ -30,10 +30,9 @@ const FormLogin = (props) => {
 
   return (
     <FirstContainer>
-
-  <ArtContainer>
-    <Img />
-  </ArtContainer>
+      <ArtContainer>
+        <Img />
+      </ArtContainer>
 
       <FormContainer>
         <h1>
@@ -52,17 +51,14 @@ const FormLogin = (props) => {
               <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="****" />
             </div>
 
-          <ContainerButtons>
-            <button type="submit">Logar</button>
+            <ContainerButtons>
+              <button type="submit">Logar</button>
 
-            <button onClick={() => appDispatch({ type: 'form-register' })}>Cadastrar uma conta</button>
-          </ContainerButtons>
-            
+              <button onClick={() => appDispatch({ type: 'form-register' })}>Cadastrar uma conta</button>
+            </ContainerButtons>
           </div>
         </FormStyle>
       </FormContainer>
-
-     
     </FirstContainer>
   );
 };
