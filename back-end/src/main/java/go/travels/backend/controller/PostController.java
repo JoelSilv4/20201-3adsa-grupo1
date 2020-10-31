@@ -55,17 +55,16 @@ public class PostController {
 
     @GetMapping
     public ResponseEntity<?> findAll(
-){
-//        @RequestParam(value = "pag", defaultValue = "0") Integer pag,
-//        @RequestParam(value = "ord", defaultValue = "id") String ord,
-//        @RequestParam(value = "dir", defaultValue = "DESC") String dir
-//
-//        PageRequest pageRequest = PageRequest.of(pag, qtdPorPagina, Sort.Direction.valueOf(dir), ord);
+            @RequestParam(value = "pag", defaultValue = "0") Integer pag,
+            @RequestParam(value = "ord", defaultValue = "id") String ord,
+            @RequestParam(value = "dir", defaultValue = "DESC") String dir){
+
+        PageRequest pageRequest = PageRequest.of(pag, qtdPorPagina, Sort.Direction.valueOf(dir), ord);
 //        Page<Post> post = postService.findAll(pageRequest);
-//
+
 //        Page<PostDTO> postDTOS = post.map(this::convertDocforDTO);
-        System.out.println("aaaaaaaaaaaaa");
-        return ResponseEntity.ok("aaaaaaaaaaaaaaaaaaaaaaa");
+        System.out.println();
+        return ResponseEntity.ok("aaaaaa");
     }
 
 //    @PostMapping("/like")
