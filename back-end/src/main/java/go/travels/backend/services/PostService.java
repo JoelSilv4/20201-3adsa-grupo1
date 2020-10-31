@@ -22,7 +22,7 @@ public class PostService {
 
     public Post persist(Post post) { return  postRepository.save(post); }
 
-    public Page<Post> findAll(PageRequest pageRequest) { return postRepository.findAll(pageRequest); }
+    public Page<Post> findAll(String userId, PageRequest pageRequest) { return postRepository.findAllByUserId(userId, pageRequest); }
 
     public Optional<Post> findById(String id) { return postRepository.findById(id);}
 
