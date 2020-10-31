@@ -64,45 +64,44 @@ public class PostController {
 
         Page<PostDTO> postDTOS = post.map(this::convertDocforDTO);
 
-
         return ResponseEntity.ok(postDTOS);
     }
 
-//    @PostMapping("/like")
-//    public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
-//        Optional<Post> post = postService.findById(likeDTO.getPostId());
-//
-//        LikeReturn response = new LikeReturn();
-//        if (post.isPresent()){
-//            System.out.println("test1");
-//            if (likeService.exist(likeDTO.getUserId(), likeDTO.getPostId())) {
-//                System.out.println("test2");
-//                likeService.deleteByUserId(likeDTO.getUserId());
-//
-//                post.get().setLikes(post.get().getLikes() - 1);
-//                postService.persist(post.get());
-//
-//                response.setCountLikes(post.get().getLikes());
-//                response.setLiked(false);
-//
-//            } else {
-//                System.out.println("test3");
-//                System.out.println(post.get().getLikes());
-//                post.get().setLikes(post.get().getLikes() + 1);
-//                System.out.println("pt2");
-//                postService.persist(post.get());
-//
-//                likeService.persist(convertLike(likeDTO));
-//
-//                response.setCountLikes(post.get().getLikes());
-//                response.setLiked(true);
-//
-//            }
-//            return ResponseEntity.ok().body(response);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PostMapping("/like")
+    public ResponseEntity<LikeReturn> like(@RequestBody LikeDTO likeDTO ) {
+        Optional<Post> post = postService.findById(likeDTO.getPostId());
+
+        LikeReturn response = new LikeReturn();
+        if (post.isPresent()){
+            System.out.println("test1");
+            if (likeService.exist(likeDTO.getUserId(), likeDTO.getPostId())) {
+                System.out.println("test2");
+                likeService.deleteByUserId(likeDTO.getUserId());
+
+                post.get().setLikes(post.get().getLikes() - 1);
+                postService.persist(post.get());
+
+                response.setCountLikes(post.get().getLikes());
+                response.setLiked(false);
+
+            } else {
+                System.out.println("test3");
+                System.out.println(post.get().getLikes());
+                post.get().setLikes(post.get().getLikes() + 1);
+                System.out.println("pt2");
+                postService.persist(post.get());
+
+                likeService.persist(convertLike(likeDTO));
+
+                response.setCountLikes(post.get().getLikes());
+                response.setLiked(true);
+
+            }
+            return ResponseEntity.ok().body(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     private Post convertDTOforDoc(PostDTO postDTO, Optional<Trip> trip) {
         return new Post(
