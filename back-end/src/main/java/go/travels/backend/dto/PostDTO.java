@@ -2,8 +2,6 @@ package go.travels.backend.dto;
 
 import go.travels.backend.document.Trip;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class PostDTO {
@@ -12,16 +10,18 @@ public class PostDTO {
     private String description;
     private Integer likes;
     private String date;
+    private String userId;
 
     private Optional<Trip> trip;
 
-    public PostDTO(String id, String title, String descripton, Integer likes, Optional<Trip> trip, String date) {
+    public PostDTO(String id, String title, String descripton, Integer likes, Optional<Trip> trip, String date, String userId) {
         this.id = id;
         this.title = title;
         this.description = descripton;
         this.likes = likes;
         this.trip = trip;
         this.date = date;
+        this.userId = userId;
     }
 
     public String getId() {
@@ -70,5 +70,13 @@ public class PostDTO {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
