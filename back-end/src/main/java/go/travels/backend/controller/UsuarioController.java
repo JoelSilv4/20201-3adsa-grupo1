@@ -6,6 +6,7 @@ import go.travels.backend.dto.UserDTO;
 import go.travels.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,6 +17,9 @@ public class UsuarioController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder bc;
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserDTO userDTO) {
@@ -60,7 +64,7 @@ public class UsuarioController {
     }
 
     private User convertDtoforUser(UserDTO userDTO) {
-        return new User(userDTO.getName(), userDTO.getEmail(), userDTO.getPassword());
+        return new User(userDTO.getName(), userDTO.getEmail(), bc.encode(userDTO.getPassword()));
     }
 
     private UserDTO convertUserForDto(User user) {
