@@ -54,7 +54,7 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PostDTO>> findAll(
+    public ResponseEntity<?> findAll(
             @RequestParam(value = "pag", defaultValue = "0") Integer pag,
             @RequestParam(value = "ord", defaultValue = "id") String ord,
             @RequestParam(value = "dir", defaultValue = "DESC") String dir){
@@ -63,9 +63,8 @@ public class PostController {
         Page<Post> post = postService.findAll(pageRequest);
 
         Page<PostDTO> postDTOS = post.map(this::convertDocforDTO);
-
-
-        return ResponseEntity.ok(postDTOS);
+        System.out.println("aaaaaaaaaaaaa");
+        return ResponseEntity.ok("aaaaaaaaaaaaaaaaaaaaaaa");
     }
 
 //    @PostMapping("/like")
