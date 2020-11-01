@@ -33,7 +33,6 @@ public class  BackEndApplication implements CommandLineRunner {
 		);
 
 		userRepository.deleteAll();
-		System.out.println(user.getProfile());
 		userRepository.save(user);
 	}
 }
