@@ -18,6 +18,8 @@ public class Post {
 
     private Optional<Trip> trip;
 
+    public Post(){}
+
     public Post(String title, String description,  String userId, Optional<Trip> trip) {
         this.title = title;
         this.description = description;

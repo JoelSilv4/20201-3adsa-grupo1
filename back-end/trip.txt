@@ -1,0 +1,11 @@
+Exportação de dados via arquivo de texto: Descrição das viagens do usuário
+ID do usuário: 5f9ede49fd82af74739d6008
+
+
+ID VIAGEM                 LAT PARTIDA               LNG PARTIDA               LAT DESTINO               LNG DESTINO               
+
+5f9edea6fd82af74739d6009  Rua Horacio de Carvalho   a                         b                         c                         
+5f9edf01fd82af74739d600a  Rua Horacio de Carvalho   a                         b                         c                         
+5f9edf9dfd82af74739d600c  Rua Horacio de Carvalho   a                         b                         c                         
+FIM DO DOCUMENTO          
+

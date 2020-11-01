@@ -8,12 +8,14 @@ public class FilterDTO {
     private String tripId;
     private String id;
 
+    public FilterDTO(){}
+
     public FilterDTO(String localName, String latitude, String longitude, String tripId, String id) {
+        this.id = id;
         this.localName = localName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.tripId = tripId;
-        this.id = id;
     }
 
     public String getLocalName() {

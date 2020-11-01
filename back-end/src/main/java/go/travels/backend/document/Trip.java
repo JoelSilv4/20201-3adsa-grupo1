@@ -7,13 +7,14 @@ import java.util.Objects;
 
 @Document
 public class Trip {
+    @Id
+    private String id;
     private String latMatch;
     private String lngMatch;
     private String latDestiny;
     private String lngDestiny;
     private String destiny;
     private String idUser;
-    @Id private String id;
 
     public Trip(String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser) {
         this.latMatch = latMatch;
