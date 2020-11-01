@@ -1,5 +1,6 @@
 package go.travels.backend.controller;
 
+import go.travels.backend.document.Profile;
 import go.travels.backend.document.User;
 import go.travels.backend.dto.LoginDTO;
 import go.travels.backend.dto.UserDTO;
