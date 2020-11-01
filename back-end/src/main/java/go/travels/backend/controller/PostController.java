@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/publication")
 public class PostController {
 
     private Integer qtdPorPagina = 15;
@@ -37,7 +37,7 @@ public class PostController {
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     private final LocalDateTime now = LocalDateTime.now();
 
-    @PostMapping("/create/{tripId}")
+    @PostMapping("/{tripId}")
     public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO, @PathVariable String tripId) {
         if (tripService.exist(tripId)) {
             Optional<Trip> trip = tripService.findById(tripId);
@@ -73,11 +73,8 @@ public class PostController {
 
         LikeReturn response = new LikeReturn();
         if (post.isPresent()){
-            System.out.println("test1");
             if (likeService.exist(likeDTO.getUserId(), likeDTO.getPostId())) {
-                System.out.println("test2");
                 likeService.deleteByUserId(likeDTO.getUserId());
-
                 post.get().setLikes(post.get().getLikes() - 1);
                 postService.persist(post.get());
 
@@ -85,12 +82,8 @@ public class PostController {
                 response.setLiked(false);
 
             } else {
-                System.out.println("test3");
-                System.out.println(post.get().getLikes());
                 post.get().setLikes(post.get().getLikes() + 1);
-                System.out.println("pt2");
                 postService.persist(post.get());
-
                 likeService.persist(convertLike(likeDTO));
 
                 response.setCountLikes(post.get().getLikes());

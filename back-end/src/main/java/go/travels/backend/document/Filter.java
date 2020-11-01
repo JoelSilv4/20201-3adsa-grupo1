@@ -8,11 +8,11 @@ import java.util.Objects;
 @Document
 public class Filter {
 
+    @Id private String id;
     private String localName;
     private String latitude;
     private String longitude;
     private String tripId;
-    @Id private String id;
 
     public Filter(String localName, String latitude, String longitude, String tripId) {
         this.localName = localName;

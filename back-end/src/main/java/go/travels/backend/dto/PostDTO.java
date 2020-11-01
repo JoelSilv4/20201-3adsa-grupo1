@@ -14,10 +14,12 @@ public class PostDTO {
 
     private Optional<Trip> trip;
 
-    public PostDTO(String id, String title, String descripton, Integer likes, Optional<Trip> trip, String date, String userId) {
+    public PostDTO(){}
+
+    public PostDTO(String id, String title, String description, Integer likes, Optional<Trip> trip, String date, String userId) {
         this.id = id;
         this.title = title;
-        this.description = descripton;
+        this.description = description;
         this.likes = likes;
         this.trip = trip;
         this.date = date;

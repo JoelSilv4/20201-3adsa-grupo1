@@ -20,9 +20,9 @@ public class FilterController {
     @Autowired
     TripService tripService;
 
-    @PostMapping
-    public ResponseEntity<FilterDTO> register(@RequestBody FilterDTO filterDTO){
-        if (tripService.exist(filterDTO.getTripId())) {
+    @PostMapping("/{tripId}")
+    public ResponseEntity<FilterDTO> register(@RequestBody FilterDTO filterDTO, @PathVariable String tripId){
+        if (tripService.exist(tripId)) {
             Filter filter = convertDtoForFilter(filterDTO);
             filterService.persist(filter);
 
