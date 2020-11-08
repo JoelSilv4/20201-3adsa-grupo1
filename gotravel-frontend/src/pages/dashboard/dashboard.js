@@ -14,7 +14,9 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <ContainerMaps />
+      <div className="wrapper">
+        <ContainerMaps />
+      </div>
     </Layout>
   );
 };

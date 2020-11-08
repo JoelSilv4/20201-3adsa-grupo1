@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Navbar = styled.header`
+  position: absolute;
+  z-index: 100;
   display: flex;
   height: 70px;
   top: 0;

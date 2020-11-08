@@ -11,7 +11,6 @@ import Layout from '../../Layout';
 
 const Login = (props) => {
   const appState = useContext(StateContext);
-  const appDispatch = useContext(DispatchContext);
 
   if (appState.logged) {
     return <Redirect to="/dashboard" />;
