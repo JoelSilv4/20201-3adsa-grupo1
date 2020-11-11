@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JWTUtil jwtUtil;
 
     private static final String[] PUBLIC_MATCHERS = {
-            "/user",
+            "/user/register",
             "/archive/**"
     };
 

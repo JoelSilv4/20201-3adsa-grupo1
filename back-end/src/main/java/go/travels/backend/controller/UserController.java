@@ -3,6 +3,7 @@ package go.travels.backend.controller;
 import go.travels.backend.document.User;
 import go.travels.backend.dto.UserDTO;
 import go.travels.backend.services.UserService;
+import go.travels.backend.utils.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +21,7 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder bc;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Optional<UserDTO>> register(@RequestBody UserDTO userDTO) {
 
         if (validateExistingData(userDTO)) {
@@ -33,12 +34,14 @@ public class UserController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity login() {
+        return ResponseEntity.ok(userService.authenticated().getId());
+    }
+
     private Boolean validateExistingData(UserDTO userDTO){
         User user = userService.findByEmail(userDTO.getEmail());
-        if (user != null)
-            return false;
-        else
-            return true;
+        return user == null;
     }
 
     private User convertDtoForUser(UserDTO userDTO) {

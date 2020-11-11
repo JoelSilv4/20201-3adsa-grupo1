@@ -22,4 +22,13 @@ public class UserService {
     }
 
     public Boolean exist(String id) { return userRepository.existsById(id);}
+
+    public UserSS authenticated() {
+        try {
+            return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
 }
