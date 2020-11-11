@@ -36,7 +36,10 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity login() {
-        return ResponseEntity.ok(userService.authenticated().getId());
+        UserDTO user = new UserDTO();
+        user.setId(userService.authenticated().getId());
+        user.setEmail(userService.authenticated().getUsername());
+        return ResponseEntity.ok(user);
     }
 
     private Boolean validateExistingData(UserDTO userDTO){
