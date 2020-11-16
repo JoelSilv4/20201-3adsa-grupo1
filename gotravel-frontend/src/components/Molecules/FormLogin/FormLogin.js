@@ -24,7 +24,7 @@ const FormLogin = (props) => {
     }
 
     setSpinner(true);
-    Axios.post('/usuario/logn', { email, password })
+    Axios.post('/login', { email, password })
       .then((response) => {
         if (response.status === 200) {
           setTimeout(() => {

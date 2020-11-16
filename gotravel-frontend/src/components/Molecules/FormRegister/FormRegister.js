@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import Label from '../../Atoms/Label/label';
 import { FirstContainer, ArtContainer, FormContainer, FormStyle, ContainerButtons } from './Form.style';
-import {ReactComponent as Img} from '../../../assets/mulher-carro.svg';
+import { ReactComponent as Img } from '../../../assets/mulher-carro.svg';
 import DispatchContext from '../../../DispatchContext';
 
 const FormRegister = (props) => {
@@ -12,17 +12,21 @@ const FormRegister = (props) => {
 
   const appDispatch = useContext(DispatchContext);
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      const response = await Axios.post('/usuario/register', { email, name, password });
-
-      if (response.status === 200) {
-        console.log('Registrado com sucesso!.');
-      } else if (response.status === 404) {
-        console.log('Usuário ou senha incorretos.');
-      }
+      Axios.post('/user/register', { email, name, password })
+        .then((response) => {
+          if (response.status == 201) {
+            console.log('Registrado com sucesso!');
+          } else if (response.status == 422) {
+            console.log('Já existe um usuário com esse email');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } catch (e) {
       console.log(e);
     }
@@ -30,7 +34,6 @@ const FormRegister = (props) => {
 
   return (
     <FirstContainer>
-
       <ArtContainer>
         <Img />
       </ArtContainer>
@@ -62,12 +65,9 @@ const FormRegister = (props) => {
 
               <button onClick={() => appDispatch({ type: 'form-login' })}>Já tenho uma conta</button>
             </ContainerButtons>
-            
           </div>
         </FormStyle>
       </FormContainer>
-
-      
     </FirstContainer>
   );
 };
