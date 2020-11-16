@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import React, { useCallback, useState } from 'react';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import mapStyles from '../../Organisms/ContainerMaps/mapStyles';
 
 const libraries = ['places', 'directions'];

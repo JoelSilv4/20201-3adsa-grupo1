@@ -87,6 +87,7 @@ const ContainerMaps = () => {
 
   const directionsCallback = (response) => {
     setDirectionsResponse(response);
+    // console.log('OBJETO DE DIREÇÕES', response);
   };
 
   const directRef = (ref) => setDirectionsRef(ref);

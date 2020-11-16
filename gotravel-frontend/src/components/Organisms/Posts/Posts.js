@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React from 'react';
 import Post from '../../Molecules/Post';
 
@@ -19,6 +20,14 @@ const centerC = {
 };
 
 const Posts = () => {
+  Axios.get('/post/find')
+    .then((e) => {
+      console.log('POSTS', e);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+
   return (
     <Container>
       <Post center={centerA}></Post>
