@@ -34,14 +34,6 @@ public class UserController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity login() {
-        UserDTO user = new UserDTO();
-        user.setId(userService.authenticated().getId());
-        user.setEmail(userService.authenticated().getUsername());
-        return ResponseEntity.ok(user);
-    }
-
     private Boolean validateExistingData(UserDTO userDTO){
         User user = userService.findByEmail(userDTO.getEmail());
         return user == null;

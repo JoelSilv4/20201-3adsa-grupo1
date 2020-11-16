@@ -1,7 +1,10 @@
 package go.travels.backend.utils.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import go.travels.backend.document.User;
 import go.travels.backend.dto.LoginDTO;
+import go.travels.backend.repositories.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,10 +26,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager;
 
-    public JwtAuthenticationFilter(JWTUtil jwtUtil, AuthenticationManager authenticationManager) {
+    private UserRepository userRepository;
+
+    public JwtAuthenticationFilter(JWTUtil jwtUtil, AuthenticationManager authenticationManager, UserRepository userRepository) {
         setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
         this.jwtUtil = jwtUtil;
         this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -47,8 +53,18 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String username = ((UserSS) authResult.getPrincipal()).getUsername();
         String id = ((UserSS) authResult.getPrincipal()).getId();
         String token = jwtUtil.generateToken(username, id);
+        response.setContentType("application/json");
+        response.getWriter().append(json(username));
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("access-control-expose-headers", "Authorization");
+    }
+
+    private String json(String email) {
+        User user = userRepository.findByEmail(email);
+
+        return "{\"name\": \"" + user.getName() + "\", "
+                + "\"email\": \"" + user.getEmail() + "\", "
+                + "\"id\": \"" + user.getId() + "\"}";
     }
 
     private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
