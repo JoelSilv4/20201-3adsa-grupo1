@@ -3,9 +3,6 @@ package go.travels.backend.document;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -14,15 +11,19 @@ public class Post {
     @Id
     private String id;
     private String title;
-    private String descripton;
+    private String description;
     private Integer likes = 0;
     private String date;
+    private String userId;
 
     private Optional<Trip> trip;
 
-    public Post(String title, String descripton, Optional<Trip> trip) {
+    public Post(){}
+
+    public Post(String title, String description,  String userId, Optional<Trip> trip) {
         this.title = title;
-        this.descripton = descripton;
+        this.description = description;
+        this.userId = userId;
         this.trip = trip;
     }
 
@@ -43,12 +44,12 @@ public class Post {
         this.title = title;
     }
 
-    public String getDescripton() {
-        return descripton;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripton(String descripton) {
-        this.descripton = descripton;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getLikes() {
@@ -69,6 +70,14 @@ public class Post {
 
     public String getDate() {
         return date;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public void setDate(String date) {
@@ -93,7 +102,7 @@ public class Post {
         return "Post{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", descripton='" + descripton + '\'' +
+                ", descripton='" + description + '\'' +
                 ", likes=" + likes +
                 ", date='" + date + '\'' +
                 ", trip=" + trip +

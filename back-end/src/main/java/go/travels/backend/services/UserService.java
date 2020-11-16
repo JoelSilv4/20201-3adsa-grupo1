@@ -2,7 +2,9 @@ package go.travels.backend.services;
 
 import go.travels.backend.document.User;
 import go.travels.backend.repositories.UserRepository;
+import go.travels.backend.utils.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,4 +22,13 @@ public class UserService {
     }
 
     public Boolean exist(String id) { return userRepository.existsById(id);}
+
+    public UserSS authenticated() {
+        try {
+            return (UserSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+        catch (Exception e) {
+            return null;
+        }
+    }
 }

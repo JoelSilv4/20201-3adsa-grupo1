@@ -2,19 +2,26 @@ package go.travels.backend.document;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Document
 public class User {
+    @Id
+    private String id;
     private String name;
     private String email;
     private String password;
-    @Id private String id;
+    private Set<Integer> profiles = new HashSet<>();
 
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password =password;
+        addProfile(Profile.ROLE_USER);
     }
 
     public String getId() {
@@ -47,6 +54,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Profile> getProfile() {
+        return profiles.stream().map(Profile::toEnum).collect(Collectors.toSet());
+    }
+
+    public void addProfile(Profile profile) {
+        profiles.add(profile.getCod());
     }
 
     @Override

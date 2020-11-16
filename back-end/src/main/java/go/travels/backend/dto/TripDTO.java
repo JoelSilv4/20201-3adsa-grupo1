@@ -1,22 +1,24 @@
 package go.travels.backend.dto;
 
 public class TripDTO {
+    private String id;
     private String latMatch;
     private String lngMatch;
     private String latDestiny;
     private String lngDestiny;
     private String destiny;
     private String idUser;
-    private String id;
 
-    public TripDTO(String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser, String id) {
+    public TripDTO(){}
+
+    public TripDTO(String id, String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser) {
+        this.id = id;
         this.latMatch = latMatch;
         this.lngMatch = lngMatch;
         this.latDestiny = latDestiny;
         this.lngDestiny = lngDestiny;
         this.destiny = destiny;
         this.idUser = idUser;
-        this.id = id;
     }
 
     public String getLatMatch() {
