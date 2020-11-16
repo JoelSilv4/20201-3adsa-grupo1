@@ -1,5 +1,6 @@
 package go.travels.backend.utils.security;
 
+import go.travels.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JWTUtil jwtUtil;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static final String[] PUBLIC_MATCHERS = {
             "/user/register",
             "/archive/**"
@@ -43,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated();
-        http.addFilter(new JwtAuthenticationFilter(jwtUtil, authenticationManager()));
+        http.addFilter(new JwtAuthenticationFilter(jwtUtil, authenticationManager(), userRepository));
         http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
