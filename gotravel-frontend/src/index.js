@@ -1,5 +1,6 @@
 import Institucional from './pages/institucional/institucional';
 import Autenticacao from './pages/autenticacao/autenticacao.js';
+import Publicacoes from './pages/publicacoes/publicacoes.js';
 import Dashboard from './pages/dashboard/dashboard';
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
@@ -10,7 +11,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import Navbar from './components/Organisms/Navbar/Navbar';
-import Footer from './components/Organisms/Footer/Footer';
 // Axios.defaults.baseURL = 'http://localhost:8080';
 Axios.defaults.baseURL = 'https://go-travel-ads.herokuapp.com';
 
@@ -74,6 +74,9 @@ function Index() {
             <Route path="/" exact>
               <Institucional />
             </Route>
+            <Route path="/home" exact>
+              <Publicacoes />
+            </Route>
             <Route path="/auth">
               <Autenticacao />
             </Route>
@@ -81,8 +84,6 @@ function Index() {
               <Dashboard />
             </Route>
           </Switch>
-
-          <Footer />
         </BrowserRouter>
       </DispatchContext.Provider>
     </StateContext.Provider>

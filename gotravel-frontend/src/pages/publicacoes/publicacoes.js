@@ -1,19 +1,17 @@
 import React, { useContext } from 'react';
-import Login from '../../components/Organisms/Login/Login';
+import Posts from '../../components/Organisms/Posts/index';
 import Layout from '../../components/Layout';
 import DispatchContext from '../../DispatchContext';
-import Footer from '../../components/Organisms/Footer/Footer';
 
-const Autenticacao = () => {
+const Publicacoes = () => {
   const appDispatch = useContext(DispatchContext);
   appDispatch({ type: 'is-not-institutional' });
 
   return (
     <Layout>
-      <Login />
-      <Footer />
+      <Posts />
     </Layout>
   );
 };
 
-export default Autenticacao;
+export default Publicacoes;

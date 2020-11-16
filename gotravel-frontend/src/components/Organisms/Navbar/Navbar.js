@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import ExternNavbar from '../ExternNavbar';
 import StateContext from '../../../StateContext';
 import HeaderLogout from '../../Molecules/HeaderLogout/HeaderLogout';
@@ -8,9 +8,8 @@ function Navbar() {
   const appState = useContext(StateContext);
 
   return (
-    <ExternNavbar first="Home" second="Sobre">
-      {appState.logged && !appState.isInstitutionalPage ? <HeaderLogin /> : <HeaderLogout />}
-    </ExternNavbar>
+    // <ExternNavbar first="Home" second="Sobre">
+    <ExternNavbar>{appState.logged && !appState.isInstitutionalPage ? <HeaderLogin /> : <HeaderLogout />}</ExternNavbar>
   );
 }
 

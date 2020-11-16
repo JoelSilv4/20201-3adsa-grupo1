@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker, StandaloneSearchBox } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, StandaloneSearchBox, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 
 import './style.css';
 import { MapWrapper } from './ContainerMaps.style';
 import mapStyles from './mapStyles';
 
-const libraries = ['places'];
+const libraries = ['places', 'directions'];
 
 const mapContainerStyle = {
   width: '100%',
@@ -28,6 +28,11 @@ const ContainerMaps = () => {
   const [marker, setMarker] = useState();
   const [userLocation, setUserLocation] = useState(null);
   const [partida, setPartida] = useState(null);
+  const [destino, setDestino] = useState(null);
+  const [directionsOrigin, setDirectionsOrigin] = useState('');
+  const [directionsDestiny, setDirectionsDestiny] = useState('');
+  const [directionsResponse, setDirectionsResponse] = useState(null);
+  const [directionsRef, setDirectionsRef] = useState(null);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -64,10 +69,30 @@ const ContainerMaps = () => {
 
   const partidaRef = (ref) => setPartida(ref);
 
+  const destinoRef = (ref) => setDestino(ref);
+
   const handlePartida = (e) => {
     const { location } = partida.getPlaces()[0].geometry;
-    console.log(location);
     map.panTo(location);
+    map.setZoom(16);
+    setMarker(location);
+    setDirectionsOrigin(location);
+  };
+
+  const handleDestino = (e) => {
+    const { location } = destino.getPlaces()[0].geometry;
+    setMarker(null);
+    setDirectionsDestiny(location);
+  };
+
+  const directionsCallback = (response) => {
+    setDirectionsResponse(response);
+  };
+
+  const directRef = (ref) => setDirectionsRef(ref);
+
+  const rendererOnLoad = (lulz) => {
+    console.log('ref: ', directRef);
   };
 
   return (
@@ -79,15 +104,41 @@ const ContainerMaps = () => {
             <StandaloneSearchBox onLoad={partidaRef} onPlacesChanged={handlePartida}>
               <input className="autocomplete" placeholder="De onde você está partindo?" />
             </StandaloneSearchBox>
-            <StandaloneSearchBox>
+            <StandaloneSearchBox onLoad={destinoRef} onPlacesChanged={handleDestino}>
               <input className="autocomplete" placeholder="Para onde você esta indo?" />
             </StandaloneSearchBox>
-            <button>Definir rota</button>
+            {/* <button>Definir rota</button> */}
           </div>
 
           <div className="map">
             <GoogleMap onClick={onClick} mapContainerStyle={mapContainerStyle} center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount} options={options}>
               {marker ? <Marker position={marker} /> : <></>}
+
+              {directionsDestiny !== '' && directionsOrigin !== '' ? (
+                <DirectionsService
+                  callback={directionsCallback}
+                  options={{
+                    destination: directionsDestiny,
+                    origin: directionsOrigin,
+                    travelMode: 'WALKING',
+                  }}
+                />
+              ) : (
+                <DirectionsService callback={directionsCallback} options={{}} />
+              )}
+
+              {directionsResponse !== null ? (
+                <DirectionsRenderer
+                  directions={directionsResponse}
+                  ref={directRef}
+                  options={{
+                    directions: directionsResponse,
+                  }}
+                  onLoad={rendererOnLoad}
+                />
+              ) : (
+                <DirectionsRenderer options={{}} />
+              )}
             </GoogleMap>
           </div>
         </div>

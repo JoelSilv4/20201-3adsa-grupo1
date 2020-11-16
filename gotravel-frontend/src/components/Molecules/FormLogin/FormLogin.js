@@ -24,16 +24,23 @@ const FormLogin = (props) => {
     }
 
     setSpinner(true);
-    Axios.post('/usuario/logn', { email, password }).then((response) => {
-      if (response.status === 200) {
-        setTimeout(() => {
-          setError(false);
-          appDispatch({ type: 'login', data: response.data });
-        }, 1000);
-      } else if (response.status === 404) {
-        setError('Usuário ou senha incorretos');
-      }
-    });
+    Axios.post('/usuario/logn', { email, password })
+      .then((response) => {
+        if (response.status === 200) {
+          setTimeout(() => {
+            setError(false);
+            setSpinner(false);
+            appDispatch({ type: 'login', data: response.data });
+          }, 1000);
+        } else if (response.status === 404) {
+          setError('Usuário ou senha incorretos');
+          setSpinner(false);
+        }
+      })
+      .catch((fail) => {
+        console.error('EPIC FAIL: ', fail);
+        setSpinner(false);
+      });
   }
 
   return (
