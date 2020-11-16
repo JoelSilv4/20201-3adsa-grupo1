@@ -6,6 +6,14 @@ export const ContainerTitle = styled.div`
   justify-content: center;
 `;
 
+export const Container = styled.div`
+  width: 1100px;
+  display: flex;
+  padding: 20px 0;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const TitleWrapper = styled.div`
   width: 650px;
   padding: 80px 0;
