@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
-@RequestMapping("/publication")
+@RequestMapping("/post")
 public class PostController {
 
     private Integer qtdPorPagina = 15;
