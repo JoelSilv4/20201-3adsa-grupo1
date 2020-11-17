@@ -6,9 +6,9 @@ import svg_copy from '../../../assets/copy.svg';
 import svg_heart from '../../../assets/heart.svg';
 import PostMap from '../PostMap/PostMap';
 
-function Post({ center }) {
+function Post({ userData, center }) {
   return (
-    <Container>
+    <Container id={userData._id}>
       <SideInfo>
         <div className="profile-pic">
           <img src="https://avatarfiles.alphacoders.com/893/thumb-89303.gif" alt="" />
@@ -25,8 +25,8 @@ function Post({ center }) {
         </div>
       </SideInfo>
       <Content>
-        <div className="name">Henrique Albuquerque Barreto</div>
-        <div className="comment">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti dolorem asperiores sit deserunt fugiat ipsa voluptas eos quis dolore porro consequuntur velit eveniet enim eius modi voluptates quas, natus expedita?</div>
+        <div className="name">{userData.title}</div>
+        <div className="comment">{userData.description}</div>
         <div className="photo">
           <PostMap center={center} />
         </div>

@@ -1,8 +1,9 @@
 import Axios from 'axios';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Post from '../../Molecules/Post';
 
 import { Container } from './Posts.style';
+import StateContext from '../../../StateContext';
 
 const centerA = {
   lat: -3.745,
@@ -20,19 +21,27 @@ const centerC = {
 };
 
 const Posts = () => {
-  Axios.get('/post/find')
-    .then((e) => {
-      console.log('POSTS', e);
-    })
-    .catch((e) => {
-      console.error(e);
-    });
+  const appState = useContext(StateContext);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    Axios.get('/post', { headers: { authorization: appState.user.jwtkey } })
+      .then((e) => {
+        setPosts(e.data.content);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
 
   return (
     <Container>
-      <Post center={centerA}></Post>
+      {posts.map((post) => {
+        return <Post userData={post} center={centerA}></Post>;
+      })}
+      {/* <Post center={centerA}></Post>
       <Post center={centerB}></Post>
-      <Post center={centerC}></Post>
+      <Post center={centerC}></Post> */}
     </Container>
   );
 };

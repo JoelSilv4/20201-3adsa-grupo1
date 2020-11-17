@@ -26,11 +26,19 @@ const FormLogin = (props) => {
     setSpinner(true);
     Axios.post('/login', { email, password })
       .then((response) => {
+        console.log(response);
         if (response.status === 200) {
+          const salvar = {
+            email: response.data.email,
+            id: response.data.id,
+            name: response.data.name,
+            jwtkey: response.headers.authorization,
+          };
+
           setTimeout(() => {
             setError(false);
             setSpinner(false);
-            appDispatch({ type: 'login', data: response.data });
+            appDispatch({ type: 'login', data: salvar });
           }, 1000);
         } else if (response.status === 404) {
           setError('Usuário ou senha incorretos');

@@ -21,7 +21,9 @@ function Index() {
       email: localStorage.getItem('gotravelUserEmail'),
       id: localStorage.getItem('gotravelUserId'),
       name: localStorage.getItem('gotravelUserName'),
+      jwtkey: localStorage.getItem('JWTTOKEN'),
     },
+    PostForm: false,
     isInstitutionalPage: false,
     formType: true,
   };
@@ -57,10 +59,12 @@ function Index() {
       localStorage.setItem('gotravelUserEmail', state.user.email);
       localStorage.setItem('gotravelUserId', state.user.id);
       localStorage.setItem('gotravelUserName', state.user.name);
+      localStorage.setItem('JWTTOKEN', state.user.jwtkey);
     } else {
       localStorage.removeItem('gotravelUserEmail');
       localStorage.removeItem('gotravelUserId');
       localStorage.removeItem('gotravelUserName');
+      localStorage.removeItem('JWTTOKEN');
     }
   }, [state.logged]);
 
