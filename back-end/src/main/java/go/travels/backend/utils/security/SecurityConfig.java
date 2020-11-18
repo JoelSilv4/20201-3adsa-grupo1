@@ -38,7 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
             "/user/register",
-            "/archive/**"
+            "/archive/**",
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/"
     };
 
     @Override

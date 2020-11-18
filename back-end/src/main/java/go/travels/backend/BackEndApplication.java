@@ -12,27 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class  BackEndApplication implements CommandLineRunner {
-
-	@Autowired
-	UserRepository userRepository;
-
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
+public class  BackEndApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackEndApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		User user = new User(
-				"Kaique",
-				"kaique@gmail.com",
-				bCryptPasswordEncoder.encode("123456")
-		);
-
-		userRepository.deleteAll();
-		userRepository.save(user);
-	}
 }
