@@ -1,5 +1,6 @@
 package go.travels.backend.document;
 
+import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -15,6 +16,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private Binary image;
     private Set<Integer> profiles = new HashSet<>();
 
     public User(String name, String email, String password) {
@@ -62,6 +64,14 @@ public class User {
 
     public void addProfile(Profile profile) {
         profiles.add(profile.getCod());
+    }
+
+    public Binary getImage() {
+        return image;
+    }
+
+    public void setImage(Binary image) {
+        this.image = image;
     }
 
     @Override

@@ -3,12 +3,14 @@ package go.travels.backend.controller;
 import go.travels.backend.document.User;
 import go.travels.backend.dto.UserDTO;
 import go.travels.backend.services.UserService;
-import go.travels.backend.utils.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Optional;
 
 @RestController
@@ -32,6 +34,18 @@ public class UserController {
         } else {
             return ResponseEntity.unprocessableEntity().build();
         }
+    }
+
+    @PostMapping("/photos/add/{id}")
+    public ResponseEntity<Object> addPhoto(@PathVariable String id, MultipartFile image) throws IOException {
+        userService.addPhoto(id, image);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/photos/{id}")
+    public String getPhoto(@PathVariable String id) {
+        User photo = userService.getPhoto(id);
+        return Base64.getEncoder().encodeToString(photo.getImage().getData());
     }
 
     private Boolean validateExistingData(UserDTO userDTO){
