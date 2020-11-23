@@ -23,9 +23,10 @@ function Index() {
       name: localStorage.getItem('gotravelUserName'),
       jwtkey: localStorage.getItem('JWTTOKEN'),
     },
-    PostForm: false,
     isInstitutionalPage: false,
     formType: true,
+    formPost: false,
+    selectTrip: false,
   };
 
   function ourReducer(draft, action) {
@@ -48,6 +49,15 @@ function Index() {
         return;
       case 'is-not-institutional':
         draft.isInstitutionalPage = false;
+        return;
+      case 'show-form-post':
+        draft.formPost = !draft.formPost;
+        return;
+      case 'hide-form-post':
+        draft.formPost = false;
+        return;
+      case 'show-select-trip':
+        draft.formPost = !draft.selectTrip;
         return;
     }
   }

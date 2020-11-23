@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
+import DispatchContext from '../../../DispatchContext';
 
 import svg_addbutton from '../../../assets/add_button.svg';
-import FormPost from '../FormPost/FormPost';
 import { Container } from './style';
 
 function AddPost() {
-  const handlePost = () => {};
+  const appDispatch = useContext(DispatchContext);
+
+  const handlePost = () => {
+    appDispatch({ type: 'show-form-post' });
+  };
 
   return (
     <Container>

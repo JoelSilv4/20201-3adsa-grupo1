@@ -8,7 +8,7 @@ import PostMap from '../PostMap/PostMap';
 
 function Post({ userData, center }) {
   return (
-    <Container id={userData._id}>
+    <Container key={userData._id}>
       <SideInfo>
         <div className="profile-pic">
           <img src="https://avatarfiles.alphacoders.com/893/thumb-89303.gif" alt="" />
