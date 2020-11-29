@@ -39,6 +39,7 @@ export const FormStyle = styled.form`
   input {
     background: #FFFFFF;
     border: 1px solid #000000;
+    box-shadow: 2px 5px 15px 0px #808080;
     box-sizing: border-box;
     border-radius: 30px;
     width: 350px;
@@ -49,12 +50,12 @@ export const FormStyle = styled.form`
 
   button {
     width: 200px;
-    height: 40px;
-    left: 913px;
-    top: 621px;
+    height: 50px;
     margin-top: 20px;
+    border: 0;
+    box-shadow: 0px 5px 5px 0px #7c7c7c;
     border-radius: 5px;
-    background-color: #F0F0F0;
+    background-color: #f0f0f0;
     color: black;
     font-size: 15px;
   }
