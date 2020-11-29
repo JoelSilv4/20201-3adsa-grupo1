@@ -4,6 +4,7 @@ import { ReactComponent as Image } from '../../../assets/plane.svg';
 import Axios from 'axios';
 import StateContext from '../../../StateContext';
 import TitlePage from '../../Atoms/TitlePage';
+import Error from '../Error'
 
 const MapTrips = () => {
     const appState = useContext(StateContext);
@@ -31,7 +32,7 @@ const MapTrips = () => {
         )))
 
         const renderNoContent = () => (
-            <TitlePage text='Ops, parece que você ainda não fez nenhuma viagem :(' />
+            <Error nenhumText="nenhuma" text="viagem" buttonText="Fazer viagem" textCollor="#2D73DD"/>
         )
           
     return (
