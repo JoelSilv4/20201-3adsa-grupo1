@@ -9,6 +9,7 @@ export const Navbar = styled.header`
   padding: 0 90px;
   position: sticky;
   background-color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
 `;
 
 export const Container = styled.div`
