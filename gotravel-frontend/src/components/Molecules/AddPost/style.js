@@ -11,9 +11,19 @@ export const Container = styled.div`
     align-items: center;
     margin: 20px 10px;
 
+    &:hover {
+      cursor: pointer;
+
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
     img {
       width: 30px;
       height: 30px;
+      transition: 0.25s;
     }
 
     p {

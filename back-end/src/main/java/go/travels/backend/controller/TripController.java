@@ -78,13 +78,13 @@ public class TripController {
 
     private TripDTO convertTripForDto(Trip trip) {
         return new TripDTO(
+                trip.getId(),
                 trip.getLatMatch(),
                 trip.getLngMatch(),
                 trip.getLatDestiny(),
                 trip.getLngDestiny(),
                 trip.getDestiny(),
-                trip.getIdUser(),
-                trip.getId()
+                trip.getIdUser()
         );
     }
 }

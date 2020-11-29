@@ -4,6 +4,7 @@ import Post from '../../Molecules/Post';
 
 import { Container } from './Posts.style';
 import StateContext from '../../../StateContext';
+import FormPost from '../../Molecules/FormPost/FormPost';
 
 const centerA = {
   lat: -3.745,

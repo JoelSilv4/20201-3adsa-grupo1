@@ -10,6 +10,7 @@ ${reset}
   html{
     scroll-behavior: smooth;
     font-size: 16;
+    overflow-x: hidden;
   }
   
   body{
