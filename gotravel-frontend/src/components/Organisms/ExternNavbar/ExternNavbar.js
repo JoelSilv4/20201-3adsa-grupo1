@@ -3,22 +3,15 @@ import { Navbar, Container, LogoWrapper, MenuItems } from './ExternNavbar.style'
 import { ReactComponent as Logo } from '../../../assets/logo-blue.svg';
 import { Link } from 'react-router-dom';
 
-const ExternNavbar = ({ first, second, children }) => {
+const ExternNavbar = ({ children }) => {
   return (
     <Navbar>
       <Container>
         <LogoWrapper>
-          <Link to="/">
+          <Link to="/home">
             <Logo />
           </Link>
-          <MenuItems>
-            {/* <Link to="/"> */}
-            <li>{first}</li>
-            {/* </Link> */}
-            {/* <Link> */}
-            <li>{second}</li>
-            {/* </Link> */}
-          </MenuItems>
+          <MenuItems></MenuItems>
         </LogoWrapper>
         {children}
       </Container>

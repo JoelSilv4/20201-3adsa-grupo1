@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 1100px;
+  height: 60px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 
   div {
     display: flex;
@@ -15,22 +19,26 @@ export const Container = styled.div`
       cursor: pointer;
 
       img {
-        width: 35px;
-        height: 35px;
+        width: 29px;
+        height: 29px;
+        transform: translateY(-2px);
+        transform: translateX(-2px);
       }
     }
 
     img {
-      width: 30px;
-      height: 30px;
-      transition: 0.25s;
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      margin-left: 10px;
+      transition: 0.2s;
     }
 
     p {
       font-size: 14px;
       color: black;
       text-align: center;
-      margin-left: 10px;
+      margin-left: 45px;
     }
   }
 `;

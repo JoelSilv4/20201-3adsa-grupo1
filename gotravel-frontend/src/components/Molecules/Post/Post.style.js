@@ -37,6 +37,11 @@ export const SideInfo = styled.div`
       display: flex;
       flex-direction: column;
 
+      img {
+        height: 20px;
+        margin-bottom: 5px;
+      }
+
       p {
         text-align: center;
         font-size: 14px;
