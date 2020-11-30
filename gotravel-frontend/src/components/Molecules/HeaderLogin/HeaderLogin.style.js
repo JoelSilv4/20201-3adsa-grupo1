@@ -75,12 +75,12 @@ const LogoffWrapper = styled.div`
 
   .visible {
     display: block;
-    animation: ${menuIn} 0.25s ease-in 1;
+    /* animation: ${menuIn} 0.25s ease-in 1; */
   }
 
   .notvisible {
     display: none;
-    animation: ${menuOut} 0.25s ease-in 1;
+    /* animation: ${menuOut} 0.25s ease-in 1; */
   }
 `;
 

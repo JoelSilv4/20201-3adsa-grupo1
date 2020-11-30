@@ -13,7 +13,7 @@ export const Navbar = styled.header`
 `;
 
 export const Container = styled.div`
-  width: 1100px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;

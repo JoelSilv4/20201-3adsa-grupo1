@@ -13,8 +13,11 @@ function HeaderLogin() {
   const appDispatch = useContext(DispatchContext);
 
   function handleLogoff() {
-    // appDispatch({ type: 'logout' });
     setMenu(!menu);
+  }
+
+  function logoff() {
+    appDispatch({ type: 'logout' });
   }
 
   return (
@@ -29,7 +32,9 @@ function HeaderLogin() {
       <div className={`options ${menu ? 'visible' : 'notvisible'}`}>
         <ul>
           <li key="0">Minha conta</li>
-          <li key="1">Sair</li>
+          <li key="1" onClick={logoff}>
+            Sair
+          </li>
         </ul>
       </div>
     </LogoffWrapper>
