@@ -4,8 +4,10 @@ import Label from '../../Atoms/Label/label';
 import { FirstContainer, ArtContainer, FormContainer, FormStyle, ContainerButtons } from './Form.style';
 import { ReactComponent as Img } from '../../../assets/mulher-carro.svg';
 import DispatchContext from '../../../DispatchContext';
+import StateContext from '../../../StateContext';
 
 import spinnersvg from '../../../assets/spinner-solid.svg';
+import { Redirect } from 'react-router-dom';
 
 const FormLogin = (props) => {
   const [email, setEmail] = useState();
@@ -13,7 +15,12 @@ const FormLogin = (props) => {
   const [spinner, setSpinner] = useState(false);
   const [error, setError] = useState('');
 
+  const appState = useContext(StateContext);
   const appDispatch = useContext(DispatchContext);
+
+  if (appState.logged) {
+    return <Redirect to="/home" />;
+  }
 
   function handleSubmit(e) {
     e.preventDefault();

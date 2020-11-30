@@ -65,6 +65,10 @@ export const SideInfo = styled.div`
       display: flex;
       flex-direction: column;
 
+      img {
+        height: 25px;
+      }
+
       p {
         text-align: center;
         font-size: 14px;
@@ -134,6 +138,12 @@ export const Content = styled.div`
       border-radius: 10px;
       border: 0px;
       padding: 10px 20px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #27998a;
+        transition: background-color 0.25s;
+      }
     }
 
     .publicar {
@@ -141,6 +151,25 @@ export const Content = styled.div`
       border-radius: 10px;
       border: 0px;
       padding: 10px 20px;
+    }
+  }
+
+  .yourTrips {
+    position: absolute;
+    width: fit-content;
+    background-color: white;
+    box-shadow: 1px 1px 4px 1px #c3c3c3;
+
+    li {
+      padding: 15px 10px;
+      font-size: 14px;
+      font-weight: 400;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f2f2f2;
+        transition: background-color 0.25s;
+      }
     }
   }
 `;
