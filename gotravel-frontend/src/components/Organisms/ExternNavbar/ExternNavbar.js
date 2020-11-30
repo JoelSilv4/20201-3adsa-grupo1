@@ -11,7 +11,20 @@ const ExternNavbar = ({ children }) => {
           <Link to="/home">
             <Logo />
           </Link>
-          <MenuItems></MenuItems>
+          <MenuItems>
+            <Link to="/">
+              <li>Início</li>
+            </Link>
+            <Link to="/home">
+              <li>Posts</li>
+            </Link>
+            <Link to="/dashboard">
+              <li>Viagem</li>
+            </Link>
+            <Link to="/ultimasViagens">
+              <li>Últimas viagens</li>
+            </Link>
+          </MenuItems>
         </LogoWrapper>
         {children}
       </Container>

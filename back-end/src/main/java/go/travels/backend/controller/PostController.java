@@ -5,6 +5,7 @@ import go.travels.backend.dto.LikeDTO;
 import go.travels.backend.dto.PostDTO;
 import go.travels.backend.document.Post;
 import go.travels.backend.document.Trip;
+import go.travels.backend.list.PilhaObj;
 import go.travels.backend.services.LikeService;
 import go.travels.backend.services.PostService;
 import go.travels.backend.services.TripService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,8 @@ import java.util.*;
 public class PostController {
 
     private Integer qtdPorPagina = 15;
+
+    PilhaObj pilha = new PilhaObj(5);
 
     @Autowired
     TripService tripService;
@@ -46,10 +50,25 @@ public class PostController {
             post.setDate(dtf.format(now));
 
             postService.persist(post);
+            pilha.push(post);
+
+            System.out.println("\n\nPilha:");
+            pilha.exibe();
 
             return ResponseEntity.created(null).body(convertDocforDTO(post));
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/undo")
+    public ResponseEntity<String> undo(){
+        if(pilha.isEmpty()){
+            return ResponseEntity.ok().body("Não há nenhuma alteração para fazer");
+        }
+        else{
+            pilha.pop();
+            return ResponseEntity.ok().body("Última ação desfeita!");
         }
     }
 

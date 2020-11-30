@@ -2,6 +2,7 @@ import Institucional from './pages/institucional/institucional';
 import Autenticacao from './pages/autenticacao/autenticacao.js';
 import Publicacoes from './pages/publicacoes/publicacoes.js';
 import Dashboard from './pages/dashboard/dashboard';
+import Viagens from './pages/viagens/viagens'
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
 
@@ -96,6 +97,9 @@ function Index() {
             </Route>
             <Route path="/dashboard">
               <Dashboard />
+            </Route>
+            <Route path="/ultimasViagens">
+              <Viagens />
             </Route>
           </Switch>
         </BrowserRouter>

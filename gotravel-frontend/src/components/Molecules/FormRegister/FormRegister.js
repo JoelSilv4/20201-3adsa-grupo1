@@ -20,6 +20,7 @@ const FormRegister = (props) => {
         .then((response) => {
           if (response.status == 201) {
             console.log('Registrado com sucesso!');
+           appDispatch({ type: 'form-login' })
           } else if (response.status == 422) {
             console.log('Já existe um usuário com esse email');
           }
