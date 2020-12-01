@@ -25,9 +25,9 @@ const MapTrips = () => {
       const renderTrips = () => (
         trip.map(item => (
         <TitleMapsWrapper>
-            <TitleMaps>Origem: {item.id}</TitleMaps>
+            <TitleMaps>Origem: {item.destiny.split('-')[0]}</TitleMaps>
             <Image />
-            <TitleMaps>Destino: {item.destiny} </TitleMaps>
+            <TitleMaps>Destino: {item.destiny.split('-')[1]} </TitleMaps>
         </TitleMapsWrapper>
         )))
 
