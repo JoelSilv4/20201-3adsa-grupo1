@@ -36,7 +36,7 @@ export const MenuItems = styled.ul`
   li {
     margin-left: 50px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     color: #2d73dd;
   }
 `;

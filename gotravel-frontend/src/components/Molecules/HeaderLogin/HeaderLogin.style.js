@@ -59,7 +59,7 @@ const LogoffWrapper = styled.div`
     /* height: 110px; */
     position: absolute;
     margin-top: 160px;
-    margin-left: 20px;
+    margin-left: 120px;
     border: 1px solid #bebebe;
     background-color: white;
 
@@ -70,6 +70,12 @@ const LogoffWrapper = styled.div`
       font-size: 14px;
       font-weight: 500;
       color: #5f5f5f;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f3f3f3;
+        transition: background-color 0.25s;
+      }
     }
   }
 
