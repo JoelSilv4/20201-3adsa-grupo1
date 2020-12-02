@@ -1,5 +1,6 @@
 package go.travels.backend.controller;
 
+import go.travels.backend.archive.LeArquivo;
 import go.travels.backend.document.Trip;
 import go.travels.backend.dto.TripDTO;
 import go.travels.backend.services.TripService;
@@ -11,6 +12,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 @RestController
 @RequestMapping("/trip")
@@ -63,6 +71,30 @@ public class TripController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity enviar(@RequestParam("arquivo") MultipartFile arquivo) throws IOException {
+
+        if (arquivo.isEmpty()) {
+            return ResponseEntity.badRequest().body("Arquivo não enviado!");
+        }
+
+        System.out.println("Recebendo um arquivo do tipo: " + arquivo.getContentType());
+        byte[] conteudo = arquivo.getBytes();
+
+        Path path = Paths.get(arquivo.getOriginalFilename());
+        Files.write(path, conteudo);
+
+        String nomeArq = "a.txt";
+
+        List<Trip> tripAdd = LeArquivo.leArquivo(nomeArq);
+
+        for(Trip t : tripAdd){
+            tripService.persist(t);
+        }
+
+        return ResponseEntity.created(null).build();
     }
 
     private Trip convertDtoForTrip(TripDTO tripDTO) {
