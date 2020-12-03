@@ -72,7 +72,7 @@ public class TripController {
             return ResponseEntity.notFound().build();
         }
     }
-
+/*
     @PostMapping("/upload")
     public ResponseEntity enviar(@RequestParam("arquivo") MultipartFile arquivo) throws IOException {
 
@@ -97,6 +97,8 @@ public class TripController {
         return ResponseEntity.created(null).build();
     }
 
+
+ */
     private Trip convertDtoForTrip(TripDTO tripDTO) {
         return new Trip(
                 tripDTO.getLatMatch(),
