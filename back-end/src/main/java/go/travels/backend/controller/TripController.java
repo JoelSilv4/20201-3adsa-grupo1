@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/trip")
@@ -61,6 +62,16 @@ public class TripController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/id/{tripId}")
+    public ResponseEntity<Optional<Trip>> findById(@PathVariable String tripId) {
+        if (tripService.exist(tripId)) {
+            Optional<Trip> trip = tripService.findById(tripId);
+
+            return ResponseEntity.ok().body(trip);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")

@@ -44,9 +44,8 @@ public class PostController {
     @PostMapping("/{tripId}")
     public ResponseEntity<PostDTO> create(@RequestBody PostDTO postDTO, @PathVariable String tripId) {
         if (tripService.exist(tripId)) {
-            Optional<Trip> trip = tripService.findById(tripId);
 
-            Post post = convertDTOforDoc(postDTO, trip);
+            Post post = convertDTOforDoc(postDTO, tripId);
             post.setDate(dtf.format(now));
 
             postService.persist(post);
@@ -115,7 +114,7 @@ public class PostController {
         }
     }
 
-    private Post convertDTOforDoc(PostDTO postDTO, Optional<Trip> trip) {
+    private Post convertDTOforDoc(PostDTO postDTO, String trip) {
         return new Post(
                 postDTO.getTitle(),
                 postDTO.getDescription(),

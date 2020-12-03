@@ -15,16 +15,15 @@ public class Post {
     private Integer likes = 0;
     private String date;
     private String userId;
-
-    private Optional<Trip> trip;
+    private String tripId;
 
     public Post(){}
 
-    public Post(String title, String description,  String userId, Optional<Trip> trip) {
+    public Post(String title, String description,  String userId, String tripId) {
         this.title = title;
         this.description = description;
         this.userId = userId;
-        this.trip = trip;
+        this.tripId = tripId;
     }
 
 
@@ -60,12 +59,12 @@ public class Post {
         this.likes = likes;
     }
 
-    public Optional<Trip> getTrip() {
-        return trip;
+    public String getTrip() {
+        return tripId;
     }
 
-    public void setTrip(Optional<Trip> trip) {
-        this.trip = trip;
+    public void setTrip(String trip) {
+        this.tripId = trip;
     }
 
     public String getDate() {
@@ -105,7 +104,7 @@ public class Post {
                 ", descripton='" + description + '\'' +
                 ", likes=" + likes +
                 ", date='" + date + '\'' +
-                ", trip=" + trip +
+                ", trip=" + tripId +
                 '}';
     }
 }

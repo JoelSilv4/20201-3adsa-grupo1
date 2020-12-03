@@ -11,17 +11,16 @@ public class PostDTO {
     private Integer likes;
     private String date;
     private String userId;
-
-    private Optional<Trip> trip;
+    private String tripId;
 
     public PostDTO(){}
 
-    public PostDTO(String id, String title, String description, Integer likes, Optional<Trip> trip, String date, String userId) {
+    public PostDTO(String id, String title, String description, Integer likes, String tripId, String date, String userId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.likes = likes;
-        this.trip = trip;
+        this.tripId = tripId;
         this.date = date;
         this.userId = userId;
     }
@@ -58,12 +57,12 @@ public class PostDTO {
         this.likes = likes;
     }
 
-    public Optional<Trip>  getTrip() {
-        return trip;
+    public String  getTrip() {
+        return tripId;
     }
 
-    public void setTrip(Optional<Trip> trip) {
-        this.trip = trip;
+    public void setTrip(String tripId) {
+        this.tripId = tripId;
     }
 
     public String getDate() {
