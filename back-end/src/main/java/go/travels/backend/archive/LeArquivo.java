@@ -31,10 +31,10 @@ public class LeArquivo {
             registro = entrada.readLine();
 
         while (registro != null) {
-                tipoRegistro = registro.substring(0, 14);
+                tipoRegistro = registro.substring(0, 30);
 
-                if(tipoRegistro.equals("Fim do arquivo")){
-                    trailer = registro.substring(0,14);
+                if(tipoRegistro.equals("Fim do documento de importação")){
+                    trailer = registro.substring(0,30);
                     System.out.println(trailer);
                 }
                 else {
