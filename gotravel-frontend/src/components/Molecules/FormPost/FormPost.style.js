@@ -171,5 +171,10 @@ export const Content = styled.div`
         transition: background-color 0.25s;
       }
     }
+
+    .selected {
+      background-color: #c2c2c2;
+      transition: background-color 0.25s;
+    }
   }
 `;

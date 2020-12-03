@@ -23,10 +23,10 @@ function AddPost() {
         <img src={svg_addbutton} alt="" />
         <p>Adicionar Post</p>
       </div>
-      <div className="mytrips" onClick={handleTrips}>
+      {/* <div className="mytrips" onClick={handleTrips}>
         <img src={svg_listsolid} alt="" />
         <p>Minhas Viagens</p>
-      </div>
+      </div> */}
     </Container>
   );
 }
