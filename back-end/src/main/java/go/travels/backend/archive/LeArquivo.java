@@ -64,11 +64,5 @@ public class LeArquivo {
     }
         return lista;
  }
-
-    public static void main(String[] args) {
-        String nomeArq = "a.txt";
-        leArquivo(nomeArq);
-
-    }
 }
 

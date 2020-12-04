@@ -3,6 +3,8 @@ package go.travels.backend.controller;
 import go.travels.backend.archive.LeArquivo;
 import go.travels.backend.document.Trip;
 import go.travels.backend.dto.TripDTO;
+import go.travels.backend.list.FilaObj;
+import go.travels.backend.list.PilhaObj;
 import go.travels.backend.services.TripService;
 import go.travels.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +35,10 @@ public class TripController {
 
     @Autowired
     UserService userService;
+
+    PilhaObj pilha = new PilhaObj(10);
+
+    FilaObj fila = new FilaObj(10);
 
     @PostMapping("/{userId}")
     public ResponseEntity<TripDTO> register(@RequestBody TripDTO tripDTO, @PathVariable String userId){
@@ -83,7 +90,30 @@ public class TripController {
             return ResponseEntity.notFound().build();
         }
     }
-/*
+
+    @DeleteMapping("/undo")
+    public ResponseEntity undo(){
+        if(pilha.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        else{
+            Trip t = (Trip)pilha.pop();
+            tripService.delete(t.getId());
+            return ResponseEntity.ok().build();
+        }
+    }
+
+    @Scheduled(fixedRate = 10000)
+    public void schedullarInsert(){
+        if (fila.isEmpty()) {
+            System.out.println("Não há nenhuma requisição na fila!");
+
+        } else {
+            tripService.persist((Trip) fila.poll());
+            System.out.println("Sua requisição foi registrada");
+        }
+    }
+
     @PostMapping("/upload")
     public ResponseEntity enviar(@RequestParam("arquivo") MultipartFile arquivo) throws IOException {
 
@@ -102,14 +132,17 @@ public class TripController {
         List<Trip> tripAdd = LeArquivo.leArquivo(nomeArq);
 
         for(Trip t : tripAdd){
-            tripService.persist(t);
+            pilha.push(t);
+            fila.insert(t);
         }
+
 
         return ResponseEntity.created(null).build();
     }
 
 
- */
+
+
     private Trip convertDtoForTrip(TripDTO tripDTO) {
         return new Trip(
                 tripDTO.getLatMatch(),
