@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c8109da9-2624-4e13-a3b5-51427183dc1f",
+		"_postman_id": "9ade270c-10f5-4792-9f6d-0c2d01f83c27",
 		"name": "Projeto Local",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -45,7 +45,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6de5311a-132d-4ca2-b47b-a05949c9c50e",
+								"id": "79cff3a8-27a9-4ed6-a050-7f9985c90e58",
 								"exec": [
 									""
 								],
@@ -255,6 +255,76 @@
 							"path": [
 								"trip",
 								"5f9edf4afd82af74739d600b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desfazer inserção no banco",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI1ZmM4MWI2ZTkyYTdhODUzMjQxMDhlYzUiLCJzdWIiOiJrYWlxdWVAZ21haWwuY29tIiwiZXhwIjoxNjE4MTU3NDA2fQ.xq-DwH8sRHmsahrLhuhVBQCNQxN4a_yABoh42tD0r36weT2bynWh5C0YF19IUO9hg-HSIkv922R9SR2p_A2EIA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/trip/undo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trip",
+								"undo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload de arquivo de importação de dados",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI1ZmM4MWI2ZTkyYTdhODUzMjQxMDhlYzUiLCJzdWIiOiJrYWlxdWVAZ21haWwuY29tIiwiZXhwIjoxNjE4MTU3NDA2fQ.xq-DwH8sRHmsahrLhuhVBQCNQxN4a_yABoh42tD0r36weT2bynWh5C0YF19IUO9hg-HSIkv922R9SR2p_A2EIA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/Arthur/Desktop/20201-3adsa-grupo1/a.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/trip/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"trip",
+								"upload"
 							]
 						}
 					},
