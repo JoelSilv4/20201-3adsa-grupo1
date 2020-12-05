@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker, StandaloneSearchBox, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, StandaloneSearchBox, DirectionsService, DirectionsRenderer, InfoWindow } from '@react-google-maps/api';
 
 import './style.css';
 import { FormFiltros, MapWrapper } from './ContainerMaps.style';
@@ -19,6 +19,7 @@ import mapmarker from '../../../assets/mapmarker.svg';
 import flag from '../../../assets/flag.svg';
 import minus from '../../../assets/minus.svg';
 import plus from '../../../assets/plus.svg';
+import CInfoWindow from '../../Molecules/CInfoWindow';
 
 const libraries = ['places', 'directions'];
 
@@ -55,52 +56,72 @@ const ContainerMaps = () => {
   const [directionsDestiny, setDirectionsDestiny] = useState('');
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [directionsRef, setDirectionsRef] = useState(null);
-  const [nearbyRoot, setNearbyRoot] = useState('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-23.5113192,-46.3942144&radius=500&type=restaurant&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ');
   const [nearbySearch, setNearbySearch] = useState();
-  const [nrbyLocation, setNearbyLocation] = useState();
   const [markers, setMarkers] = useState();
 
-  function defineNearbyPlaces() {
-    const rota = [];
-    rota.push(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-23.5113192,-46.3942144&radius=500&type=${filterSelected ? filterSelected : 'restaurant'}&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ`);
-    console.log(rota[0]);
+  // Controle do centro do nearbySearch
+  const [nearbySearchCenter, setNearbySearchCenter] = useState();
+  const [canRender, setCanRender] = useState(true);
 
-    Axios.get('https://cors-anywhere.herokuapp.com/' + rota[0], {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-        'Content-Type': 'application/json;charset=UTF-8',
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        setMarkers(null);
-        const locais = [];
+  // Controle da InfoWindow para visualizar
+  // infos do local selecionado
+  const [infoWindow, setInfoWindow] = useState(false);
 
-        response.data.results.forEach((local) => {
-          locais.push(local.geometry.location);
-        });
-
-        setMarkers(locais);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  //Function que lida com o clica em um marcador de comércio
+  function handleFilterMarker(place) {
+    setInfoWindow(place);
   }
 
   useEffect(() => {
-    defineNearbyPlaces();
-  }, [filterSelected]);
+    function defineNearbyPlaces() {
+      const rota = [];
+      rota.push(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${nearbySearchCenter.lat},${nearbySearchCenter.lng}&radius=1500&type=${filterSelected ? filterSelected : 'restaurant'}&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ`);
 
-  useEffect(() => {
-    defineNearbyPlaces();
-  }, [nearbySearch]);
+      Axios.get('https://cors-anywhere.herokuapp.com/' + rota[0], {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Authorization',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
+          'Content-Type': 'application/json;charset=UTF-8',
+        },
+      })
+        .then((response) => {
+          setMarkers(null);
+          const locais = [];
+
+          response.data.results.forEach((local) => {
+            locais.push(local);
+          });
+
+          setMarkers(locais);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
+    if (canRender && nearbySearchCenter && filterSelected) {
+      defineNearbyPlaces();
+    }
+
+    setCanRender(false);
+    setTimeout(() => {
+      setCanRender(true);
+    }, 500);
+  }, [filterSelected, nearbySearchCenter]);
+
+  // useEffect(() => {
+  //   defineNearbyPlaces();
+  // }, [nearbySearch]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (data) => {
         setUserLocation({
+          lat: data.coords.latitude,
+          lng: data.coords.longitude,
+        });
+        setNearbySearchCenter({
           lat: data.coords.latitude,
           lng: data.coords.longitude,
         });
@@ -151,7 +172,6 @@ const ContainerMaps = () => {
 
   const directionsCallback = (response) => {
     setDirectionsResponse(response);
-    // console.log('OBJETO DE DIREÇÕES', response);
   };
 
   const directRef = (ref) => setDirectionsRef(ref);
@@ -237,17 +257,6 @@ const ContainerMaps = () => {
                       <img src={hoteis} alt="" />
                       <label>Hoteis</label>
                     </div>
-                    {/* <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('estacionamento');
-                        }}
-                        type="radio"
-                      />
-                      <img src={estacionamentos} alt="" />
-                      <label>Estacionamentos</label>
-                    </div> */}
                     <div className="filter">
                       <input
                         name="filtro"
@@ -279,16 +288,41 @@ const ContainerMaps = () => {
           </div>
 
           <div className="map">
-            <GoogleMap onClick={onClick} mapContainerStyle={mapContainerStyle} center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount} options={options}>
+            <GoogleMap
+              onDrag={(e) => {
+                setNearbySearchCenter({
+                  lat: map.center.lat((r) => r),
+                  lng: map.center.lng((r) => r),
+                });
+              }}
+              onClick={onClick}
+              mapContainerStyle={mapContainerStyle}
+              center={center}
+              zoom={10}
+              onLoad={onLoad}
+              onUnmount={onUnmount}
+              options={options}
+            >
               {/* {marker ? <Marker position={marker} /> : <></>} */}
               {markerUser ? <Marker icon={you_icon} position={markerUser} /> : <></>}
               {markers ? (
-                markers.map((item, ind) => {
-                  return <CustomMarker key={ind} position={item} />;
+                markers.map((place, ind) => {
+                  return (
+                    <Marker
+                      key={ind}
+                      position={place.geometry.location}
+                      onClick={() => {
+                        console.log('CU');
+                        handleFilterMarker(place);
+                      }}
+                    ></Marker>
+                  );
                 })
               ) : (
                 <></>
               )}
+
+              {infoWindow ? <CInfoWindow data={infoWindow}></CInfoWindow> : <></>}
 
               {directionsDestiny !== '' && directionsOrigin !== '' ? (
                 <DirectionsService
