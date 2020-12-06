@@ -49,10 +49,11 @@ export const MapWrapper = styled.div`
       z-index: 999;
 
       .form {
+        height: 100vh;
         width: fit-content;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         padding-top: 10px;
         /* box-shadow: 5px 2px 15px 1px#525252; */
@@ -138,12 +139,6 @@ export const MapWrapper = styled.div`
             display: flex;
             flex-direction: row;
             margin: 5px 20px;
-
-            input {
-              border: 1px dotted #c3c3c3;
-              border-radius: 30px;
-              padding: 5px;
-            }
 
             img {
               width: 15px;
