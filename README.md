@@ -4,9 +4,9 @@ Work done during the graduation of analysis and systems development at [Bandtec]
 
 ##Team Members
 
-Kaique:  [Linkedin](https://www.linkedin.com/in/kaiquepill/)
-Arhur:  [Linkedin]()
-Henrique:  [Linkedin]()
-Joel:  [Linkedin]()
-Isabella:  [Linkedin]()
+Kaique:  [Linkedin](https://www.linkedin.com/in/kaiquepill/)<br>
+Arhur:  [Linkedin]()<br>
+Henrique:  [Linkedin]()<br>
+Joel:  [Linkedin]()<br>
+Isabella:  [Linkedin]()<br>
 Lucas:  [Linkedin]()
