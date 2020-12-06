@@ -1,6 +1,6 @@
 ## Go Travel 
 
-Work done during the graduation of analysis and systems development at [Bandtec](http://www.digitalschool.com.br/faculdade/) college.
+Work carried out during the 3 semester of analysis and development of systems in the [Bandtec](http://www.digitalschool.com.br/faculdade/) college.
 
 ##Team Members
 
