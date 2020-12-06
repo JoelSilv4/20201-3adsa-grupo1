@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker, StandaloneSearchBox, DirectionsService, DirectionsRenderer, InfoWindow } from '@react-google-maps/api';
 
 import './style.css';
@@ -20,6 +20,8 @@ import flag from '../../../assets/flag.svg';
 import minus from '../../../assets/minus.svg';
 import plus from '../../../assets/plus.svg';
 import CInfoWindow from '../../Molecules/CInfoWindow';
+import StateContext from '../../../StateContext';
+import FilterList from '../FilterList';
 
 const libraries = ['places', 'directions'];
 
@@ -59,6 +61,9 @@ const ContainerMaps = () => {
   const [nearbySearch, setNearbySearch] = useState();
   const [markers, setMarkers] = useState();
 
+  // Contém os locais selecionados pelo usuário
+  const [placesSaved, setPlacesSaved] = useState();
+
   // Controle do centro do nearbySearch
   const [nearbySearchCenter, setNearbySearchCenter] = useState();
   const [canRender, setCanRender] = useState(true);
@@ -66,6 +71,8 @@ const ContainerMaps = () => {
   // Controle da InfoWindow para visualizar
   // infos do local selecionado
   const [infoWindow, setInfoWindow] = useState(false);
+
+  const appState = useContext(StateContext);
 
   //Function que lida com o clica em um marcador de comércio
   function handleFilterMarker(place) {
@@ -75,16 +82,11 @@ const ContainerMaps = () => {
   useEffect(() => {
     function defineNearbyPlaces() {
       const rota = [];
-      rota.push(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${nearbySearchCenter.lat},${nearbySearchCenter.lng}&radius=1500&type=${filterSelected ? filterSelected : 'restaurant'}&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ`);
+      // rota.push(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${nearbySearchCenter.lat},${nearbySearchCenter.lng}&radius=${'1500'}&type=${filterSelected}&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ`);
+      rota.push(`/trip/place_location/${nearbySearchCenter.lat}/${nearbySearchCenter.lng}/1500/${filterSelected ? filterSelected : 'restaurant'}`);
 
-      Axios.get('https://cors-anywhere.herokuapp.com/' + rota[0], {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': 'Authorization',
-          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, PATCH, DELETE',
-          'Content-Type': 'application/json;charset=UTF-8',
-        },
-      })
+      // Axios.get('https://cors-anywhere.herokuapp.com/' + rota[0], {
+      Axios.get(rota[0], { headers: { authorization: appState.user.jwtkey } })
         .then((response) => {
           setMarkers(null);
           const locais = [];
@@ -211,71 +213,93 @@ const ContainerMaps = () => {
                   <p>Definir os filtros da viagem</p>
                 </div>
 
-                {filterMenu ? (
+                {!filterMenu ? (
                   <form className="inputs">
                     <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('parques');
-                        }}
-                        type="radio"
-                      />
+                      <div className="container">
+                        <input
+                          name="filtro"
+                          onClick={() => {
+                            setFilterSelected('parques');
+                          }}
+                          type="radio"
+                        />
+                        <span className="checkmark"></span>
+                      </div>
                       <img src={parques} alt="" />
                       <label>Parques</label>
                     </div>
+
                     <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('restaurantes');
-                        }}
-                        type="radio"
-                      />
+                      <div className="container">
+                        <input
+                          name="filtro"
+                          onClick={() => {
+                            setFilterSelected('restaurantes');
+                          }}
+                          type="radio"
+                        />
+                        <span className="checkmark"></span>
+                      </div>
                       <img src={restaurante} alt="" />
                       <label>Restaurantes</label>
                     </div>
+
                     <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('bares');
-                        }}
-                        type="radio"
-                      />
+                      <div className="container">
+                        <input
+                          name="filtro"
+                          onClick={() => {
+                            setFilterSelected('bares');
+                          }}
+                          type="radio"
+                        />
+                        <span className="checkmark"></span>
+                      </div>
                       <img src={bares} alt="" />
                       <label>Bares</label>
                     </div>
                     <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('hoteis');
-                        }}
-                        type="radio"
-                      />
+                      <div className="container">
+                        <input
+                          name="filtro"
+                          onClick={() => {
+                            setFilterSelected('hoteis');
+                          }}
+                          type="radio"
+                        />
+                        <span className="checkmark"></span>
+                      </div>
                       <img src={hoteis} alt="" />
                       <label>Hoteis</label>
                     </div>
+
                     <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('farmacia');
-                        }}
-                        type="radio"
-                      />
+                      <div className="container">
+                        <input
+                          name="filtro"
+                          onClick={() => {
+                            setFilterSelected('farmacia');
+                          }}
+                          type="radio"
+                        />
+                        <span className="checkmark"></span>
+                      </div>
                       <img src={farmacia} alt="" />
                       <label>Farmácias</label>
                     </div>
+
                     <div className="filter">
-                      <input
-                        name="filtro"
-                        onClick={() => {
-                          setFilterSelected('hospital');
-                        }}
-                        type="radio"
-                      />
+                      <div className="container">
+                        <input
+                          name="filtro"
+                          onClick={() => {
+                            setFilterSelected('hospital');
+                          }}
+                          type="radio"
+                        />
+                        <span className="checkmark"></span>
+                      </div>
                       <img src={hospitais} alt="" />
                       <label>Hospitais</label>
                     </div>
@@ -284,6 +308,8 @@ const ContainerMaps = () => {
                   <></>
                 )}
               </div>
+
+              <FilterList placesSaved={placesSaved} />
             </div>
           </div>
 
@@ -312,7 +338,6 @@ const ContainerMaps = () => {
                       key={ind}
                       position={place.geometry.location}
                       onClick={() => {
-                        console.log('CU');
                         handleFilterMarker(place);
                       }}
                     ></Marker>
