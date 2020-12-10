@@ -8,7 +8,6 @@ const ultimasViagens = () => {
         <Layout>
             <ContainerViagens />
         </Layout>
-
     )
 }
 

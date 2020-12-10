@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {TitleMapsWrapper, TitleMaps} from './MapTrips.style';
+import {TitleMapsWrapper, TitleMaps, MapsWrapper} from './MapTrips.style';
 import { ReactComponent as Image } from '../../../assets/plane.svg';
 import Axios from 'axios';
 import StateContext from '../../../StateContext';
+import PostMap from '../../Molecules/PostMap'
 import TitlePage from '../../Atoms/TitlePage';
 import Error from '../Error'
 
@@ -23,13 +24,30 @@ const MapTrips = () => {
       
 
       const renderTrips = () => (
-        trip.map(item => (
+        trip.map(item => {
+
+        const latOBJ = parseFloat(item.latDestiny);
+        const lngOBJ = parseFloat(item.lngDestiny);
+
+        const center = {
+          lat: latOBJ,
+          lng: lngOBJ,
+        };
+
+         return (
+        <>
         <TitleMapsWrapper>
             <TitleMaps>Origem: {item.destiny.split('-')[0]}</TitleMaps>
             <Image />
             <TitleMaps>Destino: {item.destiny.split('-')[1]} </TitleMaps>
         </TitleMapsWrapper>
-        )))
+        <MapsWrapper>
+            <PostMap center={center}/>
+        </MapsWrapper>
+        </>
+            )
+        }
+        ))
 
         const renderNoContent = () => (
             <Error nenhumText="nenhuma" text="viagem" buttonText="Fazer viagem" textCollor="#2D73DD"/>

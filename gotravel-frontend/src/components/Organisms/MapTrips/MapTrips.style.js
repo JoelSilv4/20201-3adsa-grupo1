@@ -20,3 +20,8 @@ export const TitleMaps = styled.h2`
     font-size: 16px;
     font-weight: 500;
 `
+
+export const MapsWrapper = styled.div`
+    height: 300px;
+    border: 1px solid #CACACA;
+`

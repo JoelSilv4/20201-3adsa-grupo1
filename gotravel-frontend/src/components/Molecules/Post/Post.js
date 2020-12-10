@@ -28,7 +28,7 @@ function Post({ userData, center }) {
         <div className="name">{userData.title}</div>
         <div className="comment">{userData.description}</div>
         <div className="photo">
-          <PostMap center={center} />
+          <PostMap center={center}/>
         </div>
       </Content>
     </Container>
