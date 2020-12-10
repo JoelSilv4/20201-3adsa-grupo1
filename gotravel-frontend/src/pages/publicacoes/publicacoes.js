@@ -23,7 +23,7 @@ const Publicacoes = () => {
       {!appState.formPost ? <FormPost /> : <></>}
       {!appState.selectTrip ? <SelectTrip /> : <></>}
 
-      <AddPost />
+      <AddPost text="Adicionar Post"/>
       <Posts />
     </Layout>
   );

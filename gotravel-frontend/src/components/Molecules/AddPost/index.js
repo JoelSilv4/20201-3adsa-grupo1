@@ -6,7 +6,7 @@ import svg_listsolid from '../../../assets/list_solid.svg';
 import { Container } from './style';
 import { Redirect } from 'react-router-dom';
 
-function AddPost() {
+function AddPost({text}) {
   const appDispatch = useContext(DispatchContext);
 
   const handlePost = () => {
@@ -21,7 +21,7 @@ function AddPost() {
     <Container>
       <div onClick={handlePost}>
         <img src={svg_addbutton} alt="" />
-        <p>Adicionar Post</p>
+        <p>{text}</p>
       </div>
       {/* <div className="mytrips" onClick={handleTrips}>
         <img src={svg_listsolid} alt="" />
