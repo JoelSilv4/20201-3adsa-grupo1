@@ -72,6 +72,9 @@ const ContainerMaps = () => {
   // infos do local selecionado
   const [infoWindow, setInfoWindow] = useState(false);
 
+  // Salva os locais selecionados pelo usuário
+  const [filteredPlaces, setFilteredPlaces] = useState();
+
   const appState = useContext(StateContext);
 
   //Function que lida com o clica em um marcador de comércio
@@ -83,7 +86,7 @@ const ContainerMaps = () => {
     function defineNearbyPlaces() {
       const rota = [];
       // rota.push(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${nearbySearchCenter.lat},${nearbySearchCenter.lng}&radius=${'1500'}&type=${filterSelected}&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ`);
-      rota.push(`/trip/place_location/${nearbySearchCenter.lat}/${nearbySearchCenter.lng}/1500/${filterSelected ? filterSelected : 'restaurant'}`);
+      rota.push(`/trip/place_location/${nearbySearchCenter.lat}/${nearbySearchCenter.lng}/1500/${filterSelected}`);
 
       // Axios.get('https://cors-anywhere.herokuapp.com/' + rota[0], {
       Axios.get(rota[0], { headers: { authorization: appState.user.jwtkey } })
@@ -182,6 +185,18 @@ const ContainerMaps = () => {
     console.log('ref: ', directRef);
   };
 
+  const handleInfoWindowSave = (place) => {
+    const places = [];
+
+    if (filteredPlaces != null) {
+      filteredPlaces.map((filtered) => places.push(filteredPlaces));
+    }
+
+    places.push(place);
+
+    setFilteredPlaces(places);
+  };
+
   return (
     <MapWrapper>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries={libraries}>
@@ -216,91 +231,104 @@ const ContainerMaps = () => {
                 {!filterMenu ? (
                   <form className="inputs">
                     <div className="filter">
-                      <div className="container">
-                        <input
-                          name="filtro"
-                          onClick={() => {
-                            setFilterSelected('parques');
-                          }}
-                          type="radio"
-                        />
-                        <span className="checkmark"></span>
-                      </div>
-                      <img src={parques} alt="" />
+                      <label className="radio">
+                        <span className="radio__input">
+                          <input
+                            name="filtro"
+                            onClick={() => {
+                              setFilterSelected('parques');
+                            }}
+                            type="radio"
+                          />
+                          <span className="radio__control"></span>
+                        </span>
+                      </label>
+                      {/* <img src={parques} alt="" /> */}
                       <label>Parques</label>
                     </div>
 
                     <div className="filter">
-                      <div className="container">
-                        <input
-                          name="filtro"
-                          onClick={() => {
-                            setFilterSelected('restaurantes');
-                          }}
-                          type="radio"
-                        />
-                        <span className="checkmark"></span>
-                      </div>
-                      <img src={restaurante} alt="" />
+                      <label className="radio">
+                        <span className="radio__input">
+                          <input
+                            name="filtro"
+                            onClick={() => {
+                              setFilterSelected('restaurantes');
+                            }}
+                            type="radio"
+                          />
+                          <span className="radio__control"></span>
+                        </span>
+                      </label>
+                      {/* <img src={restaurante} alt="" /> */}
                       <label>Restaurantes</label>
                     </div>
 
                     <div className="filter">
-                      <div className="container">
-                        <input
-                          name="filtro"
-                          onClick={() => {
-                            setFilterSelected('bares');
-                          }}
-                          type="radio"
-                        />
-                        <span className="checkmark"></span>
-                      </div>
-                      <img src={bares} alt="" />
+                      <label className="radio">
+                        <span className="radio__input">
+                          <input
+                            name="filtro"
+                            onClick={() => {
+                              setFilterSelected('bares');
+                            }}
+                            type="radio"
+                          />
+                          <span className="radio__control"></span>
+                        </span>
+                      </label>
+                      {/* <img src={bares} alt="" /> */}
                       <label>Bares</label>
                     </div>
+
                     <div className="filter">
-                      <div className="container">
-                        <input
-                          name="filtro"
-                          onClick={() => {
-                            setFilterSelected('hoteis');
-                          }}
-                          type="radio"
-                        />
-                        <span className="checkmark"></span>
-                      </div>
-                      <img src={hoteis} alt="" />
+                      <label className="radio">
+                        <span className="radio__input">
+                          <input
+                            name="filtro"
+                            onClick={() => {
+                              setFilterSelected('hoteis');
+                            }}
+                            type="radio"
+                          />
+                          <span className="radio__control"></span>
+                        </span>
+                      </label>
+                      {/* <img src={hoteis} alt="" /> */}
                       <label>Hoteis</label>
                     </div>
 
                     <div className="filter">
-                      <div className="container">
-                        <input
-                          name="filtro"
-                          onClick={() => {
-                            setFilterSelected('farmacia');
-                          }}
-                          type="radio"
-                        />
-                        <span className="checkmark"></span>
-                      </div>
-                      <img src={farmacia} alt="" />
+                      <label className="radio">
+                        <span className="radio__input">
+                          <input
+                            name="filtro"
+                            onClick={() => {
+                              setFilterSelected('farmacia');
+                            }}
+                            type="radio"
+                          />
+                          <span className="radio__control"></span>
+                        </span>
+                      </label>
+                      {/* <img src={farmacia} alt="" /> */}
                       <label>Farmácias</label>
                     </div>
 
                     <div className="filter">
-                      <div className="container">
-                        <input
-                          name="filtro"
-                          onClick={() => {
-                            setFilterSelected('hospital');
-                          }}
-                          type="radio"
-                        />
-                        <span className="checkmark"></span>
-                      </div>
-                      <img src={hospitais} alt="" />
+                      <label className="radio">
+                        <span className="radio__input">
+                          <input
+                            name="filtro"
+                            onClick={() => {
+                              setFilterSelected('hospital');
+                            }}
+                            type="radio"
+                          />
+                          <span className="radio__control"></span>
+                        </span>
+                      </label>
+                      {/* <img src={hospitais} alt="" /> */}
                       <label>Hospitais</label>
                     </div>
                   </form>
@@ -309,7 +337,7 @@ const ContainerMaps = () => {
                 )}
               </div>
 
-              <FilterList placesSaved={placesSaved} />
+              <FilterList placesSaved={filteredPlaces} />
             </div>
           </div>
 
@@ -347,7 +375,7 @@ const ContainerMaps = () => {
                 <></>
               )}
 
-              {infoWindow ? <CInfoWindow data={infoWindow}></CInfoWindow> : <></>}
+              {infoWindow ? <CInfoWindow saveCallback={handleInfoWindowSave} data={infoWindow}></CInfoWindow> : <></>}
 
               {directionsDestiny !== '' && directionsOrigin !== '' ? (
                 <DirectionsService

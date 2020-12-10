@@ -132,18 +132,60 @@ export const MapWrapper = styled.div`
           flex-direction: column;
           align-items: flex-start;
           justify-content: flex-start;
-          background-color: white;
-          padding: 10px 0;
+          color: white;
+          /* background-color: white; */
+          padding-bottom: 10px;
 
           .filter {
             display: flex;
             flex-direction: row;
-            margin: 5px 20px;
+            margin: 8px 5px;
+
+            .radio {
+              font-size: 14px;
+              color: white;
+              display: grid;
+              grid-template-columns: min-content auto;
+              grid-gap: 0.5em;
+
+              .radio__input {
+                display: flex;
+
+                input {
+                  opacity: 0;
+                  width: 0;
+                  height: 0;
+                }
+
+                input + .radio__control::before {
+                  content: '';
+                  width: 0.5em;
+                  height: 0.5em;
+                  box-shadow: inset 0.5em 0.5em currentColor;
+                  border-radius: 50%;
+                  transition: 180ms transform ease-in-out;
+                  transform: scale(0);
+                }
+
+                input:checked + .radio__control::before {
+                  transform: scale(1);
+                }
+              }
+
+              .radio__control {
+                display: grid;
+                place-items: center;
+                width: 1em;
+                height: 1em;
+                border-radius: 50%;
+                border: 0.1em solid white;
+                transform: translateY(-0.05em);
+              }
+            }
 
             img {
               width: 15px;
               height: 15px;
-              margin-left: 15px;
               margin-right: 5px;
             }
 

@@ -9,8 +9,18 @@ import { NothingHere } from './styles';
 const FilterList = ({ placesSaved }) => {
   return (
     <Container>
+      <h1 className="titulo">Suas Paradas</h1>
+      {/* <FilterCard
+        data={{
+          imageURL: '',
+          latLng: '',
+          localName: 'Restaurante Big Esfiha',
+        }}
+      /> */}
       {placesSaved ? (
-        <FilterCard></FilterCard>
+        placesSaved.map((place) => {
+          return <FilterCard data={place}></FilterCard>;
+        })
       ) : (
         <NothingHere>
           <h1>Nada aqui.</h1>

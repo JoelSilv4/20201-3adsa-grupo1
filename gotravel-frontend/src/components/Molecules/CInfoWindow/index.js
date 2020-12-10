@@ -3,11 +3,11 @@ import Axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import StateContext from '../../../StateContext';
 
-import { InfoWrapper } from './styles';
+import { InfoWrapper, Nota } from './styles';
 
 const CInfoWindow = (props) => {
   const placeData = props.data;
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
 
   const appState = useContext(StateContext);
 
@@ -23,8 +23,6 @@ const CInfoWindow = (props) => {
       // const url = `https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ&photoreference=${photoreference}&maxwidth=${width}&maxheight=${height}`;
       const url = `/trip/place_image/${photoreference}/${width}/${height}`;
 
-      console.log('JWTKEY', appState.user.jwtkey);
-
       // return Axios.get('https://cors-anywhere.herokuapp.com/' + url)
       return Axios.get(url, { headers: { authorization: appState.user.jwtkey } })
         .then((response) => {
@@ -38,7 +36,8 @@ const CInfoWindow = (props) => {
     if (placeData.photos != null && placeData.photos != undefined) {
       requestImage(placeData.photos[0].photo_reference, placeData.photos[0].width, placeData.photos[0].height)
         .then((response) => {
-          setImage(response.headers['x-final-url']);
+          console.log('Chamando a API para pegar fotos', response);
+          setImage(response.data);
         })
         .catch((thrown) => {
           if (Axios.isCancel(thrown)) {
@@ -49,16 +48,27 @@ const CInfoWindow = (props) => {
     }
   }, [placeData]);
 
-  // Salva local
-  const handleSave = () => {};
-
   return (
     <InfoWindow position={placeData.geometry.location}>
       <InfoWrapper>
         {image ? <img className="cape" src={image} /> : <div className="cape-unavailable"></div>}
-        {placeData.name && <h1 className="name">{placeData.name}</h1>}
-        <p></p>
-        <button onClick={handleSave} className="save">
+
+        <div className="content">
+          {placeData.name && <h1 className="name">{placeData.name}</h1>}
+          {placeData.vicinity ? <p className="endereco">{placeData.vicinity}</p> : <></>}
+          {placeData.rating ? <Nota>{placeData.rating}</Nota> : <></>}
+        </div>
+        <button
+          onClick={() => {
+            props.saveCallback({
+              vicinity: placeData.vicinity,
+              localName: placeData.name,
+              latLng: placeData.geometry.location,
+              imageURL: image ? image : '',
+            });
+          }}
+          className="save"
+        >
           Salvar local
         </button>
       </InfoWrapper>
