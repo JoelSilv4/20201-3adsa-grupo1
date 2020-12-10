@@ -2,7 +2,7 @@ import Institucional from './pages/institucional/institucional';
 import Autenticacao from './pages/autenticacao/autenticacao.js';
 import Publicacoes from './pages/publicacoes/publicacoes.js';
 import Dashboard from './pages/dashboard/dashboard';
-import Viagens from './pages/viagens/viagens'
+import Viagens from './pages/viagens/viagens';
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
 
@@ -12,8 +12,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import Navbar from './components/Organisms/Navbar/Navbar';
-Axios.defaults.baseURL = 'http://localhost:8080';
-// Axios.defaults.baseURL = 'https://go-travel-ads.herokuapp.com';
+// Axios.defaults.baseURL = 'http://localhost:8080';
+Axios.defaults.baseURL = 'https://go-travel-ads1.herokuapp.com';
 
 function Index() {
   const initialState = {
