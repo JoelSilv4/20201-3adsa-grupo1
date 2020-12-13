@@ -8,10 +8,11 @@ public class TripDTO {
     private String lngDestiny;
     private String destiny;
     private String idUser;
+    private String url;
 
     public TripDTO(){}
 
-    public TripDTO(String id, String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser) {
+    public TripDTO(String id, String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser, String url) {
         this.id = id;
         this.latMatch = latMatch;
         this.lngMatch = lngMatch;
@@ -19,6 +20,7 @@ public class TripDTO {
         this.lngDestiny = lngDestiny;
         this.destiny = destiny;
         this.idUser = idUser;
+        this.url = url;
     }
 
     public String getLatMatch() {
@@ -75,5 +77,13 @@ public class TripDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

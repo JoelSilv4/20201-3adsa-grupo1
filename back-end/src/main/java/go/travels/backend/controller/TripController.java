@@ -204,7 +204,8 @@ public class TripController {
                 tripDTO.getLatDestiny(),
                 tripDTO.getLngDestiny(),
                 tripDTO.getDestiny(),
-                tripDTO.getIdUser()
+                tripDTO.getIdUser(),
+                tripDTO.getUrl()
         );
     }
 
@@ -216,7 +217,8 @@ public class TripController {
                 trip.getLatDestiny(),
                 trip.getLngDestiny(),
                 trip.getDestiny(),
-                trip.getIdUser()
+                trip.getIdUser(),
+                trip.getUrl()
         );
     }
 }
