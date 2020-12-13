@@ -9,6 +9,7 @@ import Axios from 'axios';
 import mapStyles from './mapStyles';
 import './style.css';
 import TripService from './trip.service';
+import Modali, { useModali } from 'modali';
 
 import you_icon from '../../../assets/person_pin.svg';
 import saved_place from '../../../assets/push_pin.svg';
@@ -103,7 +104,6 @@ const ContainerMaps = () => {
       destiny: `${origin} ; ${destination}`,
       idUser: appState.user.id,
     };
-    const filters = [];
 
     let tripId;
 
@@ -121,6 +121,7 @@ const ContainerMaps = () => {
               localName: localFiltrado.vicinity,
               latitude: localFiltrado.latLng.lat,
               longitude: localFiltrado.latLng.lng,
+              url: localFiltrado.imageURL,
               tripId,
             };
 
@@ -324,8 +325,17 @@ const ContainerMaps = () => {
     setInfoSFilter(data);
   };
 
+  const [exampleModal, toggleExampleModal] = useModali({
+    animated: true,
+    title: 'Pronto',
+    message: 'Sua viagem foi criada com sucesso!',
+    buttons: [<Modali.Button label="Confirmar" isStyleDefault onClick={() => toggleExampleModal} />],
+  });
+
   return (
     <MapWrapper>
+      <Modali.Modal {...exampleModal}></Modali.Modal>
+
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries={libraries}>
         <div className="divider">
           <div className="formWrapper">
