@@ -16,7 +16,6 @@ function SelectTrip() {
     Axios.get(`/trip/${userId}`, { headers: { authorization: appState.user.jwtkey } })
       .then((response) => {
         setTrips(response.data.content);
-        console.log(response.data.content);
       })
       .catch((error) => {
         console.error(error);

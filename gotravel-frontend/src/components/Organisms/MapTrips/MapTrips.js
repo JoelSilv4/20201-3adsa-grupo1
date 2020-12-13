@@ -1,19 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {TitleMapsWrapper, TitleMaps, MapsWrapper} from './MapTrips.style';
+import {TitleMapsWrapper, TitleMaps, MapsWrapper, ContainerGif} from './MapTrips.style';
 import { ReactComponent as Image } from '../../../assets/plane.svg';
 import Axios from 'axios';
 import StateContext from '../../../StateContext';
 import PostMap from '../../Molecules/PostMap'
 import TitlePage from '../../Atoms/TitlePage';
 import Error from '../Error'
+import Car from '../../../assets/car-loading.gif'
 
 const MapTrips = () => {
     const appState = useContext(StateContext);
     const [trip, setTrip] = useState([]);
+    const [loanding, setLoanding] = useState(false)
 
     useEffect(() => {
         Axios.get(`trip/${appState.user.id}`, { headers: { authorization: appState.user.jwtkey } })
           .then((e) => {
+            setLoanding(true)
            setTrip(e.data.content);
           })
           .catch((e) => {
@@ -21,7 +24,7 @@ const MapTrips = () => {
           });
       }, []);
 
-      
+      const waitingRequest = () => trip.length > 0 ? renderTrips() : renderNoContent() 
 
       const renderTrips = () => (
         trip.map(item => {
@@ -54,7 +57,8 @@ const MapTrips = () => {
         )
           
     return (
-        trip.length > 0 ? renderTrips() : renderNoContent() 
+        
+        loanding ? waitingRequest() : <ContainerGif id= "teste"><img src={Car} alt="loading..." /></ContainerGif> 
     )
 }
 

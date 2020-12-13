@@ -25,3 +25,9 @@ export const MapsWrapper = styled.div`
     height: 300px;
     border: 1px solid #CACACA;
 `
+export const ContainerGif = styled.div`
+    text-align: center;
+   img {
+    height: 300px;
+   } 
+`

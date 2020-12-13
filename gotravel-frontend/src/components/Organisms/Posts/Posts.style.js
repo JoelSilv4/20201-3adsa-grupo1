@@ -7,3 +7,10 @@ export const Container = styled.div`
   border-left: 1px solid #dcdcdc;
   border-right: 1px solid #dcdcdc;
 `;
+
+export const ContainerGif = styled.div`
+    text-align: center;
+   img {
+    height: 300px;
+   } 
+`
