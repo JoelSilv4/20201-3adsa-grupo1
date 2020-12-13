@@ -129,7 +129,7 @@ public class PostController {
                 post.getTitle(),
                 post.getDescription(),
                 post.getLikes(),
-                post.getTrip(),
+                tripService.findById(post.getTrip()),
                 post.getDate(),
                 post.getUserId()
         );
