@@ -11,7 +11,17 @@ import Car from '../../../assets/car-loading.gif'
 const Itinerario = () => {
 
     const appState = useContext(StateContext);
-    const [trip, setTrip] = useState([]);
+    const [trip, setTrip] = useState([
+        {
+            "id": "aaa5fc57a58c5cf2b1cbae39b06",
+            "latMatch": "-3.222",
+            "lngMatch": "-34.533",
+            "latDestiny": "-3.115",
+            "lngDestiny": "-32.523",
+            "destiny": "Avenida Paulista ; Rua Horácio de Carvalho",
+            "idUser": "5fc556949197b03c48816a9f"
+        }
+    ]);
     const [loanding, setLoanding] = useState(false)
 
     useEffect(() => {
@@ -27,11 +37,10 @@ const Itinerario = () => {
 
       console.log(trip)
 
-      const renderItinerario = () => (
-        trip.map(item => {
+      const renderItinerario = () => {
 
-        const latOBJ = parseFloat(item.latDestiny);
-        const lngOBJ = parseFloat(item.lngDestiny);
+        const latOBJ = parseFloat(trip[0].latDestiny);
+        const lngOBJ = parseFloat(trip[0].lngDestiny);
 
         const center = {
           lat: latOBJ,
@@ -41,17 +50,15 @@ const Itinerario = () => {
          return (
         <>
         <TitleMapsWrapper>
-            <TitleMaps>Origem: {item.destiny.split(';')[0]}</TitleMaps>
+            <TitleMaps>Origem: {trip[0].destiny.split(';')[0]}</TitleMaps>
             <Image />
-            <TitleMaps>Destino: {item.destiny.split(';')[1]} </TitleMaps>
+            <TitleMaps>Destino: {trip[0].destiny.split(';')[1]} </TitleMaps>
         </TitleMapsWrapper>
         <MapsWrapper>
             <PostMap center={center}/>
         </MapsWrapper>
         </>
-            )
-        }
-        ))
+            )}
 
      return (
         <Container >
