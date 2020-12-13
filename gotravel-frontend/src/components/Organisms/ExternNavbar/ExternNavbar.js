@@ -24,6 +24,9 @@ const ExternNavbar = ({ children }) => {
             <Link to="/ultimasViagens">
               <li>Últimas viagens</li>
             </Link>
+            <Link to="/itinerario">
+              <li>Itinerario</li>
+            </Link>
           </MenuItems>
         </LogoWrapper>
         {children}
