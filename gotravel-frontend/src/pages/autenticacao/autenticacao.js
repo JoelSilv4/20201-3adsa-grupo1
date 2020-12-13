@@ -6,7 +6,7 @@ import Footer from '../../components/Organisms/Footer/Footer';
 
 const Autenticacao = () => {
   const appDispatch = useContext(DispatchContext);
-  appDispatch({ type: 'is-not-institutional' });
+  appDispatch({ type: 'is-institutional' });
 
   return (
     <Layout>

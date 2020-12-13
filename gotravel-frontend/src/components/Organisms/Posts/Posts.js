@@ -5,7 +5,7 @@ import Post from '../../Molecules/Post';
 import { Container, ContainerGif } from './Posts.style';
 import StateContext from '../../../StateContext';
 import FormPost from '../../Molecules/FormPost/FormPost';
-import Car from '../../../assets/car-loading.gif'
+import Car from '../../../assets/car-loading.gif';
 
 // const centerA = {
 //   lat: -3.745,
@@ -25,12 +25,12 @@ import Car from '../../../assets/car-loading.gif'
 const Posts = () => {
   const appState = useContext(StateContext);
   const [posts, setPosts] = useState([]);
-  const [loanding, setLoanding] = useState(false)
+  const [loanding, setLoanding] = useState(false);
 
   useEffect(() => {
     Axios.get('/post', { headers: { authorization: appState.user.jwtkey } })
       .then((e) => {
-        setLoanding(true)
+        setLoanding(true);
         setPosts(e.data.content);
       })
       .catch((e) => {
@@ -40,24 +40,31 @@ const Posts = () => {
 
   const renderPost = () => (
     <Container>
-      {posts.map((post) => {
-        const latOBJ = parseFloat(post.trip.latDestiny);
-        const lngOBJ = parseFloat(post.trip.lngDestiny);
+      {posts ? (
+        posts.map((post) => {
+          console.log(post);
+          // const latOBJ = parseFloat(post.trip.latDestiny);
+          // const lngOBJ = parseFloat(post.trip.lngDestiny);
 
-        const centerOBJ = {
-          lat: latOBJ,
-          lng: lngOBJ,
-        };
-        return <Post userData={post} center={centerOBJ}></Post>;
-      })}
+          // const centerOBJ = {
+          //   lat: latOBJ,
+          //   lng: lngOBJ,
+          // };
+          // return <Post userData={post} center={centerOBJ}></Post>;
+        })
+      ) : (
+        <></>
+      )}
     </Container>
   );
 
-  return (
-        
-    loanding ? renderPost() : <ContainerGif id= "teste"><img src={Car} alt="loading..." /></ContainerGif> 
-)
-
+  return loanding ? (
+    renderPost()
+  ) : (
+    <ContainerGif id="teste">
+      <img src={Car} alt="loading..." />
+    </ContainerGif>
+  );
 };
 
 export default Posts;
