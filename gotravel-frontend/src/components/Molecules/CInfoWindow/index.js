@@ -36,7 +36,6 @@ const CInfoWindow = (props) => {
     if (placeData.photos != null && placeData.photos != undefined) {
       requestImage(placeData.photos[0].photo_reference, placeData.photos[0].width, placeData.photos[0].height)
         .then((response) => {
-          console.log('Chamando a API para pegar fotos', response);
           setImage(response.data);
         })
         .catch((thrown) => {
@@ -49,7 +48,12 @@ const CInfoWindow = (props) => {
   }, [placeData]);
 
   return (
-    <InfoWindow position={placeData.geometry.location}>
+    <InfoWindow
+      position={placeData.geometry.location}
+      onCloseClick={() => {
+        props.handleInfoClose();
+      }}
+    >
       <InfoWrapper>
         {image ? <img className="cape" src={image} /> : <div className="cape-unavailable"></div>}
 

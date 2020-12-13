@@ -20,7 +20,7 @@ const Publicacoes = () => {
 
   return (
     <Layout>
-      {!appState.formPost ? <FormPost /> : <></>}
+      {appState.formPost ? <FormPost /> : <></>}
       {!appState.selectTrip ? <SelectTrip /> : <></>}
 
       <AddPost />
