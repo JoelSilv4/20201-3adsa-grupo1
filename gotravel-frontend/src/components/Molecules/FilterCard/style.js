@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const colorsBackground = ['#F5B0CB', '#745c97', '#39375b', '#201E1F', '#3F6C51'];
+
 export const Card = styled.div`
   padding: 15px 10px;
   display: flex;
@@ -8,8 +10,8 @@ export const Card = styled.div`
   align-items: center;
 
   .preview {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
 
   .content {
@@ -23,20 +25,24 @@ export const Card = styled.div`
     .name {
       font-family: 'Lato';
       font-weight: 500;
-      font-size: 16px;
+      font-size: 14px;
+      color: black;
     }
 
     .endereco {
       margin: 5px 0;
       font-family: 'Lato';
-      font-weight: 400;
+      font-weight: 300;
       font-size: 12px;
+      color: #4e4e4e;
     }
 
     .buttons {
+      width: 100%;
       margin-top: auto;
 
       .remover {
+        margin-left: auto;
         background-color: white;
         height: 25px;
         padding: 0 10px;
@@ -55,7 +61,20 @@ export const Card = styled.div`
 `;
 
 export const NoImage = styled.div`
-  width: 80px;
-  height: 80px;
-  background-color: #c3c3c3;
+  width: 90px;
+  height: 90px;
+  background-color: ${colorsBackground[Math.floor(Math.random() * 4)]};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin: auto 0;
+    width: 90px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 500;
+    color: #c4bbb8;
+  }
 `;

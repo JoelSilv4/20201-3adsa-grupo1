@@ -1,5 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import logoimg from '../../../assets/logo-blue.svg';
+
+const rotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+`;
 
 export const FormFiltros = styled.div`
   max-width: 1100px;
@@ -31,6 +41,9 @@ export const MapWrapper = styled.div`
   height: 100vh;
   margin-top: -50px;
 
+  .rotate-spinner {
+  }
+
   .divider {
     height: 100%;
     display: flex;
@@ -39,9 +52,11 @@ export const MapWrapper = styled.div`
     align-items: center;
 
     .formWrapper {
+      height: calc(100vh - 70px);
+      margin-top: 70px;
+      width: 200px;
       left: 0;
       top: 0;
-      margin-top: 70px;
       position: fixed;
       display: flex;
       flex-direction: column;
@@ -49,7 +64,7 @@ export const MapWrapper = styled.div`
       z-index: 999;
 
       .form {
-        height: 100vh;
+        height: 100%;
         width: fit-content;
         display: flex;
         flex-direction: column;
@@ -196,6 +211,92 @@ export const MapWrapper = styled.div`
         }
       }
     }
+
+    .create-travel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 200px;
+      margin-right: 20px;
+      z-index: 801;
+
+      .buttons {
+        .confirmar {
+          line-height: 20px;
+          padding: 15px 20px;
+          border: 0px;
+          border-radius: 10px;
+          color: white;
+          box-shadow: 5px 5px 2spx 1px #383838;
+          font-family: 'Lato';
+          font-size: 18px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          img {
+            height: 20px;
+            margin-right: 5px;
+          }
+        }
+
+        .habilitado {
+          transition: 0.25s;
+          background: linear-gradient(58deg, #6ee6b7, #3b82f6, #3b82f6);
+          background-size: 600% 600%;
+
+          -webkit-animation: AnimationName 30s ease infinite;
+          -moz-animation: AnimationName 30s ease infinite;
+          animation: AnimationName 30s ease infinite;
+
+          @-webkit-keyframes AnimationName {
+            0% {
+              background-position: 0% 58%;
+            }
+            50% {
+              background-position: 100% 43%;
+            }
+            100% {
+              background-position: 0% 58%;
+            }
+          }
+          @-moz-keyframes AnimationName {
+            0% {
+              background-position: 0% 58%;
+            }
+            50% {
+              background-position: 100% 43%;
+            }
+            100% {
+              background-position: 0% 58%;
+            }
+          }
+          @keyframes AnimationName {
+            0% {
+              background-position: 0% 58%;
+            }
+            50% {
+              background-position: 100% 43%;
+            }
+            100% {
+              background-position: 0% 58%;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+          }
+        }
+
+        .nao-habilitado {
+          background-color: #969696;
+          color: white;
+        }
+      }
+    }
+
     .map {
       height: 100%;
       width: 100%;
