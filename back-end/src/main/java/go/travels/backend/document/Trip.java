@@ -15,16 +15,14 @@ public class Trip {
     private String lngDestiny;
     private String destiny;
     private String idUser;
-    private String url;
 
-    public Trip(String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser, String url) {
+    public Trip(String latMatch, String lngMatch, String latDestiny, String lngDestiny, String destiny, String idUser) {
         this.latMatch = latMatch;
         this.lngMatch = lngMatch;
         this.latDestiny = latDestiny;
         this.lngDestiny = lngDestiny;
         this.destiny = destiny;
         this.idUser = idUser;
-        this.url = url;
     }
 
     public String getLatMatch() {
@@ -81,14 +79,6 @@ public class Trip {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     @Override

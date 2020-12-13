@@ -13,12 +13,14 @@ public class Filter {
     private String latitude;
     private String longitude;
     private String tripId;
+    private String url;
 
-    public Filter(String localName, String latitude, String longitude, String tripId) {
+    public Filter(String localName, String latitude, String longitude, String tripId, String url) {
         this.localName = localName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.tripId = tripId;
+        this.url = url;
     }
 
     public String getLocalName() {
@@ -59,6 +61,14 @@ public class Filter {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

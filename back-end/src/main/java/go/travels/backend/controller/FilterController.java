@@ -57,7 +57,8 @@ public class FilterController {
                 filterDTO.getLocalName(),
                 filterDTO.getLatitude(),
                 filterDTO.getLongitude(),
-                filterDTO.getTripId()
+                filterDTO.getTripId(),
+                filterDTO.getUrl()
         );
     }
 
@@ -67,9 +68,8 @@ public class FilterController {
                 filter.getLatitude(),
                 filter.getLongitude(),
                 filter.getTripId(),
-                filter.getId()
+                filter.getId(),
+                filter.getUrl()
         );
     }
-
-
 }

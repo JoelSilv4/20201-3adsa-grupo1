@@ -46,7 +46,7 @@ public class LeArquivo {
                 destiny = registro.substring(55, 90);
                 idUser = registro.substring(91, 115);
 
-                Trip trip = new Trip(id,latMatch, lngMatch, latDestiny, lngDestiny, destiny, null);
+                Trip trip = new Trip(id,latMatch, lngMatch, latDestiny, lngDestiny, destiny);
                 trip.setId(id);
                 lista.add(trip);
 

@@ -7,15 +7,17 @@ public class FilterDTO {
     private String longitude;
     private String tripId;
     private String id;
+    private String url;
 
     public FilterDTO(){}
 
-    public FilterDTO(String localName, String latitude, String longitude, String tripId, String id) {
+    public FilterDTO(String localName, String latitude, String longitude, String tripId, String id, String url) {
         this.id = id;
         this.localName = localName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.tripId = tripId;
+        this.url = url;
     }
 
     public String getLocalName() {
@@ -56,5 +58,13 @@ public class FilterDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
