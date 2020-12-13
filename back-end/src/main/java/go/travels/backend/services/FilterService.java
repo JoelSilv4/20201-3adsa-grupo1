@@ -22,6 +22,7 @@ public class FilterService {
                 filter.getLatitude(),
                 filter.getLongitude(),
                 filter.getTripId(),
+                filter.getUrl(),
                 filter.getId())).collect(Collectors.toList());
     }
 
