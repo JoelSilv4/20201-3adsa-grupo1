@@ -1,4 +1,4 @@
-package controller;
+package archive.demo.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
