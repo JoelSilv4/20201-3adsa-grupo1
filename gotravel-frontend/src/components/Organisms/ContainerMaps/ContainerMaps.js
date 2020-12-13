@@ -27,6 +27,7 @@ import minus from '../../../assets/minus.svg';
 import plus from '../../../assets/plus.svg';
 import icon_save from '../../../assets/save_alt.svg';
 import spinnersvg from '../../../assets/spinner-solid.svg';
+import { Redirect } from 'react-router-dom';
 
 const libraries = ['places', 'directions'];
 
@@ -64,6 +65,7 @@ const ContainerMaps = () => {
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [directionsRef, setDirectionsRef] = useState(null);
   const [markers, setMarkers] = useState();
+  const [donePlanning, setDonePlanning] = useState(false);
 
   // Controle do centro do nearbySearch
   const [nearbySearchCenter, setNearbySearchCenter] = useState();
@@ -131,6 +133,8 @@ const ContainerMaps = () => {
         } else {
           setSpinner(false);
         }
+
+        toggleExampleModal();
       })
       .catch((err) => {
         setSpinner(false);
@@ -329,13 +333,23 @@ const ContainerMaps = () => {
     animated: true,
     title: 'Pronto',
     message: 'Sua viagem foi criada com sucesso!',
-    buttons: [<Modali.Button label="Confirmar" isStyleDefault onClick={() => toggleExampleModal} />],
+    buttons: [
+      <Modali.Button
+        label="Ok"
+        isStyleDefault
+        onClick={() => {
+          setDonePlanning(true);
+        }}
+      />,
+    ],
   });
+
+  if (donePlanning) {
+    return <Redirect to="/ultimasViagens" />;
+  }
 
   return (
     <MapWrapper>
-      <Modali.Modal {...exampleModal}></Modali.Modal>
-
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} libraries={libraries}>
         <div className="divider">
           <div className="formWrapper">
@@ -365,6 +379,8 @@ const ContainerMaps = () => {
                   <p>Definir os filtros da viagem</p>
                 </div>
 
+                <Modali.Modal {...exampleModal}></Modali.Modal>
+
                 {filterMenu ? (
                   <form className="inputs">
                     <div className="filter">
@@ -373,7 +389,7 @@ const ContainerMaps = () => {
                           <input
                             name="filtro"
                             onClick={() => {
-                              setFilterSelected('parques');
+                              setFilterSelected('parque');
                             }}
                             type="radio"
                           />
@@ -390,7 +406,7 @@ const ContainerMaps = () => {
                           <input
                             name="filtro"
                             onClick={() => {
-                              setFilterSelected('restaurantes');
+                              setFilterSelected('restaurante');
                             }}
                             type="radio"
                           />
@@ -407,7 +423,7 @@ const ContainerMaps = () => {
                           <input
                             name="filtro"
                             onClick={() => {
-                              setFilterSelected('bares');
+                              setFilterSelected('bar');
                             }}
                             type="radio"
                           />
@@ -424,7 +440,7 @@ const ContainerMaps = () => {
                           <input
                             name="filtro"
                             onClick={() => {
-                              setFilterSelected('hoteis');
+                              setFilterSelected('hotel');
                             }}
                             type="radio"
                           />
@@ -441,7 +457,7 @@ const ContainerMaps = () => {
                           <input
                             name="filtro"
                             onClick={() => {
-                              setFilterSelected('farmacia');
+                              setFilterSelected('farmácia');
                             }}
                             type="radio"
                           />
