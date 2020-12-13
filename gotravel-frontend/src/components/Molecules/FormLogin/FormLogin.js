@@ -54,6 +54,7 @@ const FormLogin = (props) => {
       })
       .catch((fail) => {
         console.error('EPIC FAIL: ', fail);
+        setError('Usuário ou senha incorretos');
         setSpinner(false);
       });
   }

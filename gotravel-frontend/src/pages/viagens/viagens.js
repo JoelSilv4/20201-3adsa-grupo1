@@ -1,15 +1,21 @@
-import React from 'react';
-import Layout from '../../components/Layout'
-import ContainerViagens from '../../components/Organisms/ContainerViagens'
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import Layout from '../../components/Layout';
+import ContainerViagens from '../../components/Organisms/ContainerViagens';
+import StateContext from '../../StateContext';
 
-const ultimasViagens = () => {
+const UltimasViagens = () => {
+  const appState = useContext(StateContext);
 
-    return (
-        <Layout>
-            <ContainerViagens />
-        </Layout>
-    )
-}
+  if (!appState.logged) {
+    return <Redirect to="/auth" />;
+  }
 
-export default ultimasViagens;
+  return (
+    <Layout>
+      <ContainerViagens />
+    </Layout>
+  );
+};
 
+export default UltimasViagens;

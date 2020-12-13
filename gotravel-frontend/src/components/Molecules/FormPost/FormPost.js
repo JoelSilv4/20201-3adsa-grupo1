@@ -113,7 +113,7 @@ function FormPost() {
           </div>
           <div className="buttons">
             <button className="adicionar" onClick={handleTrip}>
-              {buttonAddTrip}
+              {buttonAddTrip.length > 32 ? buttonAddTrip.substring(0, 32) + '...' : buttonAddTrip}
             </button>
             <button className="publicar" onClick={handlePublish}>
               Publicar

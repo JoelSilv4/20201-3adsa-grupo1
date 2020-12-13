@@ -20,7 +20,7 @@ const FormRegister = (props) => {
         .then((response) => {
           if (response.status == 201) {
             console.log('Registrado com sucesso!');
-           appDispatch({ type: 'form-login' })
+            appDispatch({ type: 'form-login' });
           } else if (response.status == 422) {
             console.log('Já existe um usuário com esse email');
           }
@@ -58,7 +58,7 @@ const FormRegister = (props) => {
 
             <div>
               <Label htmlFor="password" text="Senha" />
-              <input onChange={(e) => setPassword(e.target.value)} type="text" name="password" id="password" placeholder="****" />
+              <input onChange={(e) => setPassword(e.target.value)} type="password" name="password" id="password" placeholder="****" />
             </div>
 
             <ContainerButtons>
