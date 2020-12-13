@@ -42,15 +42,14 @@ const Posts = () => {
     <Container>
       {posts ? (
         posts.map((post) => {
-          console.log(post);
-          // const latOBJ = parseFloat(post.trip.latDestiny);
-          // const lngOBJ = parseFloat(post.trip.lngDestiny);
+          const latOBJ = parseFloat(post.trip.latDestiny);
+          const lngOBJ = parseFloat(post.trip.lngDestiny);
 
-          // const centerOBJ = {
-          //   lat: latOBJ,
-          //   lng: lngOBJ,
-          // };
-          // return <Post userData={post} center={centerOBJ}></Post>;
+          const centerOBJ = {
+            lat: latOBJ,
+            lng: lngOBJ,
+          };
+          return <Post userData={post} center={centerOBJ}></Post>;
         })
       ) : (
         <></>
