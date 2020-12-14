@@ -47,7 +47,7 @@ const Locals = () => {
       <Container>
         {local.map((item) => (
           <ContainerEstabelecimento>
-            <img src={item.url} />
+            {item.url ? <img src={item.url} /> : <img src={'https://st4.depositphotos.com/17828278/24401/v/600/depositphotos_244011872-stock-illustration-image-vector-symbol-missing-available.jpg'} />}
             <h1>{item.localName}</h1>
           </ContainerEstabelecimento>
         ))}

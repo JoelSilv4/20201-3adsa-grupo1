@@ -35,7 +35,6 @@ function PostMap({ data, center }) {
     },
   ]);
 
-  console.log('DATAAAAAAAA', data);
   const [local, setLocal] = useState();
 
   const appState = useContext(StateContext);
@@ -51,24 +50,49 @@ function PostMap({ data, center }) {
   }, []);
 
   useEffect(() => {
-    const latOBJD = parseFloat(data.trip.latDestiny);
-    const lngOBJD = parseFloat(data.trip.lngDestiny);
+    console.log('TESTEEEEEEEE', data);
+    if (data.isItinerario) {
+      const latOBJD = parseFloat(data.trip.latDestiny);
+      const lngOBJD = parseFloat(data.trip.lngDestiny);
 
-    const centerOBJD = {
-      lat: latOBJD,
-      lng: lngOBJD,
-    };
+      const centerOBJD = {
+        lat: latOBJD,
+        lng: lngOBJD,
+      };
 
-    const latOBJO = parseFloat(data.trip.latMatch);
-    const lngOBJO = parseFloat(data.trip.lngMatch);
+      console.log('CENTER OBJETAAAAAAAAA', centerOBJD);
+      const latOBJO = parseFloat(data.trip.latMatch);
+      const lngOBJO = parseFloat(data.trip.lngMatch);
 
-    const centerOBJO = {
-      lat: latOBJO,
-      lng: lngOBJO,
-    };
+      const centerOBJO = {
+        lat: latOBJO,
+        lng: lngOBJO,
+      };
 
-    setDestination(centerOBJD);
-    setOrigin(centerOBJO);
+      setDestination(centerOBJD);
+      setOrigin(centerOBJO);
+    } else {
+      const latOBJD = parseFloat(data.trip.latDestiny);
+      const lngOBJD = parseFloat(data.trip.lngDestiny);
+
+      const centerOBJD = {
+        lat: latOBJD,
+        lng: lngOBJD,
+      };
+
+      console.log('CENTER OBJETAAAAAAAAA NÃO ITINERARIO', centerOBJD);
+
+      const latOBJO = parseFloat(data.trip.latMatch);
+      const lngOBJO = parseFloat(data.trip.lngMatch);
+
+      const centerOBJO = {
+        lat: latOBJO,
+        lng: lngOBJO,
+      };
+
+      setDestination(centerOBJD);
+      setOrigin(centerOBJO);
+    }
   }, []);
 
   useEffect(() => {

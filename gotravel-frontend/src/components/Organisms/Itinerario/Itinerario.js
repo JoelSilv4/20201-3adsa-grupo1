@@ -49,6 +49,12 @@ const Itinerario = () => {
       lng: lngOBJ,
     };
 
+    const data = {
+      isItinerario: true,
+      trip: trip[0],
+      userId: appState.user.id,
+    };
+
     return (
       <>
         <TitleMapsWrapper>
@@ -57,7 +63,7 @@ const Itinerario = () => {
           <TitleMaps>Destino: {trip[0].destiny.split(';')[1]} </TitleMaps>
         </TitleMapsWrapper>
         <MapsWrapper>
-          <PostMap center={center} />
+          <PostMap data={data} center={center} />
         </MapsWrapper>
         <Locals />
       </>
