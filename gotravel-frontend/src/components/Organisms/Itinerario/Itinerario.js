@@ -10,9 +10,7 @@ import Car from '../../../assets/car-loading.gif';
 import Locals from '../../Molecules/Locals';
 import Error from '../Error';
 
-const Itinerario = (props) => {
-  console.log('ITINERARIO', props);
-
+const Itinerario = () => {
   const appState = useContext(StateContext);
   const [trip, setTrip] = useState([
     {
@@ -42,32 +40,29 @@ const Itinerario = (props) => {
 
   const renderNoContent = () => <Error nenhumText="nenhuma" text="viagem" buttonText="Fazer viagem" textCollor="#2D73DD" />;
 
-  const center = {
-    lat: latOBJ,
-    lng: lngOBJ,
+  const renderItinerario = () => {
+    const latOBJ = parseFloat(trip[0].latDestiny);
+    const lngOBJ = parseFloat(trip[0].lngDestiny);
+
+    const center = {
+      lat: latOBJ,
+      lng: lngOBJ,
+    };
+
+    return (
+      <>
+        <TitleMapsWrapper>
+          <TitleMaps>Origem: {trip[0].destiny.split(';')[0]}</TitleMaps>
+          <Image />
+          <TitleMaps>Destino: {trip[0].destiny.split(';')[1]} </TitleMaps>
+        </TitleMapsWrapper>
+        <MapsWrapper>
+          <PostMap center={center} />
+        </MapsWrapper>
+        <Locals />
+      </>
+    );
   };
-
-  const latOBJ = parseFloat(trip[0].latDestiny);
-  const lngOBJ = parseFloat(trip[0].lngDestiny);
-
-  const center = {
-    lat: latOBJ,
-    lng: lngOBJ,
-  };
-
-  return (
-    <>
-      <TitleMapsWrapper>
-        <TitleMaps>Origem: {trip[0].destiny.split(';')[0]}</TitleMaps>
-        <Image />
-        <TitleMaps>Destino: {trip[0].destiny.split(';')[1]} </TitleMaps>
-      </TitleMapsWrapper>
-      <MapsWrapper>
-        <PostMap center={center} />
-      </MapsWrapper>
-      <Locals />
-    </>
-  );
 
   return (
     <Container>

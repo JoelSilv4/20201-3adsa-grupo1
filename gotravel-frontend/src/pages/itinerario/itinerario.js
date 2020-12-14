@@ -19,7 +19,7 @@ const Itinerarios = (props) => {
 
   return (
     <Layout>
-      <Itinerario data={null} />
+      <Itinerario />
     </Layout>
   );
 };
