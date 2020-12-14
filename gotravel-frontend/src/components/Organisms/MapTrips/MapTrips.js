@@ -54,14 +54,14 @@ const MapTrips = () => {
             <TitleMaps>Destino: {item.destiny.split(';')[1]} </TitleMaps>
           </TitleMapsWrapper>
           <MapsWrapper>
-            <Link
+            {/* <Link
               to={{
                 pathname: '/itinerario',
                 state: item,
               }}
             >
               <button className="ver-itinerario">Ver mais</button>
-            </Link>
+            </Link> */}
             <PostMap center={center} />
           </MapsWrapper>
         </>

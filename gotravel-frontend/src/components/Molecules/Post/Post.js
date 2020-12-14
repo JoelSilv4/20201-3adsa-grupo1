@@ -14,8 +14,6 @@ function Post({ userData, center }) {
   const appState = useContext(StateContext);
 
   useEffect(() => {
-    console.log(userData);
-
     Axios.get(`user/photos/${userData.userId}`, { headers: { authorization: appState.user.jwtkey } })
       .then((response) => {
         setUserImage(response.data);

@@ -85,24 +85,8 @@ function FormPost() {
 
   useEffect(() => {}, [postTrip]);
 
-  // const [exampleModal, toggleExampleModal] = useModali({
-  //   animated: true,
-  //   title: 'Pronto',
-  //   message: 'Sua viagem foi criada com sucesso!',
-  //   buttons: [
-  //     <Modali.Button
-  //       label="Ok"
-  //       isStyleDefault
-  //       onClick={() => {
-  //         handleClose();
-  //       }}
-  //     />,
-  //   ],
-  // });
-
   return (
     <Container>
-      {/* <Modali.Modal {...exampleModal}></Modali.Modal> */}
       <div className="wrapper">
         <SideInfo>
           <div className="profile-pic">
