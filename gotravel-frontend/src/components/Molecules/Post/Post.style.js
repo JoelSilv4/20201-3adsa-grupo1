@@ -22,6 +22,7 @@ export const SideInfo = styled.div`
 
   .profile-pic {
     img {
+      object-fit: cover;
       margin: 15px 0;
       width: 60px;
       height: 60px;

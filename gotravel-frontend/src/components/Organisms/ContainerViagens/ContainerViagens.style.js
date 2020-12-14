@@ -16,6 +16,7 @@ export const ViagensWrapper = styled.div`
   }
 
   .upload-div {
+    max-width: 1100px;
     margin: 0 auto;
     margin-top: 40vh;
     width: fit-content;

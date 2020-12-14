@@ -7,6 +7,8 @@ import { TitleMapsWrapper, TitleMaps, MapsWrapper, ContainerGif } from '../MapTr
 import PostMap from '../../Molecules/PostMap';
 import Axios from 'axios';
 import Car from '../../../assets/car-loading.gif';
+import Locals from '../../Molecules/Locals';
+import Error from '../Error';
 
 const Itinerario = (props) => {
   console.log('ITINERARIO', props);
@@ -36,34 +38,42 @@ const Itinerario = (props) => {
       });
   }, []);
 
-  const renderItinerario = () => {
-    const latOBJ = parseFloat(trip[0].latDestiny);
-    const lngOBJ = parseFloat(trip[0].lngDestiny);
+  const existeItinerario = () => (trip[0] ? renderItinerario() : renderNoContent());
 
-    const center = {
-      lat: latOBJ,
-      lng: lngOBJ,
-    };
+  const renderNoContent = () => <Error nenhumText="nenhuma" text="viagem" buttonText="Fazer viagem" textCollor="#2D73DD" />;
 
-    return (
-      <>
-        <TitleMapsWrapper>
-          <TitleMaps>Origem: {trip[0].destiny.split(';')[0]}</TitleMaps>
-          <Image />
-          <TitleMaps>Destino: {trip[0].destiny.split(';')[1]} </TitleMaps>
-        </TitleMapsWrapper>
-        <MapsWrapper>
-          <PostMap center={center} />
-        </MapsWrapper>
-      </>
-    );
+  const center = {
+    lat: latOBJ,
+    lng: lngOBJ,
   };
+
+  const latOBJ = parseFloat(trip[0].latDestiny);
+  const lngOBJ = parseFloat(trip[0].lngDestiny);
+
+  const center = {
+    lat: latOBJ,
+    lng: lngOBJ,
+  };
+
+  return (
+    <>
+      <TitleMapsWrapper>
+        <TitleMaps>Origem: {trip[0].destiny.split(';')[0]}</TitleMaps>
+        <Image />
+        <TitleMaps>Destino: {trip[0].destiny.split(';')[1]} </TitleMaps>
+      </TitleMapsWrapper>
+      <MapsWrapper>
+        <PostMap center={center} />
+      </MapsWrapper>
+      <Locals />
+    </>
+  );
 
   return (
     <Container>
       <TitlePage text="SUA VIAGEM" />
       {loanding ? (
-        renderItinerario()
+        existeItinerario()
       ) : (
         <ContainerGif id="teste">
           <img src={Car} alt="loading..." />

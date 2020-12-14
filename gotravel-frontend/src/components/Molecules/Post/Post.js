@@ -34,10 +34,14 @@ function Post({ userData, center }) {
             <img src={svg_heart} alt="" />
             <p>Amei</p>
           </div> */}
-          <div>
-            <img src={svg_copy} alt="" />
-            <p>Copiar</p>
-          </div>
+          {userData.userId == appState.user.id ? (
+            <></>
+          ) : (
+            <div>
+              <img src={svg_copy} alt="" />
+              <p>Copiar</p>
+            </div>
+          )}
         </div>
       </SideInfo>
       <Content>

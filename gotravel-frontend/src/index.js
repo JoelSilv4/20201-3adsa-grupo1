@@ -12,8 +12,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import Axios from 'axios';
 import Navbar from './components/Organisms/Navbar/Navbar';
-Axios.defaults.baseURL = 'http://localhost:8080';
-// Axios.defaults.baseURL = 'https://go-travel-ads1.herokuapp.com';
+//Axios.defaults.baseURL = 'http://localhost:8080';
+ Axios.defaults.baseURL = 'https://go-travel-ads1.herokuapp.com';
 
 function Index() {
   const initialState = {
