@@ -44,7 +44,7 @@ const ContainerViagens = () => {
 
   return (
     <ViagensWrapper>
-      {!upload && (
+      {upload && (
         <div className="upload-wrapper">
           <div className="upload-div">
             <h2>Exportar uma nova viagem</h2>

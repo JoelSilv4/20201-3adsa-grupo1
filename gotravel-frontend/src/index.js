@@ -5,7 +5,7 @@ import Dashboard from './pages/dashboard/dashboard';
 import Viagens from './pages/viagens/viagens';
 import StateContext from './StateContext';
 import DispatchContext from './DispatchContext';
-import Itinerario from './pages/itinerario/itinerario.js';
+import Itinerarios from './pages/itinerario/itinerario.js';
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -106,7 +106,7 @@ function Index() {
               <Viagens />
             </Route>
             <Route path="/itinerario">
-              <Itinerario />
+              <Itinerarios />
             </Route>
           </Switch>
         </BrowserRouter>

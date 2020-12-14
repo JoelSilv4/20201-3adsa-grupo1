@@ -5,9 +5,11 @@ import Layout from '../../components/Layout';
 import { Redirect } from 'react-router-dom';
 import Itinerario from '../../components/Organisms/Itinerario';
 
-const Intinerarios = () => {
+const Itinerarios = (props) => {
   const appDispatch = useContext(DispatchContext);
   appDispatch({ type: 'is-not-institutional' });
+
+  console.log('ITINERARIO', props);
 
   const appState = useContext(StateContext);
 
@@ -17,9 +19,9 @@ const Intinerarios = () => {
 
   return (
     <Layout>
-      <Itinerario />
+      <Itinerario data={null} />
     </Layout>
   );
 };
 
-export default Intinerarios;
+export default Itinerarios;
