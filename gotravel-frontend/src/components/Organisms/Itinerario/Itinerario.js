@@ -7,6 +7,8 @@ import { TitleMapsWrapper, TitleMaps, MapsWrapper, ContainerGif } from '../MapTr
 import PostMap from '../../Molecules/PostMap'
 import Axios from 'axios';
 import Car from '../../../assets/car-loading.gif'
+import Locals from '../../Molecules/Locals'
+import Error from '../Error'
 
 const Itinerario = () => {
 
@@ -35,9 +37,15 @@ const Itinerario = () => {
           });
       }, []);
 
-      console.log(trip)
+      const existeItinerario = () => trip[0] ? renderItinerario() : renderNoContent()
+
+      const renderNoContent = () => (
+        <Error nenhumText="nenhuma" text="viagem" buttonText="Fazer viagem" textCollor="#2D73DD"/>
+    )
 
       const renderItinerario = () => {
+
+        
 
         const latOBJ = parseFloat(trip[0].latDestiny);
         const lngOBJ = parseFloat(trip[0].lngDestiny);
@@ -57,13 +65,15 @@ const Itinerario = () => {
         <MapsWrapper>
             <PostMap center={center}/>
         </MapsWrapper>
+        <Locals />
         </>
             )}
 
      return (
         <Container >
         <TitlePage text="SUA VIAGEM" />
-        { loanding ? renderItinerario() : <ContainerGif id= "teste"><img src={Car} alt="loading..." /></ContainerGif> }
+        { loanding ? existeItinerario() : <ContainerGif id= "teste"><img src={Car} alt="loading..." /></ContainerGif> }
+        
     </Container>
      )  
 }

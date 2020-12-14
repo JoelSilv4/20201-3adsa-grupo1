@@ -18,13 +18,16 @@ const ExternNavbar = ({ children }) => {
           {!appState.isInstitutionalPage ? (
             <MenuItems>
               <Link to="/">
-                <li>Início</li>
+                <li>Home</li>
               </Link>
               <Link to="/home">
                 <li>Posts</li>
               </Link>
               <Link to="/dashboard">
                 <li>Criar Viagem</li>
+              </Link>
+              <Link to="/itinerario">
+                <li>Itinerário</li>
               </Link>
               <Link to="/ultimasViagens">
                 <li>Últimas viagens</li>
