@@ -5,12 +5,14 @@ export const Container = styled.div`
   height: 300px;
   width: 600px;
   overflow: scroll;
+  overflow-x: hidden;
 `;
 
 export const ContainerEstabelecimento = styled.div`
   display: flex;
   margin-bottom: 16px;
   align-items: center;
+  overflow-x: hidden;
 
   img {
     object-fit: cover;

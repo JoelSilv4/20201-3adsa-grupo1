@@ -50,8 +50,8 @@ function PostMap({ data, center }) {
   }, []);
 
   useEffect(() => {
-    console.log('TESTEEEEEEEE', data);
-    if (data.isItinerario) {
+    if (data && data.isItinerario) {
+      console.log('IS ITINERARIO', data);
       const latOBJD = parseFloat(data.trip.latDestiny);
       const lngOBJD = parseFloat(data.trip.lngDestiny);
 
@@ -71,7 +71,7 @@ function PostMap({ data, center }) {
 
       setDestination(centerOBJD);
       setOrigin(centerOBJO);
-    } else {
+    } else if (data) {
       const latOBJD = parseFloat(data.trip.latDestiny);
       const lngOBJD = parseFloat(data.trip.lngDestiny);
 
@@ -92,6 +92,8 @@ function PostMap({ data, center }) {
 
       setDestination(centerOBJD);
       setOrigin(centerOBJO);
+    } else {
+      return;
     }
   }, []);
 
@@ -121,7 +123,7 @@ function PostMap({ data, center }) {
       .catch((e) => {
         console.error(e);
       });
-  }, [trip]);
+  }, []);
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
