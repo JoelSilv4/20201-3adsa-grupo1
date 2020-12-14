@@ -73,7 +73,7 @@ public class TripController {
 
         Mono<String> result = webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .build())
+                .build())
                 .retrieve()
                 .bodyToMono(String.class);
 
@@ -93,7 +93,7 @@ public class TripController {
 
     @GetMapping("/place_location/{lat}/{lng}/{radius}/{filterSelected}")
     public ResponseEntity getPlaceLocation(@PathVariable String lat, @PathVariable String lng, @PathVariable String radius, @PathVariable String filterSelected) {
-        final String uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=" + radius + "&type=" + filterSelected + "&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ";
+        final String uri = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=" + radius + "&language=pt-BR&type=" + filterSelected + "&key=AIzaSyBw46FEvXL1fBBgw8bocxI-fYTcva5yTeQ";
 
         WebClient webClient = WebClient.create(uri);
 
@@ -193,9 +193,6 @@ public class TripController {
 
         return ResponseEntity.created(null).build();
     }
-
-
-
 
     private Trip convertDtoForTrip(TripDTO tripDTO) {
         return new Trip(
