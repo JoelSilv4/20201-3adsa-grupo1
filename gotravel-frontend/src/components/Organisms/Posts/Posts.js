@@ -4,23 +4,7 @@ import Post from '../../Molecules/Post';
 
 import { Container, ContainerGif } from './Posts.style';
 import StateContext from '../../../StateContext';
-import FormPost from '../../Molecules/FormPost/FormPost';
 import Car from '../../../assets/car-loading.gif';
-
-// const centerA = {
-//   lat: -3.745,
-//   lng: -38.523,
-// };
-
-// const centerB = {
-//   lat: -3.745,
-//   lng: -38.6,
-// };
-
-// const centerC = {
-//   lat: -3.745,
-//   lng: -38.458,
-// };
 
 const Posts = () => {
   const appState = useContext(StateContext);
@@ -36,12 +20,13 @@ const Posts = () => {
       .catch((e) => {
         console.error(e);
       });
-  }, []);
+  }, [appState.refreshPosts]);
 
   const renderPost = () => (
     <Container>
       {posts ? (
-        posts.map((post) => {
+        posts.map((post, index) => {
+          console.log('POSTS', post.trip);
           const latOBJ = parseFloat(post.trip.latDestiny);
           const lngOBJ = parseFloat(post.trip.lngDestiny);
 
@@ -49,7 +34,8 @@ const Posts = () => {
             lat: latOBJ,
             lng: lngOBJ,
           };
-          return <Post userData={post} center={centerOBJ}></Post>;
+
+          return <Post key={index} userData={post} center={centerOBJ}></Post>;
         })
       ) : (
         <></>

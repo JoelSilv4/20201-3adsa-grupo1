@@ -25,10 +25,13 @@ function Post({ userData, center }) {
         </div>
       </SideInfo>
       <Content>
-        <div className="name">{userData.title}</div>
-        <div className="comment">{userData.description}</div>
+        <div className="name">
+          <p>{userData.title}</p>
+          <p className="date">criado em {userData.date}</p>
+        </div>
+        <p className="comment">{userData.description}</p>
         <div className="photo">
-          <PostMap center={center}/>
+          <PostMap data={userData} center={center} />
         </div>
       </Content>
     </Container>

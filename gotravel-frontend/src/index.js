@@ -28,6 +28,7 @@ function Index() {
     formType: true,
     formPost: false,
     selectTrip: false,
+    refreshPosts: false,
   };
 
   function ourReducer(draft, action) {
@@ -59,6 +60,9 @@ function Index() {
         return;
       case 'show-select-trip':
         draft.formPost = !draft.selectTrip;
+        return;
+      case 'refresh-posts':
+        draft.refreshPosts = !draft.refreshPosts;
         return;
     }
   }

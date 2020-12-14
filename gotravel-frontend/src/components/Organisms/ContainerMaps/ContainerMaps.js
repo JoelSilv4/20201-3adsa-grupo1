@@ -263,6 +263,7 @@ const ContainerMaps = () => {
     const { location } = destino.getPlaces()[0].geometry;
     setDestinationLocation(location);
     setMarker(null);
+    console.log('DIRECTIONSDESTINY', location);
     setDirectionsDestiny(location);
   };
 
@@ -389,7 +390,7 @@ const ContainerMaps = () => {
                           <input
                             name="filtro"
                             onClick={() => {
-                              setFilterSelected('parque');
+                              setFilterSelected('park');
                             }}
                             type="radio"
                           />
@@ -578,7 +579,7 @@ const ContainerMaps = () => {
                 <DirectionsService callback={directionsCallback} options={{}} />
               )}
 
-              {directionsResponse !== null ? (
+              {directionsResponse != null ? (
                 <DirectionsRenderer
                   directions={directionsResponse}
                   // ref={directRef}

@@ -55,14 +55,32 @@ export const Content = styled.div`
   width: ${contentWidth};
 
   .name {
-    font-size: 18px;
-    color: black;
-    margin: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    p {
+      font-size: 18px;
+      color: black;
+      margin: 10px 0;
+    }
+
+    .date {
+      color: #5f5f5f;
+      font-size: 12px;
+      margin-left: auto;
+      margin-right: 20px;
+    }
   }
 
   .comment {
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-size: 16px;
-    color: #909090;
+    font-family: 'Lato';
+    font-weight: 300;
+    color: #5f5f5f;
   }
 
   .photo {

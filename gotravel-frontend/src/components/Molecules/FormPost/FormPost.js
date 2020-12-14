@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, SideInfo, Content } from './FormPost.style';
+import Modali, { useModali } from 'modali';
 
 import svg_copy_greyed from '../../../assets/copy_greyed.svg';
 import svg_heart_greyed from '../../../assets/heart_greyed.svg';
@@ -42,7 +43,10 @@ function FormPost() {
 
   function handleSelectTrip(viagem, handleSelected) {
     setPostTrip(viagem);
-    console.log('A SEGUINTE VIAGEM SELECIONADA', viagem);
+  }
+
+  function refreshPosts() {
+    appDispatch({ type: 'refresh-posts' });
   }
 
   function handlePublish() {
@@ -56,7 +60,10 @@ function FormPost() {
     };
 
     Axios.post(`/post/${postTrip.id}`, postBody, { headers: { authorization: appState.user.jwtkey } })
-      .then((response) => console.log(response))
+      .then((response) => {
+        refreshPosts();
+        handleClose();
+      })
       .catch((error) => console.log(error));
   }
 
@@ -78,8 +85,24 @@ function FormPost() {
 
   useEffect(() => {}, [postTrip]);
 
+  // const [exampleModal, toggleExampleModal] = useModali({
+  //   animated: true,
+  //   title: 'Pronto',
+  //   message: 'Sua viagem foi criada com sucesso!',
+  //   buttons: [
+  //     <Modali.Button
+  //       label="Ok"
+  //       isStyleDefault
+  //       onClick={() => {
+  //         handleClose();
+  //       }}
+  //     />,
+  //   ],
+  // });
+
   return (
     <Container>
+      {/* <Modali.Modal {...exampleModal}></Modali.Modal> */}
       <div className="wrapper">
         <SideInfo>
           <div className="profile-pic">

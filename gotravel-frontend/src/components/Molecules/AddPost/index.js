@@ -2,11 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import DispatchContext from '../../../DispatchContext';
 
 import svg_addbutton from '../../../assets/add_button.svg';
-import svg_listsolid from '../../../assets/list_solid.svg';
 import { Container } from './style';
 import { Redirect } from 'react-router-dom';
 
-function AddPost({text}) {
+function AddPost({ text, handle }) {
   const appDispatch = useContext(DispatchContext);
 
   const handlePost = () => {
@@ -19,14 +18,10 @@ function AddPost({text}) {
 
   return (
     <Container>
-      <div onClick={handlePost}>
+      <div onClick={handle ? handle : handlePost}>
         <img src={svg_addbutton} alt="" />
         <p>{text}</p>
       </div>
-      {/* <div className="mytrips" onClick={handleTrips}>
-        <img src={svg_listsolid} alt="" />
-        <p>Minhas Viagens</p>
-      </div> */}
     </Container>
   );
 }
