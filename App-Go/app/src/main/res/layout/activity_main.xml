@@ -45,6 +45,7 @@
         app:backgroundTint="#2C73DD"
         app:layout_constraintTop_toBottomOf="@id/btn_login"
         android:text="Criar uma conta"
-        android:background="@drawable/round_btn"/>
+        android:background="@drawable/round_btn"
+        android:onClick="signup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
