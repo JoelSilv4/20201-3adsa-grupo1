@@ -17,4 +17,9 @@ class LoginScreen : AppCompatActivity() {
         val intent = Intent(this, SignUpScreen::class.java)
         startActivity(intent)
     }
+
+    fun login(view: View) {
+        val intent = Intent(this, HomeScreen::class.java)
+        startActivity(intent)
+    }
 }
