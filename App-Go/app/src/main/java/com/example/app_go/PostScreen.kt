@@ -1,18 +1,20 @@
 package com.example.app_go
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.jaeger.library.StatusBarUtil
 
-class HomeScreen : AppCompatActivity() {
+class PostScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_screen)
+        setContentView(R.layout.activity_post_screen)
         StatusBarUtil.setTranslucent(this)
     }
 
-    fun post(view: View) {val intent = Intent(this, PostScreen::class.java)
-        startActivity(intent)}
+    fun back_home(view: View) {
+        val intent = Intent(this, HomeScreen::class.java)
+        startActivity(intent)
+    }
 }

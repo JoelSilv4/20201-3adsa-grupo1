@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGo">
-        <activity android:name=".HomeScreen"></activity>
+        <activity android:name=".PostScreen"></activity>
+        <activity android:name=".HomeScreen" />
         <activity android:name=".SignUpScreen" />
         <activity android:name=".LoginScreen" />
         <activity android:name=".MainActivity">

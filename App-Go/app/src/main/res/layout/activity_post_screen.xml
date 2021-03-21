@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeScreen">
-
+    tools:context=".PostScreen">
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -16,50 +15,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="13dp"
-        android:layout_marginRight="7dp"
-        />
+        android:layout_marginRight="7dp" />
 
     <TextView
         android:id="@+id/iv_line"
         android:layout_width="match_parent"
-        android:layout_height="1.5dp"
+        android:layout_height="2dp"
         app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+        android:background="#cccccc"
+        android:layout_marginTop="12dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_clear_24"
+        app:layout_constraintTop_toBottomOf="@id/iv_line"
+        app:layout_constraintBottom_toTopOf="@id/iv_extraline"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="22dp"
+        android:onClick="back_home"/>
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_btn"
+        app:backgroundTint="#2C73DD"
+        android:text="Publicar"
+        app:layout_constraintTop_toBottomOf="@id/iv_line"
+        app:layout_constraintBottom_toTopOf="@id/iv_extraline"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="33dp"/>
+
+    <TextView
+        android:id="@+id/iv_extraline"
+        android:layout_width="350dp"
+        android:layout_height="2dp"
         android:background="#bfbfbf"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="95dp"
+        app:layout_constraintTop_toBottomOf="@id/iv_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/round_btn"
+        app:backgroundTint="#2EBCA9"
+        android:text="Adicionar Viagem"
         app:layout_constraintBottom_toTopOf="@id/tv_bar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_line"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="68dp">
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="33dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/a"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/azaghal"/>
-
-                <ImageView
-                    android:id="@+id/b"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/azaghal"/>
-            </LinearLayout>
-        
-    </ScrollView>
 
     <TextView
         android:id="@+id/tv_bar"
@@ -68,16 +76,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="#e6e6e6"/>
 
-    <ImageButton
-        android:id="@+id/btn_post"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:background="@drawable/postar"
-        app:layout_constraintBottom_toTopOf="@+id/tv_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="35dp"
-        android:onClick="post"/>
 
     <ImageButton
         android:id="@+id/btn_home"
@@ -111,8 +109,7 @@
         android:background="@drawable/ic_baseline_add_circle_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btn_trips"
@@ -139,6 +136,4 @@
         android:backgroundTint="@color/black"
         android:layout_marginLeft="330dp"/>
 
-
-    
 </androidx.constraintlayout.widget.ConstraintLayout>
