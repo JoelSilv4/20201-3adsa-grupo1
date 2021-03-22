@@ -38,9 +38,10 @@
     <Button
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:background="@drawable/round_btn"
+        android:background="@drawable/round_shape"
         app:backgroundTint="#2C73DD"
         android:text="Publicar"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/iv_line"
         app:layout_constraintBottom_toTopOf="@id/iv_extraline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,17 +58,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:background="@drawable/round_btn"
-        app:backgroundTint="#2EBCA9"
-        android:text="Adicionar Viagem"
-        app:layout_constraintBottom_toTopOf="@id/tv_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="33dp"/>
 
+    <fragment
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/trip_navigation"
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="370dp"
+        />
 
     <TextView
         android:id="@+id/tv_bar"
@@ -135,5 +136,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="@color/black"
         android:layout_marginLeft="330dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
