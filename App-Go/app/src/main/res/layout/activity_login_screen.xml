@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginScreen"
+    tools:context=".screens.LoginScreen"
     android:background="@drawable/imagem_de_fundo">
 
     <TextView
@@ -111,7 +111,7 @@
         android:layout_width="290dp"
         android:layout_height="60dp"
         android:layout_marginTop="250dp"
-        android:background="@drawable/round_shape"
+        android:background="@drawable/round_shape_button"
         android:backgroundTint="#2C73DD"
         android:text="Acessar"
         app:backgroundTint="#2C73DD"
@@ -136,7 +136,7 @@
         android:id="@+id/btn_signup"
         android:layout_width="290dp"
         android:layout_height="60dp"
-        android:background="@drawable/round_shape"
+        android:background="@drawable/round_shape_button"
         android:text="Criar uma conta"
         android:textColor="@color/black"
         app:backgroundTint="#f2f2f2"

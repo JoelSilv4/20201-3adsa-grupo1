@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TripFragment">
+    tools:context=".fragments.TripFragment">
 
     <Button
         android:id="@+id/btn_adicionar"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="33dp"
         android:layout_marginBottom="165dp"
-        android:background="@drawable/round_shape"
+        android:background="@drawable/round_shape_button"
         android:textColor="@color/white"
         android:text="Adicionar Viagem"
         app:layout_constraintBottom_toBottomOf="parent"

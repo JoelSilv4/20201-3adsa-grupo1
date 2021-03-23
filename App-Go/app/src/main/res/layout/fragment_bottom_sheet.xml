@@ -4,52 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomSheetFragment">
+    tools:context=".fragments.BottomSheetFragment">
 
-    <TextView
-        android:id="@+id/a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HELLO HELLO"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="30dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TESTE TESTE"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/a" />
+                <TableRow
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HELLO HELLO"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/b"/>
+                        <TextView
+                            android:id="@+id/TextView01"
+                            android:text="Curitiba"
+                            android:textSize="20dp"
+                            android:layout_width="130dp"
+                            android:layout_weight="1"
+                            android:textColor="#000000"
+                            android:padding="18dip"
+                            android:gravity="center" />
 
-    <TextView
-        android:id="@+id/d"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TESTE TESTE"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/c" />
+                        <ImageView
+                            android:id="@+id/iv_location"
+                            android:layout_weight="1"
+                            android:padding="15dip"
+                            android:layout_width="130dp"
+                            android:gravity="center"
+                            android:src="@drawable/ic_baseline_location_on_24"/>
 
+                        <TextView
+                            android:id="@+id/TextView03"
+                            android:text="Santos"
+                            android:layout_width="130dp"
+                            android:layout_weight="1"
+                            android:textColor="#000000"
+                            android:padding="18dip"
+                            android:gravity="center"
+                            android:textSize="20dp"/>
+                </TableRow>
+        </TableLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
